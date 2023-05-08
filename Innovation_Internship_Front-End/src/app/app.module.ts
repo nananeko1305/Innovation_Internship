@@ -4,8 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { LoginComponentComponent } from './components/login-component/login-component.component';
-import { RegistrationComponentComponent } from './components/registration-component/registration-component.component';
 import { InnovationAddComponent } from './components/Innovation/innovation-add/innovation-add.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RegistrationComponent } from './components/registration/registration.component';
@@ -14,8 +12,6 @@ import { RegistrationComponent } from './components/registration/registration.co
   declarations: [
     AppComponent,
     LoginComponent,
-    LoginComponentComponent,
-    RegistrationComponentComponent,
     InnovationAddComponent,
     HeaderComponent,
     RegistrationComponent
