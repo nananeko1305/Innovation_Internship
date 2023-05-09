@@ -12,17 +12,29 @@ public class InfrastructureApp {
 
         new InfrastructureStack(app, "InfrastructureStack", StackProps.builder()
 
+                // Uncomment the next block to specialize this stack for the AWS Account
+                // and Region that are implied by the current CLI configuration.
+                /*
                 .env(Environment.builder()
-                        .account("123456789012")
+                        .account(System.getenv("CDK_DEFAULT_ACCOUNT"))
+                        .region(System.getenv("CDK_DEFAULT_REGION"))
+                        .build())
+                */
+
+                // Uncomment the next block if you know exactly what Account and Region you
+                // want to deploy the stack to.
+                
+                .env(Environment.builder()
+                        .account("696993701802")
                         .region("eu-north-1")
                         .build())
-               
 
                 .build());
         new TestUDJStack(app, "TestUDJStack", StackProps.builder()
                 
                 .build());
 
+        new TestSTStack(app, "TestSTStack" , StackProps.builder().build());
         app.synth();
     }
 }
