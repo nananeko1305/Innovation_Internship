@@ -13,6 +13,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {AngularMaterialModule} from "./angular-material.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import { InnovationCreateComponent } from './components/innovation-create/innovation-create.component';
+import { EngineerViewOfInnovationsComponent } from './components/engineer-view-of-innovations/engineer-view-of-innovations.component';
+import { InnovationViewComponent } from './components/innovation-view/innovation-view.component';
+import { InnovationListComponent } from './components/innovation-list/innovation-list.component';
+import { InnovationAcceptDeclineComponent } from './components/innovation-accept-decline/innovation-accept-decline.component';
+import { InnovationDeclineCommentComponent } from './components/innovation-decline-comment/innovation-decline-comment.component';
 
 
 @NgModule({
@@ -22,6 +28,12 @@ import {ReactiveFormsModule} from "@angular/forms";
     LoginComponent,
     RegistrationComponent,
     HomepageComponent,
+    InnovationCreateComponent,
+    EngineerViewOfInnovationsComponent,
+    InnovationViewComponent,
+    InnovationListComponent,
+    InnovationAcceptDeclineComponent,
+    InnovationDeclineCommentComponent,
   ],
   imports: [
     BrowserModule,
