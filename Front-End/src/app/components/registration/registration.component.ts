@@ -27,7 +27,7 @@ export class RegistrationComponent implements OnInit{
 
 
 
-        this.cognitoService.signUp(this.formGroup.get('username')?.value,this.formGroup.get('password')?.value).then(() => {
+        this.cognitoService.signUp(this.formGroup.get('username')?.value,this.formGroup.get('password')?.value, this.formGroup.get('email')?.value).then(() => {
               alert("Success.")
         })
         .catch((error:any) => {
