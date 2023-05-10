@@ -20,7 +20,7 @@ const routes: Routes = [
   { path : 'innovation-create', component : InnovationCreateComponent },
   { path : 'innovation-list', component : InnovationListComponent },
   { path : 'innovationAcceptDecline/:id', component : InnovationAcceptDeclineComponent },
-  { path : 'innovationComment/:id', component : InnovationDeclineCommentComponent },
+  { path : 'innovationComment/:id', component : InnovationDeclineCommentComponent }
 
 ];
 
