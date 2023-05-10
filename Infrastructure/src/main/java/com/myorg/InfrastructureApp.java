@@ -4,8 +4,6 @@ import software.amazon.awscdk.App;
 import software.amazon.awscdk.Environment;
 import software.amazon.awscdk.StackProps;
 
-import java.util.Arrays;
-
 public class InfrastructureApp {
     public static void main(final String[] args) {
         App app = new App();
@@ -30,12 +28,15 @@ public class InfrastructureApp {
                         .build())
 
                 .build());
-        new TestUDJStack(app, "TestUDJStack", StackProps.builder()
-                
-                .build());
+        new TestUDJStack(app, "TestUDJStack", StackProps.builder().build());
 
         new TestSTStack(app, "TestSTStack" , StackProps.builder().build());
+
+        new S3Angular(app, "S3Angular", StackProps.builder().build());
+
+
         app.synth();
+
     }
 }
 
