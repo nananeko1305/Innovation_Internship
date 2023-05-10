@@ -13,7 +13,10 @@ import java.util.List;
 
 public class S3Angular extends Stack {
 
-    String angularPath = "/Front-End/dist/front-end";
+    String angularPath = "../Front-End/dist/frontend";
+
+//    String angularPath = "";
+
     ISource angularSource = Source.asset(angularPath);
     List<ISource> sources = Collections.singletonList(angularSource);
 
@@ -27,7 +30,8 @@ public class S3Angular extends Stack {
         Bucket s3BucketAngular = Bucket.Builder
                 .create(this, "S3BucketAngular")
                 .bucketName("s3-bucket-angular")
-                .websiteIndexDocument("index.html").build();
+                .websiteIndexDocument("index.html")
+                .build();
 
         BucketDeployment.Builder.create(this, "S3BucketDeployment")
                 .sources(sources)
