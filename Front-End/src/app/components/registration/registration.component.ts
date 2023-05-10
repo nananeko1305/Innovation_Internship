@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { CognitoService } from 'src/app/services/cognito.service';
 
 @Component({
   selector: 'app-registration',
@@ -12,6 +13,7 @@ export class RegistrationComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private cognitoService: CognitoService
   ) {
   }
 
@@ -23,6 +25,14 @@ export class RegistrationComponent implements OnInit{
 
   onSubmit(){
 
+
+
+        this.cognitoService.signUp(this.formGroup.get('username')?.value,this.formGroup.get('password')?.value).then(() => {
+              alert("Success.")
+        })
+        .catch((error:any) => {
+          alert("Error.")
+        })
   }
 
   ngOnInit(): void {
