@@ -5,6 +5,7 @@
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5">
+              <ng-template [ngIf]="userNotSignedUp" [ngIfElse]="elseBlock">
               <h2 class="text-uppercase text-center mb-5">Sign up</h2>
 
               <form [formGroup]="formGroup">
@@ -15,7 +16,7 @@
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="password" id="form3Example2cg" class="form-control form-control-lg" formControlName="email" />
+                  <input type="text" id="form3Example2cg" class="form-control form-control-lg" formControlName="email" />
                   <label class="form-label" for="form3Example2cg">Please type your email:</label>
                 </div>
 
@@ -29,7 +30,23 @@
                           class="btn btn-primary btn-block btn-lg gradient-custom-4 text-body w-100" (click)="onSubmit()">Submit</button>
                 </div>
               </form>
+            </ng-template>
+            <ng-template #elseBlock>
+              <h2 class="text-uppercase text-center mb-5">Enter code you've received on your email address to confirm registration:</h2>
 
+              <form [formGroup]="formGroupConfirmation">
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" formControlName="code" />
+                </div>
+                
+                <div class="d-flex justify-content-center">
+                  <button type="button"
+                          class="btn btn-primary btn-block btn-lg gradient-custom-4 text-body w-100" (click)="onSubmitCode()">Submit</button>
+                </div>
+
+              </form>
+            </ng-template>
             </div>
           </div>
         </div>
