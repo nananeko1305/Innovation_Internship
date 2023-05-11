@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c198105b-1ac2-41c4-bce8-f4b1a0743a43" name="Changes" comment="Resolved minor conflict">
+      <change afterPath="$PROJECT_DIR$/functions.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Innovation_Internship.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Innovation_Internship.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/Infrastructure/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyInnovation/Infrastructure/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/Infrastructure/src/main/java/API_Gateway/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyInnovation/Infrastructure/src/main/java/API_Gateway/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/Infrastructure/src/main/java/API_Gateway/HelloFunctHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyInnovation/Infrastructure/src/main/java/API_Gateway/HelloFunctHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,18 +47,26 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "feature-front-end",
+    "jdk.selected.JAVA_MODULE": "11",
     "last_opened_file_path": "/home/nananeko/Documents/Projects/Innovation_Internship/Infrastructure",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "onboarding.tips.debug.path": "D:/GitHubRepos/Innovation_Internship/Functions/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "spring.configuration.checksum": "6e3301c94e4de897ec67fa9735a848d5",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -65,7 +79,8 @@
       <option name="presentableId" value="Default" />
       <updated>1683719293357</updated>
       <workItem from="1683719294352" duration="50000" />
-      <workItem from="1683747123699" duration="2467000" />
+      <workItem from="1683747123699" duration="3611000" />
+      <workItem from="1683785725644" duration="7513000" />
     </task>
     <servers />
   </component>

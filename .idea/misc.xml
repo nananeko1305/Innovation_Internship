@@ -6,10 +6,19 @@
       <list>
         <option value="$PROJECT_DIR$/Infrastructure/pom.xml" />
         <option value="$PROJECT_DIR$/CompanyInnovation/Infrastructure/pom.xml" />
+        <option value="$PROJECT_DIR$/Functions/pom.xml" />
+        <option value="$PROJECT_DIR$/functions/pom.xml" />
+        <option value="$PROJECT_DIR$/functions/TestLambda1/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/Functions/pom.xml" />
+        <option value="$PROJECT_DIR$/functions/pom.xml" />
+      </set>
+    </option>
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="11" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/out" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/../../Downloads" />
   </component>
 </project>

@@ -10,5 +10,9 @@
         <module name="infrastructure" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="functions" target="11" />
+      <module name="Functions" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
