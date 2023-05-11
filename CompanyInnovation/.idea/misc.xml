@@ -8,6 +8,8 @@
         <option value="$PROJECT_DIR$/../Infrastructure/pom.xml" />
         <option value="$PROJECT_DIR$/Infrastructure/pom.xml" />
         <option value="$PROJECT_DIR$/functions/lambdaTest/pom.xml" />
+        <option value="$PROJECT_DIR$/functions/function1/pom.xml" />
+        <option value="$PROJECT_DIR$/functions/function2/pom.xml" />
       </list>
     </option>
   </component>

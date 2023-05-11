@@ -5,7 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c198105b-1ac2-41c4-bce8-f4b1a0743a43" name="Changes" comment="Resolved minor conflict">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/TestLambda2/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/TestLambda2/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/TestLambda2/src/main/java/com/innovation/functions/DataModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/TestLambda2/src/main/java/com/innovation/functions/FunctionsApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/TestLambda2/src/main/java/com/innovation/functions/HelloFunctHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/TestLambda2/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/TestLambda2/src/test/java/com/innovation/functions/FunctionsApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/lambdaTest/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/lambdaTest/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/lambdaTest/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/lambdaTest/HELP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/lambdaTest/dependency-reduced-pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/lambdaTest/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/lambdaTest/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/lambdaTest/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/lambdaTest/src/main/java/com/innovation/lambdaTest/LambdaTestApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/lambdaTest/src/main/java/com/innovation/lambdaTest/LambdaTestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/lambdaTest/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/lambdaTest/src/test/java/com/innovation/lambdaTest/LambdaTestApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/functions/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompanyInnovation/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyInnovation/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +64,6 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -50,15 +74,14 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "feature-front-end",
-    "last_opened_file_path": "C:/Users/korisnik/Desktop/Innovation/Innovation_Internship/CompanyInnovation",
     "jdk.selected.JAVA_MODULE": "11",
-    "last_opened_file_path": "/home/nananeko/Documents/Projects/Innovation_Internship/Infrastructure",
+    "last_opened_file_path": "C:/Users/ShowRunner/Desktop/AWSInternship/Innovation_Internship/CompanyInnovation",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "D:/GitHubRepos/Innovation_Internship/Functions/src/main/java/org/example/Main.java",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
@@ -75,7 +98,45 @@
       <recent name="com.innovation.testmodul" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.TestModulApplication">
+  <component name="RunManager" selected="Application.FunctionsApplication">
+    <configuration name="ApiGateWayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testiranjeAPIGatway.ApiGateWayApplication" />
+      <module name="infrastructure" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testiranjeAPIGatway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FunctionsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.innovation.functions.FunctionsApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.innovation.functions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LambdaTestApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.innovation.lambdaTest.LambdaTestApplication" />
+      <module name="functions (1)" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.innovation.lambdaTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FunctionsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="functions" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.innovation.functions.FunctionsApplication" />
@@ -90,6 +151,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.LambdaTestApplication" />
+        <item itemvalue="Application.ApiGateWayApplication" />
+        <item itemvalue="Application.FunctionsApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -107,6 +175,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Resolved minor conflict" />
