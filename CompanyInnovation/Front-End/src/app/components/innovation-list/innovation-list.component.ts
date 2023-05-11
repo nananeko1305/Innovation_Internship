@@ -18,7 +18,7 @@ export class InnovationListComponent implements OnInit{
     let innovation1 = new Innovation();
     innovation1.id = 1
     innovation1.title = "test1"
-    innovation1.details = "details1"
+    innovation1.description = "details1"
     innovation1.username = "Mika"
 
     this.innovations.push(innovation1)
@@ -26,7 +26,7 @@ export class InnovationListComponent implements OnInit{
     let innovation2 = new Innovation();
     innovation1.id = 2
     innovation2.title = "test2"
-    innovation2.details = "details2"
+    innovation2.description = "details2"
     innovation2.username = "Zika"
 
 

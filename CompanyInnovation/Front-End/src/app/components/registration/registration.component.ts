@@ -40,7 +40,7 @@ export class RegistrationComponent implements OnInit{
   }
 
   onSubmitCode(){
-      this.cognitoService.confirmSignUp(this.formGroup.get('email')?.value, this.formGroupConfirmation.get('code')?.value)
+      this.cognitoService.confirmSignUp(this.formGroup.get('username')?.value, this.formGroupConfirmation.get('code')?.value)
       .then(() => {
         alert("Success.")
         this.router.navigateByUrl('login')
