@@ -1,6 +1,5 @@
-HELP.md
-TestLambda2/target/
-!TestLambda2/.mvn/wrapper/maven-wrapper.jar
+target/
+!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
@@ -14,7 +13,6 @@ TestLambda2/target/
 *.ipr
 
 ### Eclipse ###
-### STS ###
 .apt_generated
 .classpath
 .factorypath
@@ -22,12 +20,6 @@ TestLambda2/target/
 .settings
 .springBeans
 .sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
 
 ### NetBeans ###
 /nbproject/private/

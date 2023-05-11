@@ -11,12 +11,8 @@
     <groupId>com.innovation</groupId>
     <artifactId>functions</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
     <name>functions</name>
     <description>functions</description>
-    <modules>
-        <module>TestLambda2</module>
-    </modules>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -26,6 +22,34 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -46,7 +70,7 @@
                         </goals>
                         <configuration>
                             <finalName>testLambda</finalName>
-                            <outputDirectory>../assets</outputDirectory>
+                            <outputDirectory>../../assets</outputDirectory>
                             <artifactSet>
                                 <excludes>
                                     <exclude>org.apache.tomcat.embed:*</exclude>
