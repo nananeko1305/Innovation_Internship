@@ -1,7 +1,10 @@
 export class Innovation {
   id: number = 0;
-  title: string = '';
-  details: string = '';
+  userId: string = '';
   username: string = '';
-  fullNameOfUser: string = '';
+  fullName: string = '';
+  title: string = '';
+  description: string = '';
+  comment: string = '';
+  status: string = '';
 }
