@@ -2,7 +2,9 @@ package com.myorg;
 
 import software.amazon.awscdk.Stack;
 import software.amazon.awscdk.StackProps;
+import software.amazon.awscdk.services.s3.BlockPublicAccess;
 import software.amazon.awscdk.services.s3.Bucket;
+import software.amazon.awscdk.services.s3.BucketAccessControl;
 import software.amazon.awscdk.services.s3.deployment.BucketDeployment;
 import software.amazon.awscdk.services.s3.deployment.ISource;
 import software.amazon.awscdk.services.s3.deployment.Source;
@@ -31,6 +33,8 @@ public class S3Angular extends Stack {
                 .create(this, "S3BucketAngular")
                 .bucketName("s3-bucket-angular")
                 .websiteIndexDocument("index.html")
+                .blockPublicAccess(BlockPublicAccess.BLOCK_ACLS)
+                .accessControl(BucketAccessControl.BUCKET_OWNER_FULL_CONTROL)
                 .build();
 
         BucketDeployment.Builder.create(this, "S3BucketDeployment")
