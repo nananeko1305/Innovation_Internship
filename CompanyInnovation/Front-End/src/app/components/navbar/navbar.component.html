@@ -10,11 +10,14 @@
       <button mat-button routerLink="/innovation-create">
         <span>Create Innovation</span>
       </button>
-      <button mat-button routerLink="/login">
+      <button *ngIf="!isLoggedIn()" mat-button routerLink="/login">
         <span>Login</span>
       </button>
-      <button mat-button routerLink="/registration">
+      <button *ngIf="!isLoggedIn()" mat-button routerLink="/registration">
         <span>Sign up</span>
+      </button>
+      <button *ngIf="isLoggedIn()" mat-button (click)="logout()">
+        <span>Log out</span>
       </button>
     </div>
   </div>
