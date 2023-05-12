@@ -40,10 +40,24 @@ public class InfrastructureStack extends Stack {
                 .code(Code.fromAsset("../assets/GetInnovation.jar"))
                 .build();
 
+        Function createInnovationFunction =
+                Function.Builder.create(this,"lambdaCreate")
+                .runtime(Runtime.JAVA_11)
+                .handler("com.innovation.createInnovation.LamdaHandler")
+                .memorySize(1024)
+                .timeout(Duration.seconds(30))
+                .functionName("lambdaCreate")
+                .code(Code.fromAsset("../assets/SubmitInnovation.jar"))
+                .build();
+
         LambdaRestApi gateway = LambdaRestApi.Builder.create(this, "gateway")
                 .handler(getInnovationFunction)
                 .build();
 
         gateway.getRoot().addResource("getInnovation").addMethod("GET", new LambdaIntegration(getInnovationFunction));
+
+        //gateway.getRoot().addResource("submit").addMethod("GET", new LambdaIntegration(createInnovationFunction));
+
+        gateway.getRoot().addResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction));
     }
 }
