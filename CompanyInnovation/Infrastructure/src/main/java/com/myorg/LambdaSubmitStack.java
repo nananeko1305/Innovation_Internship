@@ -24,7 +24,7 @@ public class LambdaSubmitStack extends Stack {
                 .memorySize(1024)
                 .timeout(Duration.seconds(30))
                 .functionName("lambdaCreate")
-                .code(Code.fromAsset("/home/nananeko/Documents/Projects/Innovation_Internship/CompanyInnovation/functions/createInnovation/target/createInnovation-0.0.1-SNAPSHOT.jar"))
+                .code(Code.fromAsset("../assets/SubmitInnovation.jar"))
                 .build();
 
 
