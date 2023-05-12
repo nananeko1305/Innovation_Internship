@@ -11,6 +11,9 @@
 
     <modules>
         <module>Infrastructure</module>
+        <module>functions/createInnovation</module>
+        <module>functions/function1</module>
+        <module>functions/getInnovations</module>
     </modules>
 
     <properties>

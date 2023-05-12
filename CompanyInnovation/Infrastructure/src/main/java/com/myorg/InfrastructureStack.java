@@ -1,8 +1,13 @@
 package com.myorg;
 
+import software.amazon.awscdk.Duration;
+import software.amazon.awscdk.services.lambda.Code;
+import software.amazon.awscdk.services.lambda.Function;
+import software.amazon.awscdk.services.lambda.Runtime;
 import software.constructs.Construct;
 import software.amazon.awscdk.Stack;
 import software.amazon.awscdk.StackProps;
+
 // import software.amazon.awscdk.Duration;
 // import software.amazon.awscdk.services.sqs.Queue;
 
@@ -20,5 +25,16 @@ public class InfrastructureStack extends Stack {
         // final Queue queue = Queue.Builder.create(this, "InfrastructureQueue")
         //         .visibilityTimeout(Duration.seconds(300))
         //         .build();
+
+
+        //create lambda to get innovations
+        Function.Builder.create(this, "hello_world_handler")
+                .runtime(Runtime.JAVA_11)
+                .handler("com.innovation.getInnovation.LambdaHandler")
+                .memorySize(512)
+                .timeout(Duration.seconds(10))
+                .functionName("handleRequest")
+                .code(Code.fromAsset("/home/nananeko/Documents/Projects/Innovation_Internship/CompanyInnovation/functions/getInnovations/target/getInnovations-0.0.1-SNAPSHOT.jar"))
+                .build();
     }
 }
