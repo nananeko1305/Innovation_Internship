@@ -10,6 +10,8 @@
         <option value="$PROJECT_DIR$/functions/lambdaTest/pom.xml" />
         <option value="$PROJECT_DIR$/functions/function1/pom.xml" />
         <option value="$PROJECT_DIR$/functions/function2/pom.xml" />
+        <option value="$PROJECT_DIR$/functions/InnovationCreate/pom.xml" />
+        <option value="$PROJECT_DIR$/functions/createInnovation/pom.xml" />
       </list>
     </option>
   </component>
