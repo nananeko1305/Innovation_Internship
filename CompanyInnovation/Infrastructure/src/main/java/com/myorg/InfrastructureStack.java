@@ -37,7 +37,7 @@ public class InfrastructureStack extends Stack {
                 .memorySize(512)
                 .timeout(Duration.seconds(10))
                 .functionName("handleRequest")
-                .code(Code.fromAsset("../functions/getInnovations/target/getInnovations-0.0.1-SNAPSHOT.jar"))
+                .code(Code.fromAsset("../assets/GetInnovation.jar"))
                 .build();
 
         LambdaRestApi gateway = LambdaRestApi.Builder.create(this, "gateway")

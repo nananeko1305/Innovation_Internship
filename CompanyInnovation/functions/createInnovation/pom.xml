@@ -90,6 +90,8 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
+							<finalName>SubmitInnovation</finalName>
+							<outputDirectory>../../assets</outputDirectory>
 							<artifactSet>
 								<excludes>
 									<exclude>org.apache.tomcat.embed:*</exclude>

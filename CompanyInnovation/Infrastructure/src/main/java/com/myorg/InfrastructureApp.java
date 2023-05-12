@@ -34,6 +34,7 @@ public class InfrastructureApp {
 
         new S3Angular(app, "S3Angular", StackProps.builder().build());
 
+        new LambdaSubmitStack(app, "LambdaSubmitStack", StackProps.builder().build());
 
         app.synth();
 
