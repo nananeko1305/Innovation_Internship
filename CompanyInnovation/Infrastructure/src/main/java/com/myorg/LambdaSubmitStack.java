@@ -20,11 +20,11 @@ public class LambdaSubmitStack extends Stack {
 
         Function.Builder.create(this,"lambdaCreate")
                 .runtime(Runtime.JAVA_11)
-                .handler("org.example.controller.SubmitController")
+                .handler("com.innovation.createInnovation.LamdaHandler")
                 .memorySize(1024)
-                .timeout(Duration.seconds(20))
-                .functionName("LambdaCreate")
-                .code(Code.fromAsset("C:\\Users\\PC\\Desktop\\Innovation_Internship\\CompanyInnovation\\functions\\createInnovation\\target\\createInnovation-0.0.1-SNAPSHOT.jar"))
+                .timeout(Duration.seconds(30))
+                .functionName("lambdaCreate")
+                .code(Code.fromAsset("/home/nananeko/Documents/Projects/Innovation_Internship/CompanyInnovation/functions/createInnovation/target/createInnovation-0.0.1-SNAPSHOT.jar"))
                 .build();
 
 
