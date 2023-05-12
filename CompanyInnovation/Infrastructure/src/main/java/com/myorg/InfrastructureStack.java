@@ -1,6 +1,8 @@
 package com.myorg;
 
 import software.amazon.awscdk.Duration;
+import software.amazon.awscdk.services.apigateway.LambdaIntegration;
+import software.amazon.awscdk.services.apigateway.LambdaRestApi;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.Runtime;
@@ -28,13 +30,20 @@ public class InfrastructureStack extends Stack {
 
 
         //create lambda to get innovations
-        Function.Builder.create(this, "hello_world_handler")
+       Function getInnovationFunction =
+               Function.Builder.create(this, "hello_world_handler")
                 .runtime(Runtime.JAVA_11)
                 .handler("com.innovation.getInnovation.LambdaHandler")
                 .memorySize(512)
                 .timeout(Duration.seconds(10))
                 .functionName("handleRequest")
-                .code(Code.fromAsset("/home/nananeko/Documents/Projects/Innovation_Internship/CompanyInnovation/functions/getInnovations/target/getInnovations-0.0.1-SNAPSHOT.jar"))
+                .code(Code.fromAsset("../functions/getInnovations/target/getInnovations-0.0.1-SNAPSHOT.jar"))
                 .build();
+
+        LambdaRestApi gateway = LambdaRestApi.Builder.create(this, "gateway")
+                .handler(getInnovationFunction)
+                .build();
+
+        gateway.getRoot().addResource("getInnovation").addMethod("GET", new LambdaIntegration(getInnovationFunction));
     }
 }
