@@ -8,6 +8,7 @@ public class Function1Controller {
 
     @GetMapping("/test")
     public String test() {
+        System.out.println("Console line function 1.");
         return "Hello from function1!";
     }
 
