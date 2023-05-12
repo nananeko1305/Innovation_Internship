@@ -1,0 +1,273 @@
+[33mcommit 05eb570b7ea96ed4dcf1caaefb7da4272f3f09d2[m[33m ([m[1;36mHEAD -> [m[1;32mfeat/get-innovations[m[33m, [m[1;31morigin/feat/get-innovations[m[33m, [m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Fri May 12 13:38:28 2023 +0200
+
+    Latest
+
+[33mcommit 72532d10b26c044f3e1e44e14c18976cf8c1373b[m
+Author: STepsic99 <STepsic99>
+Date:   Fri May 12 13:35:53 2023 +0200
+
+    fix: proxy for function1
+
+[33mcommit dcf5abb46b9377f461729202ca4d2b169414d85f[m
+Merge: 062fe74 52260cb
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Fri May 12 12:55:43 2023 +0200
+
+    Resolved conflicts
+
+[33mcommit 062fe74b9a3a530164d392dc04a3e7dd4ba9ed6c[m
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Fri May 12 12:51:06 2023 +0200
+
+    Latest
+
+[33mcommit 52260cbe6901572d85112cd45b32f64d859cb4ce[m
+Author: MarinaPavlovic <marina.pavlovic7991@gmail.com>
+Date:   Fri May 12 12:50:29 2023 +0200
+
+    Lambda Create Innovation
+
+[33mcommit a3bcc5c7208158aed4df03499a2d14c40f25dcf6[m[33m ([m[1;32mfeat/test-st-lambda[m[33m)[m
+Author: STepsic99 <SilvijaT99@gmail.com>
+Date:   Thu May 11 23:54:15 2023 +0200
+
+    feat: refactured a bit
+
+[33mcommit 203547bceac7d6fac697f122a0c415a97fd03f8b[m
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Thu May 11 14:51:21 2023 +0200
+
+    Fixed maven
+
+[33mcommit f7b97a17e0374a58ca15941ba1e2d77f6e539c1f[m
+Merge: b475f61 bad28b7
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Thu May 11 14:23:31 2023 +0200
+
+    Resolveds conflicys
+
+[33mcommit bad28b7c9b34ea8b58972a1046f58cf6e838e84a[m
+Merge: 73a655d 1858297
+Author: UrosDjericPMF <darkomarko678@gmail.com>
+Date:   Thu May 11 14:21:53 2023 +0200
+
+    Resolved minor conflict
+
+[33mcommit 18582975bff2279eec286dbcdaf3ef05f266a64c[m[33m ([m[1;31morigin/feat/API-Gateway[m[33m)[m
+Author: UrosDjericPMF <darkomarko678@gmail.com>
+Date:   Thu May 11 14:19:47 2023 +0200
+
+    Created Lambda test (again)
+
+[33mcommit 73a655d2770a13dd118033666c2b805c874ebe87[m
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Thu May 11 14:19:18 2023 +0200
+
+    Created: One springboot app test
+
+[33mcommit b475f615e3e0dbc6da2beb59a188baee2ddee80f[m
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Thu May 11 14:18:44 2023 +0200
+
+    Created: LambdaTest
+
+[33mcommit 673dd64c5dda5eedd956d5df3d2ca32fc0be4892[m
+Author: STepsic99 <STepsic99>
+Date:   Thu May 11 14:13:36 2023 +0200
+
+    feat: user pool properties defined in cdk, predefined lead
+
+[33mcommit fd5d7b19a46d8d6189cec9e1cf9a256c7b61f8b0[m[33m ([m[1;32mfeat/API-Gateway[m[33m)[m
+Author: UrosDjericPMF <darkomarko678@gmail.com>
+Date:   Thu May 11 11:15:19 2023 +0200
+
+    Added testing lambda function
+
+[33mcommit 8efa4a38d3a6114ca5a4fa0db9dabb9caa2851b8[m
+Merge: eddf317 8ce89aa
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Thu May 11 11:02:12 2023 +0200
+
+    Merge branch 'feature-front-end' into develop
+
+[33mcommit 8ce89aa928f458357afa5fbc32dade5aec4a3339[m
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Thu May 11 11:01:44 2023 +0200
+
+    Updated: Stack S3Angular for public access
+
+[33mcommit eddf317743a90728d76e890cb18c8c469e2313b5[m
+Author: STepsic99 <STepsic99>
+Date:   Thu May 11 09:43:28 2023 +0200
+
+    fix: innovation fields on front
+
+[33mcommit 428482525dfeec4aea1fe064335e7c0d905ae18c[m
+Author: STepsic99 <STepsic99>
+Date:   Thu May 11 09:37:58 2023 +0200
+
+    feat: jwt storing
+
+[33mcommit 06821729eccc6eb42515f31e5ff3c8de5e21101e[m
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Thu May 11 09:32:41 2023 +0200
+
+    Updated: Model of Innovation
+
+[33mcommit ed6509907980345debbe7114c1a9496d4812d644[m
+Author: UrosDjericPMF <darkomarko678@gmail.com>
+Date:   Wed May 10 22:36:59 2023 +0200
+
+    API Gateway new testing
+
+[33mcommit 3880dc25b10ce4a8ff1a2d9f5e23192ad10b26c9[m
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Wed May 10 18:26:04 2023 +0200
+
+    Deployed Angular
+
+[33mcommit 13ab9f6c27043eb2405db165f1760966a4f05d47[m
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Wed May 10 15:34:31 2023 +0200
+
+    Refactor files
+
+[33mcommit 704035c421ba9cfe095f403897d96a69582f1e3c[m
+Author: STepsic99 <STepsic99>
+Date:   Wed May 10 15:33:27 2023 +0200
+
+    fix: removed eclipses leftovers
+
+[33mcommit 8280c3277008e119ef65c46526f825e61877fcf8[m
+Author: STepsic99 <STepsic99>
+Date:   Wed May 10 15:32:24 2023 +0200
+
+    fix: removed old .idea folder
+
+[33mcommit 2d74855bd2a166b2827a8d0ae9e0679214ce3cfe[m
+Author: STepsic99 <STepsic99>
+Date:   Wed May 10 15:28:38 2023 +0200
+
+    fix: project structure
+
+[33mcommit cb86735b79151fbb89f8f7841628ea3b56253467[m
+Merge: 8f1bc59 2600909
+Author: STepsic99 <STepsic99>
+Date:   Wed May 10 15:16:10 2023 +0200
+
+    Merge branch 'feat/sign-up-and-sign-in' into develop
+
+[33mcommit 8f1bc590759b35472a4cf3f25c51190f561ff67a[m
+Merge: a642254 2520281
+Author: UrosDjericPMF <darkomarko678@gmail.com>
+Date:   Wed May 10 15:11:54 2023 +0200
+
+    Resolved minor conflict
+
+[33mcommit 2600909deb463b7a2d8aab4542e7877270cd006b[m[33m ([m[1;31morigin/feat/sign-up-and-sign-in[m[33m)[m
+Author: STepsic99 <STepsic99>
+Date:   Wed May 10 15:07:19 2023 +0200
+
+    feat: registration confirmation front
+
+[33mcommit a642254cb6cd171f780a8b220dfa26abf6889292[m
+Author: UrosDjericPMF <darkomarko678@gmail.com>
+Date:   Wed May 10 15:07:12 2023 +0200
+
+    Additional Testing
+
+[33mcommit 25202812d8c1a525248f7ec50c344d176de59494[m
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Wed May 10 15:03:20 2023 +0200
+
+    Fixed some things
+
+[33mcommit 41c59c9097d2ede9e1b38e882cd989fa9c298d30[m
+Author: STepsic99 <STepsic99>
+Date:   Wed May 10 12:32:42 2023 +0200
+
+    fix: email included
+
+[33mcommit 03369c5d521e7d78b27b9d06b6a2b4d4fe8ea154[m
+Author: UrosDjericPMF <darkomarko678@gmail.com>
+Date:   Wed May 10 12:11:43 2023 +0200
+
+    Test API-Gateway
+
+[33mcommit ad40b32cf3658d8ea1f89aa1b3a7a1988eef9a0f[m
+Merge: c9b8712 4455d4e
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Wed May 10 12:08:37 2023 +0200
+
+    Resolved conflicts
+
+[33mcommit c9b87125a16c4fc1c448fae96b7f9745e9f8d4f9[m
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Wed May 10 12:03:24 2023 +0200
+
+    Commit all
+
+[33mcommit c56b1b80726de190a1eb564d60929cd3f4ef9bed[m
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Wed May 10 12:02:21 2023 +0200
+
+    Created: Deploy testing Stack
+
+[33mcommit 4455d4e363f15fa682ecf461013b79db577f855c[m
+Author: STepsic99 <STepsic99>
+Date:   Wed May 10 11:29:15 2023 +0200
+
+    feat: sign up
+
+[33mcommit 4a798b8c33a9877b384be047b6b7bfd769f97738[m
+Merge: 6e227f9 fbfe449
+Author: STepsic99 <STepsic99>
+Date:   Tue May 9 15:40:59 2023 +0200
+
+    Merge branch 'feat/test-stack-user-pool' into develop
+
+[33mcommit fbfe449d7b4db621876afcf0fc7eeda16a4644ea[m[33m ([m[1;31morigin/feat/test-stack-user-pool[m[33m)[m
+Author: STepsic99 <STepsic99>
+Date:   Tue May 9 15:36:05 2023 +0200
+
+    feat: user pool resource cdk
+
+[33mcommit 6e227f941f4aed9c5501e4790969ced246c08025[m
+Merge: dea4e4d 725810f
+Author: UrosDjericPMF <darkomarko678@gmail.com>
+Date:   Tue May 9 14:33:17 2023 +0200
+
+    Merge branch 'develop' of https://github.com/nananeko1305/Innovation_Internship into develop
+
+[33mcommit dea4e4d79848faad4e4a7a0e6034a1341ea8882f[m
+Author: UrosDjericPMF <darkomarko678@gmail.com>
+Date:   Tue May 9 14:32:56 2023 +0200
+
+    update:TestStack
+
+[33mcommit 725810f03dd040c7ca5eab51abb549a1d20dce5c[m
+Merge: 101c44f 2629f04
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Tue May 9 12:43:01 2023 +0200
+
+    Merge branch 'feature-front-end' into develop
+
+[33mcommit 2629f046f44410e6d907b8f4630161c6152feea8[m
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Tue May 9 12:42:42 2023 +0200
+
+    Finished: basic of Angular
+
+[33mcommit 101c44f210dcb6e014a10f099020235a6db82c5c[m
+Author: STepsic99 <STepsic99>
+Date:   Tue May 9 10:02:47 2023 +0200
+
+    feat: sdk app setup
+
+[33mcommit 5cd1d62a13d299910898a68e03164625fe20ca9f[m
+Author: nananeko1305 <nananeko1305@hotmail.com>
+Date:   Tue May 9 08:32:17 2023 +0200
+
+    Updated: Registration component, add
