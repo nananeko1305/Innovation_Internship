@@ -12,7 +12,7 @@
     <modules>
         <module>Infrastructure</module>
         <module>functions/createInnovation</module>
-        <module>functions/function1</module>
+        <module>functions/acceptOrDeclineInnovation</module>
         <module>functions/getInnovations</module>
     </modules>
 

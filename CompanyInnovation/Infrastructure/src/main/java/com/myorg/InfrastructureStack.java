@@ -59,5 +59,7 @@ public class InfrastructureStack extends Stack {
         //gateway.getRoot().addResource("submit").addMethod("GET", new LambdaIntegration(createInnovationFunction));
 
         gateway.getRoot().addResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction));
+
+
     }
 }
