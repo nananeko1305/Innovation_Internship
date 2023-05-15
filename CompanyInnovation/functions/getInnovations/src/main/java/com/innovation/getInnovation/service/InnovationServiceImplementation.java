@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class InnovationServiceImplementation implements InnovationServiceInterface {
+public class InnovationServiceImplementation implements InnovationService {
 
     @Autowired
     private InnovationRepository innovationRepository;
+
     @Override
-    public List<Innovation> GetInnovations(String id, String getType) {
-        return innovationRepository.GetAllInnovations(id, getType);
+    public List<Innovation> GetAll() {
+        return innovationRepository.GetAll();
+
     }
 }

@@ -4,9 +4,9 @@ import com.innovation.getInnovation.domain.model.Innovation;
 
 import java.util.List;
 
-public interface InnovationServiceInterface {
 
+public interface InnovationService {
 
-    List<Innovation> GetInnovations(String id, String getType);
+    List<Innovation> GetAll();
 
 }
