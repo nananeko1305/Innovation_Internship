@@ -18,6 +18,7 @@ public class LamdaHandler implements RequestStreamHandler {
     static {
         try {
             handler = new SpringBootProxyHandlerBuilder<AwsProxyRequest>()
+                    
                     .defaultProxy()
                     .asyncInit()
                     .springBootApplication(CreateInnovationApplication.class)
