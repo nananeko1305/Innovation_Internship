@@ -3,6 +3,7 @@ package com.innovation.getInnovation.config;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.BasicSessionCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
@@ -21,25 +22,28 @@ public class DynamoConfig {
     private String awsAccessKey;
     @Value("${amazon.aws.secretkey}")
     private String awsSecretKey;
+    @Value("amazon.aws.sessiontoken")
+    private String awsSessionToken;
 
     @Bean
     public DynamoDBMapper dynamoDBMapper() {
         return new DynamoDBMapper(amazonDynamoDB());
     }
 
-
+    @Bean
     public AmazonDynamoDB amazonDynamoDB() {
         return AmazonDynamoDBClientBuilder
                 .standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(dynamoDbEndpoint , "eu-north-1"))
                 .withCredentials(awsCredentialsProvider())
-                .withRegion(Regions.EU_NORTH_1)
                 .build();
     }
 
     private AWSCredentialsProvider awsCredentialsProvider(){
-        return new AWSStaticCredentialsProvider(new BasicAWSCredentials(awsAccessKey, awsSecretKey));
+        BasicSessionCredentials awsCreds = new BasicSessionCredentials(awsAccessKey, awsSecretKey, awsSessionToken);
+        return new AWSStaticCredentialsProvider(awsCreds);
     }
+
 
 
 }
