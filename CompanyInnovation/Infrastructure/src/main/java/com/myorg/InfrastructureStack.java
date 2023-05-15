@@ -42,6 +42,7 @@ public class InfrastructureStack extends Stack {
                         .type(AttributeType.STRING)
                         .build())
                 .encryption(TableEncryption.DEFAULT)
+                .billingMode(BillingMode.PAY_PER_REQUEST)
                 .removalPolicy(RemovalPolicy.RETAIN);
 
         Table table = new Table(this, "InnovationTable", tablePropsBuilder.build());
