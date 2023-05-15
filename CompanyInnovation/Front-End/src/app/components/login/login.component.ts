@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit{
 
   onSubmit() {
     this.cognitoService.signIn(this.formGroup.get('username')?.value,this.formGroup.get('password')?.value).then((value) => {
-      console.log(value.signInUserSession.accessToken.jwtToken)
-      var jwt = value.signInUserSession.accessToken.jwtToken
+      console.log(value.signInUserSession.idToken.jwtToken)
+      var jwt = value.signInUserSession.idToken.jwtToken
       this.storageService.storeTokenData(jwt);
       this.router.navigateByUrl("")
 })
