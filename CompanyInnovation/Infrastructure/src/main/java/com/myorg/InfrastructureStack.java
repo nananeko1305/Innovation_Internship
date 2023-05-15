@@ -1,8 +1,10 @@
 package com.myorg;
 
 import software.amazon.awscdk.Duration;
+import software.amazon.awscdk.RemovalPolicy;
 import software.amazon.awscdk.services.apigateway.LambdaIntegration;
 import software.amazon.awscdk.services.apigateway.LambdaRestApi;
+import software.amazon.awscdk.services.dynamodb.*;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.Runtime;
@@ -10,8 +12,9 @@ import software.constructs.Construct;
 import software.amazon.awscdk.Stack;
 import software.amazon.awscdk.StackProps;
 
-// import software.amazon.awscdk.Duration;
-// import software.amazon.awscdk.services.sqs.Queue;
+import java.awt.geom.AffineTransform;
+import java.util.HashMap;
+import java.util.Map;
 
 public class InfrastructureStack extends Stack {
     public InfrastructureStack(final Construct scope, final String id) {
@@ -21,19 +24,24 @@ public class InfrastructureStack extends Stack {
     public InfrastructureStack(final Construct scope, final String id, final StackProps props) {
         super(scope, id, props);
 
-        // The code that defines your stack goes here
+        //Database
+        TableProps.Builder tablePropsBuilder = TableProps.builder()
+                .tableName("innovations")
+                .partitionKey(Attribute.builder()
+                        .name("userId")
+                        .type(AttributeType.STRING)
+                        .build())
+                .encryption(TableEncryption.DEFAULT)
+                .removalPolicy(RemovalPolicy.RETAIN);
 
-        // example resource
-        // final Queue queue = Queue.Builder.create(this, "InfrastructureQueue")
-        //         .visibilityTimeout(Duration.seconds(300))
-        //         .build();
+        Table table = new Table(this, "InnovationTable", tablePropsBuilder.build());
 
 
         //create lambda to get innovations
        Function getInnovationFunction =
                Function.Builder.create(this, "hello_world_handler")
                 .runtime(Runtime.JAVA_11)
-                .handler("com.innovation.getInnovation.LambdaHandler")
+                .handler("com.innovation.getInnovation.controller.LambdaHandler")
                 .memorySize(512)
                 .timeout(Duration.seconds(10))
                 .functionName("handleRequest")
