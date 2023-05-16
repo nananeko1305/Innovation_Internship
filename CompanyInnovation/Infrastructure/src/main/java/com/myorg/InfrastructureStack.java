@@ -118,12 +118,11 @@ public class InfrastructureStack extends Stack {
 
         //create lambda to get innovations
        Function getInnovationFunction =
-               Function.Builder.create(this, "hello_world_handler")
+               Function.Builder.create(this, "handleRequest")
                 .runtime(Runtime.JAVA_11)
                 .handler("com.innovation.getInnovation.controller.LambdaHandler")
                 .memorySize(512)
                 .timeout(Duration.seconds(10))
-                .functionName("handleRequest")
                 .code(Code.fromAsset("../assets/GetInnovation.jar"))
                 .build();
 

@@ -22,7 +22,7 @@ public class DynamoConfig {
     private String awsAccessKey;
     @Value("${amazon.aws.secretkey}")
     private String awsSecretKey;
-    @Value("amazon.aws.sessiontoken")
+    @Value("${amazon.aws.sessiontoken}")
     private String awsSessionToken;
 
     @Bean
@@ -32,6 +32,7 @@ public class DynamoConfig {
 
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
+        System.out.println(dynamoDbEndpoint + " " + awsSecretKey + " " + awsAccessKey + " " + awsSessionToken);
         return AmazonDynamoDBClientBuilder
                 .standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(dynamoDbEndpoint , "eu-north-1"))
