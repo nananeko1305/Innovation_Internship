@@ -8,17 +8,21 @@ import software.amazon.awscdk.RemovalPolicy;
 import software.amazon.awscdk.services.apigateway.LambdaIntegration;
 import software.amazon.awscdk.services.apigateway.LambdaRestApi;
 import software.amazon.awscdk.services.dynamodb.*;
+import software.amazon.awscdk.RemovalPolicy;
+import software.amazon.awscdk.services.apigateway.LambdaIntegration;
+import software.amazon.awscdk.services.apigateway.LambdaRestApi;
+import software.amazon.awscdk.services.dynamodb.*;
+import software.amazon.awscdk.services.iam.Effect;
+import software.amazon.awscdk.services.iam.PolicyStatement;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.Runtime;
+import software.amazon.awscdk.services.ses.EmailIdentity;
 import software.constructs.Construct;
 import software.amazon.awscdk.Stack;
 import software.amazon.awscdk.StackProps;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 // import software.amazon.awscdk.Duration;
 // import software.amazon.awscdk.services.sqs.Queue;
@@ -137,6 +141,16 @@ public class InfrastructureStack extends Stack {
                 .code(Code.fromAsset("../assets/SubmitInnovation.jar"))
                 .build();
 
+
+
+        //permission for lamdaCreate to use SES service
+        createInnovationFunction.addToRolePolicy(PolicyStatement.Builder.create()
+                .effect(Effect.ALLOW)
+                .actions(Collections.singletonList("ses:SendEmail"))
+                .resources(Collections.singletonList("arn:aws:ses:eu-north-1:696993701802:identity/*"))
+                .build());
+
+
         LambdaRestApi gateway = LambdaRestApi.Builder.create(this, "gateway")
                 .handler(getInnovationFunction)
 //                .defaultMethodOptions(MethodOptions.builder().authorizationType(AuthorizationType.COGNITO).authorizer(auth).build())
@@ -147,5 +161,14 @@ public class InfrastructureStack extends Stack {
         //gateway.getRoot().addResource("submit").addMethod("GET", new LambdaIntegration(createInnovationFunction));
 
         gateway.getRoot().addResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().build());
+
+        //Ses email verify
+      //  EmailIdentity identity = EmailIdentity.Builder.create(this, "Identity")
+
+         //       .mailFromDomain("compani.innovation.dept@outlook.com")
+          //      .build();
+
+
+
     }
 }
