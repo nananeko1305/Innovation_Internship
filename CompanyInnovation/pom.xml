@@ -14,6 +14,7 @@
         <module>functions/createInnovation</module>
         <module>functions/acceptOrDeclineInnovation</module>
         <module>functions/getInnovations</module>
+        <module>functions/addEmployeeMembership</module>
     </modules>
 
     <properties>
