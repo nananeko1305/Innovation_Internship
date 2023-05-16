@@ -122,12 +122,11 @@ public class InfrastructureStack extends Stack {
 
         //create lambda to get innovations
        Function getInnovationFunction =
-               Function.Builder.create(this, "hello_world_handler")
+               Function.Builder.create(this, "handleRequest")
                 .runtime(Runtime.JAVA_11)
                 .handler("com.innovation.getInnovation.controller.LambdaHandler")
                 .memorySize(512)
                 .timeout(Duration.seconds(10))
-                .functionName("handleRequest")
                 .code(Code.fromAsset("../assets/GetInnovation.jar"))
                 .build();
 
@@ -148,6 +147,7 @@ public class InfrastructureStack extends Stack {
                 .actions(Collections.singletonList("ses:SendEmail"))
                 .resources(Collections.singletonList("arn:aws:ses:eu-north-1:696993701802:identity/*"))
                 .build());
+
 
         Function acceptDeclineFunction =
                 Function.Builder.create(this,"lambdaAcceptDecline")

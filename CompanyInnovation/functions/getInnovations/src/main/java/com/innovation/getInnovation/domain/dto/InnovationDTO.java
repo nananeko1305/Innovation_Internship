@@ -10,7 +10,7 @@ import lombok.*;
 @ToString
 public class InnovationDTO {
 
-    private int id;
+    private String id;
     private String userId;
     private String username;
     private String fullName;
