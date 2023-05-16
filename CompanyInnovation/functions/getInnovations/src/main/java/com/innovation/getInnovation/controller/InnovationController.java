@@ -18,11 +18,6 @@ public class InnovationController {
 
     @GetMapping()
     public ResponseEntity<List<InnovationDTO>> GetInnovation(){
-
-//        List<InnovationDTO> innovationDTOS
-
-        System.out.println(innovationService.GetAll());
-
         return new ResponseEntity<>(innovationService.convertToDtoList(innovationService.GetAll()), HttpStatus.OK);
     }
 

@@ -148,6 +148,7 @@ public class InfrastructureStack extends Stack {
                 .resources(Collections.singletonList("arn:aws:ses:eu-north-1:696993701802:identity/*"))
                 .build());
 
+
         Function acceptDeclineFunction =
                 Function.Builder.create(this,"lambdaAcceptDecline")
                         .runtime(Runtime.JAVA_11)
