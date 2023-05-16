@@ -1,15 +1,14 @@
-package com.innovation.getInnovation.domain.model;
+package com.innovation.createInnovation.entity;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
-import com.innovation.getInnovation.domain.dto.InnovationDTO;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.innovation.createInnovation.DTO.InnovationDTO;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @DynamoDBTable(tableName = "innovations")
 public class Innovation {
 

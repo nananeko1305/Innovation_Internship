@@ -27,10 +27,4 @@ public class SubmitController {
         }
         return new ResponseEntity<InnovationDTO>(submitService.submitInnovation(innovationModel), HttpStatus.OK);
     }
-
-    @CrossOrigin("*")
-    @GetMapping("")
-    public String hello() {
-        return "Hello from submit innovation.";
-    }
 }
