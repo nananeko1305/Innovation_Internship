@@ -35,6 +35,10 @@ public class AcceptDeclineController {
         Status newStatus = innovationModel.getStatus();
         InnovationDTO updatedInnovation = innovationService.updateStatus(id, newStatus);
 
+
+        //mail poslati
+
+
         return ResponseEntity.ok(updatedInnovation);
     }
 }

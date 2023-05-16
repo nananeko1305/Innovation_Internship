@@ -32,12 +32,14 @@ public class SubmitService implements ISubmitService {
         message.setFrom("innovation.lead@outlook.com");
         message.setTo("innovation.employee@outlook.com");
         message.setSubject("Status update from "+innovationEntity.getFullName());
+        message.setText("");
         message.setText(innovationEntity.getComment());
         mailService.sendMessage(message);
+        //dodati i za komentar
+        //dodela poena???
 
 
         return mapper.map(innovationEntity, InnovationDTO.class);    }
 
-    public void sendStatusChangeEmail(Integer id, Status status) {
-    }
+
 }
