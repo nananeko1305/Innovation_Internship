@@ -122,12 +122,13 @@ public class InfrastructureStack extends Stack {
 
         //create lambda to get innovations
        Function getInnovationFunction =
-               Function.Builder.create(this, "handleRequest")
+               Function.Builder.create(this, "GetInnovations")
                 .runtime(Runtime.JAVA_11)
                 .handler("com.innovation.getInnovation.controller.LambdaHandler")
                 .memorySize(512)
                 .timeout(Duration.seconds(10))
                 .code(Code.fromAsset("../assets/GetInnovation.jar"))
+                .functionName("GetInnovations")
                 .build();
 
         Function createInnovationFunction =
@@ -165,7 +166,15 @@ public class InfrastructureStack extends Stack {
                 .resources(Collections.singletonList("arn:aws:ses:eu-north-1:696993701802:identity/*"))
                 .build());
 
-
+        Function addMembershipEmployee =
+                Function.Builder.create(this,"addMembershipEmployee")
+                        .runtime(Runtime.JAVA_11)
+                        .handler("org.innovation.AddEmployeeMembership")
+                        .memorySize(1024)
+                        .timeout(Duration.seconds(30))
+                        .functionName("addMembershipEmployee")
+                        .code(Code.fromAsset("../assets/AddEmployeeMembership.jar"))
+                        .build();
 
 
         LambdaRestApi gateway = LambdaRestApi.Builder.create(this, "gateway")
