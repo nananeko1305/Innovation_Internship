@@ -122,7 +122,7 @@ public class InfrastructureStack extends Stack {
 
         //create lambda to get innovations
        Function getInnovationFunction =
-               Function.Builder.create(this, "handleRequest")
+               Function.Builder.create(this, "GetInnovations")
                 .runtime(Runtime.JAVA_11)
                 .handler("com.innovation.getInnovation.controller.LambdaHandler")
                 .memorySize(512)
