@@ -21,10 +21,11 @@ public class InnovationService {
 
     }
 
-    public InnovationDTO updateStatus(Integer id, Status status) {
+    public InnovationDTO updateStatus(InnovationDTO inovacija) {
 
-        InnovationEntity entity = getById(id);
-        entity.setStatus(status);
+
+        InnovationEntity entity = getById(inovacija.getId());
+        entity.setStatus(entity.getStatus());
         innovationRepository.save(entity);
         return null;
     }

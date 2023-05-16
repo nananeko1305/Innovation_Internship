@@ -30,16 +30,15 @@ public class AcceptDeclineController {
 
     //                                      Id radnika
     @CrossOrigin("*")                       // ^
-    @PutMapping("/{id}/status")    // /api/{id}/status?status=APPROVED ocekivani ishod?
-    public ResponseEntity<?> updateStatus(@PathVariable int id, @RequestBody @Valid InnovationDTO innovationModel) {
-        Status newStatus = innovationModel.getStatus();
-        InnovationDTO updatedInnovation = innovationService.updateStatus(id, newStatus);
+    @PutMapping()    // /api/{id}/status?status=APPROVED ocekivani ishod?
+    public ResponseEntity<?> updateStatus(@RequestBody @Valid InnovationDTO innovationModel) {
 
 
         //mail poslati
 
+        //Azuriranje baze da se doda 15 poena korisniku
 
-        return ResponseEntity.ok(updatedInnovation);
+        return ResponseEntity.ok(innovationService.updateStatus(innovationModel));
     }
 }
 

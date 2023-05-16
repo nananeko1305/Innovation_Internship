@@ -32,10 +32,9 @@ public class SubmitService implements ISubmitService {
         message.setFrom("innovation.lead@outlook.com");
         message.setTo("innovation.employee@outlook.com");
         message.setSubject("Status update from "+innovationEntity.getFullName());
-        message.setText("");
-        message.setText(innovationEntity.getComment());
+        message.setText("Innovation status has changed to: "+innovationEntity.getStatus()+"\n\n"+innovationEntity.getComment());
         mailService.sendMessage(message);
-        //dodati i za komentar
+
         //dodela poena???
 
 
