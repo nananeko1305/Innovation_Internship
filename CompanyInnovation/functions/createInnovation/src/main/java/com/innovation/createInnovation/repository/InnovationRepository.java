@@ -14,16 +14,17 @@ import java.util.Map;
 @Repository
 public class InnovationRepository {
 
-    private final DynamoDBMapper dynamoDBMapper;
-
+//    private final DynamoDBMapper dynamoDBMapper;
+//
+//    @Autowired
+//    public InnovationRepository(DynamoDBMapper dynamoDBMapper) {
+//        this.dynamoDBMapper = dynamoDBMapper;
+//    }
     @Autowired
-    public InnovationRepository(DynamoDBMapper dynamoDBMapper) {
-        this.dynamoDBMapper = dynamoDBMapper;
-    }
+    private DynamoDBMapper dynamoDBMapper;
 
-    public InnovationEntity submitInnovation(InnovationEntity innovationEntity){
-
-        return null;
+    public void submitInnovation(InnovationEntity innovationEntity){
+        dynamoDBMapper.save(innovationEntity);
     }
 
 }
