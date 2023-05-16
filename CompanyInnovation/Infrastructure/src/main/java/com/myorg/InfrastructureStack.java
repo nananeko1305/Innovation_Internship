@@ -128,6 +128,7 @@ public class InfrastructureStack extends Stack {
                 .memorySize(512)
                 .timeout(Duration.seconds(10))
                 .code(Code.fromAsset("../assets/GetInnovation.jar"))
+                .functionName("GetInnovations")
                 .build();
 
         Function createInnovationFunction =
