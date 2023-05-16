@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("innovations")
+@RequestMapping("acceptDeclineInnovation")
 public class AcceptDeclineController {
 
     private final SubmitService submitService;
