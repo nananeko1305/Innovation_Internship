@@ -176,6 +176,13 @@ public class InfrastructureStack extends Stack {
                         .code(Code.fromAsset("../assets/AddEmployeeMembership.jar"))
                         .build();
 
+        addMembershipEmployee.addToRolePolicy(PolicyStatement.Builder.create()
+                .sid("AllowAddingUserToGroup")
+                .effect(Effect.ALLOW)
+                .actions(Collections.singletonList("cognito-idp:AdminAddUserToGroup"))
+                .resources(Collections.singletonList("*"))
+                .build());
+
 
         LambdaRestApi gateway = LambdaRestApi.Builder.create(this, "gateway")
                 .handler(getInnovationFunction)
