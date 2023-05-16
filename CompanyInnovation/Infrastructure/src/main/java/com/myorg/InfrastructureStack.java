@@ -141,6 +141,15 @@ public class InfrastructureStack extends Stack {
                 .code(Code.fromAsset("../assets/SubmitInnovation.jar"))
                 .build();
 
+        Function acceptDeclineFunction =
+                Function.Builder.create(this,"lambdaAcceptDecline")
+                        .runtime(Runtime.JAVA_11)
+                        .handler("com.innovation.acceptOrDecline.LambdaHandler")
+                        .memorySize(512)
+                        .functionName("AcceptDeclineLambda")
+                        .timeout(Duration.seconds(30))
+                        .code(Code.fromAsset("../assets/AcceptDeclineLambda.jar"))
+                        .build();
 
         //permission for lamdaCreate to use SES service
         createInnovationFunction.addToRolePolicy(PolicyStatement.Builder.create()
@@ -150,15 +159,6 @@ public class InfrastructureStack extends Stack {
                 .build());
 
 
-        Function acceptDeclineFunction =
-                Function.Builder.create(this,"lambdaAcceptDecline")
-                        .runtime(Runtime.JAVA_11)
-                        .handler("com.innovation.acceptOrDecline.LamdaHandler")
-                        .memorySize(512)
-                        .functionName("AcceptDeclineLambda")
-                        .timeout(Duration.seconds(30))
-                        .code(Code.fromAsset("../assets/AcceptDeclineLambda.jar"))
-                        .build();
 
         acceptDeclineFunction.addToRolePolicy(PolicyStatement.Builder.create()
                 .effect(Effect.ALLOW)
