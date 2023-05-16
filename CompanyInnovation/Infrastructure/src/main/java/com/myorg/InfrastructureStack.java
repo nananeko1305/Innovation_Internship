@@ -184,6 +184,8 @@ public class InfrastructureStack extends Stack {
                 .build());
 
 
+        pool.addTrigger(UserPoolOperation.POST_CONFIRMATION, addMembershipEmployee);
+
         LambdaRestApi gateway = LambdaRestApi.Builder.create(this, "gateway")
                 .handler(getInnovationFunction)
 //                .defaultMethodOptions(MethodOptions.builder().authorizationType(AuthorizationType.COGNITO).authorizer(auth).build())
