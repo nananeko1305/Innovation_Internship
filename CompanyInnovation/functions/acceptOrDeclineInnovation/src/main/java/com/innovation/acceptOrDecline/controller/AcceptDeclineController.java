@@ -31,7 +31,7 @@ public class AcceptDeclineController {
     //                                      Id radnika
     @CrossOrigin("*")                       // ^
     @PutMapping()    // /api/{id}/status?status=APPROVED ocekivani ishod?
-    public ResponseEntity<?> updateStatus(@RequestBody @Valid InnovationDTO innovationModel) {
+    public ResponseEntity<?> updateStatus(@RequestBody InnovationDTO innovationModel) {
 
 
         //mail poslati
@@ -41,7 +41,3 @@ public class AcceptDeclineController {
         return ResponseEntity.ok(innovationService.updateStatus(innovationModel));
     }
 }
-
-
-
-

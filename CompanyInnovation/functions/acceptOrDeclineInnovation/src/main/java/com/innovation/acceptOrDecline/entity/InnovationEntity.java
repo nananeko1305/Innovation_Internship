@@ -1,17 +1,17 @@
 package com.innovation.acceptOrDecline.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Data
 
 
 public class InnovationEntity {
 
-    private Integer id;
+    private String id;
     private String userId;
     private String username;
     private String fullName;

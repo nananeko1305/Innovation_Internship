@@ -88,6 +88,8 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
+							<finalName>AcceptDeclineLambda</finalName>
+							<outputDirectory>../../assets</outputDirectory>
 							<artifactSet>
 								<excludes>
 									<exclude>org.apache.tomcat.embed:*</exclude>

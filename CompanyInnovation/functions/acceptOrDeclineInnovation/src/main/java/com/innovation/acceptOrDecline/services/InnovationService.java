@@ -5,12 +5,17 @@ import com.innovation.acceptOrDecline.dto.InnovationDTO;
 import com.innovation.acceptOrDecline.entity.InnovationEntity;
 import com.innovation.acceptOrDecline.entity.Status;
 import com.innovation.acceptOrDecline.repository.InnovationRepository;
+import org.apache.catalina.mapper.Mapper;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class InnovationService {
     private final InnovationRepository innovationRepository;
 
+    @Autowired
+    private ModelMapper mapper;
 
     public InnovationService(InnovationRepository innovationRepository) {
         this.innovationRepository = innovationRepository;
@@ -21,12 +26,16 @@ public class InnovationService {
 
     }
 
-    public InnovationDTO updateStatus(InnovationDTO inovacija) {
+    public InnovationDTO updateStatus(InnovationDTO inovacijaDTO) {
 
+        InnovationEntity inovacija= new InnovationEntity();
 
-        InnovationEntity entity = getById(inovacija.getId());
-        entity.setStatus(entity.getStatus());
-        innovationRepository.save(entity);
+        mapper.map(inovacijaDTO, inovacija);
+
+        System.out.println(inovacija.toString());
+
+       inovacija.setStatus(inovacija.getStatus());
+        innovationRepository.save(inovacija);
         return null;
     }
 }

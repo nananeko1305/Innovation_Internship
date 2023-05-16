@@ -142,13 +142,30 @@ public class InfrastructureStack extends Stack {
                 .build();
 
 
-
         //permission for lamdaCreate to use SES service
         createInnovationFunction.addToRolePolicy(PolicyStatement.Builder.create()
                 .effect(Effect.ALLOW)
                 .actions(Collections.singletonList("ses:SendEmail"))
                 .resources(Collections.singletonList("arn:aws:ses:eu-north-1:696993701802:identity/*"))
                 .build());
+
+        Function acceptDeclineFunction =
+                Function.Builder.create(this,"lambdaAcceptDecline")
+                        .runtime(Runtime.JAVA_11)
+                        .handler("com.innovation.acceptOrDecline.LamdaHandler")
+                        .memorySize(512)
+                        .timeout(Duration.seconds(30))
+                        .functionName("acceptDecline")
+                        .code(Code.fromAsset("../assets/AcceptDeclineLambda.jar"))
+                        .build();
+
+        acceptDeclineFunction.addToRolePolicy(PolicyStatement.Builder.create()
+                .effect(Effect.ALLOW)
+                .actions(Collections.singletonList("ses:SendEmail"))
+                .resources(Collections.singletonList("arn:aws:ses:eu-north-1:696993701802:identity/*"))
+                .build());
+
+
 
 
         LambdaRestApi gateway = LambdaRestApi.Builder.create(this, "gateway")
@@ -158,6 +175,7 @@ public class InfrastructureStack extends Stack {
 
         gateway.getRoot().addResource("getInnovation").addMethod("GET", new LambdaIntegration(getInnovationFunction), MethodOptions.builder().build());
 
+        gateway.getRoot().addResource("acceptDecline").addMethod("PUT", new LambdaIntegration(acceptDeclineFunction), MethodOptions.builder().build());
         //gateway.getRoot().addResource("submit").addMethod("GET", new LambdaIntegration(createInnovationFunction));
 
         gateway.getRoot().addResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().build());
