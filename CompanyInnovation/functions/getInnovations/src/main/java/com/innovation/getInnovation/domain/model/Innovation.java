@@ -36,6 +36,7 @@ public class Innovation {
     private String comment;
 
     @DynamoDBAttribute
+    @DynamoDBTypeConvertedEnum
     private Status status;
 
 

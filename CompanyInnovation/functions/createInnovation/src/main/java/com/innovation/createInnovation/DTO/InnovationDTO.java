@@ -10,7 +10,7 @@ import com.innovation.createInnovation.entity.Status;
 @Data
 public class InnovationDTO {
 
-    private Integer id;
+    private String id;
     private String userId;
     private String username;
     private String fullName;

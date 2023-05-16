@@ -1,7 +1,7 @@
 package com.innovation.createInnovation.services;
 
 import com.innovation.createInnovation.DTO.InnovationDTO;
-import com.innovation.createInnovation.entity.InnovationEntity;
+import com.innovation.createInnovation.entity.Innovation;
 import com.innovation.createInnovation.repository.InnovationRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +27,9 @@ public class SubmitService implements ISubmitService {
 
     @Override
     public InnovationDTO submitInnovation(InnovationDTO innovationDTO) {
-        InnovationEntity innovationEntity = mapper.map(innovationDTO, InnovationEntity.class);
-        //ovde treba da se ubaci u bazu
+        Innovation innovationEntity = mapper.map(innovationDTO, Innovation.class);
 
-        innovationRepository.submitInnovation(innovationEntity);
-
+        innovationRepository.submitInnovation(innovationEntity); //upis u bazu
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("compani.innovation.dept@outlook.com");
