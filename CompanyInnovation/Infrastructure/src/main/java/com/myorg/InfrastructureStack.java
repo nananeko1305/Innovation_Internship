@@ -155,6 +155,7 @@ public class InfrastructureStack extends Stack {
                         .runtime(Runtime.JAVA_11)
                         .handler("com.innovation.acceptOrDecline.LamdaHandler")
                         .memorySize(512)
+                        .functionName("AcceptDeclineLambda")
                         .timeout(Duration.seconds(30))
                         .code(Code.fromAsset("../assets/AcceptDeclineLambda.jar"))
                         .build();
@@ -174,6 +175,13 @@ public class InfrastructureStack extends Stack {
                         .functionName("addMembershipEmployee")
                         .code(Code.fromAsset("../assets/AddEmployeeMembership.jar"))
                         .build();
+
+        addMembershipEmployee.addToRolePolicy(PolicyStatement.Builder.create()
+                .sid("AllowAddingUserToGroup")
+                .effect(Effect.ALLOW)
+                .actions(Collections.singletonList("cognito-idp:AdminAddUserToGroup"))
+                .resources(Collections.singletonList("*"))
+                .build());
 
 
         LambdaRestApi gateway = LambdaRestApi.Builder.create(this, "gateway")

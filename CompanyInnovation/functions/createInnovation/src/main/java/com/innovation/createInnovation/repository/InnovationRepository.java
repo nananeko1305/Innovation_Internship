@@ -14,7 +14,6 @@ public class InnovationRepository {
 //    public InnovationRepository(DynamoDBMapper dynamoDBMapper) {
 //        this.dynamoDBMapper = dynamoDBMapper;
 //    }
-
     @Autowired
     private DynamoDBMapper dynamoDBMapper;
 
