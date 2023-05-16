@@ -52,6 +52,10 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <finalName>AddEmployeeMembership</finalName>
+                            <outputDirectory>../../assets</outputDirectory>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
