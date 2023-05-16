@@ -18,6 +18,9 @@ public class AcceptDeclineController {
     @Autowired
     private  InnovationService innovationService;
 
+    @Autowired
+    private SubmitService submitService;
+
     @CrossOrigin("*")
     @PutMapping()
     public ResponseEntity<InnovationDTO> updateStatus(@RequestBody InnovationDTO innovationDTO) {

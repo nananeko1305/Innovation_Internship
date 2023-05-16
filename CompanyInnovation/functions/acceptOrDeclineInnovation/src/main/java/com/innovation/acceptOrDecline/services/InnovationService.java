@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class InnovationService {
+
+    @Autowired
+    private SubmitService submitService;
+
     private final InnovationRepository innovationRepository;
 
     public InnovationService(InnovationRepository innovationRepository) {
@@ -18,6 +22,10 @@ public class InnovationService {
 
     public InnovationDTO updateStatus(InnovationDTO innovationDTO) {
         innovationRepository.save(new Innovation(innovationDTO));
+        submitService.submitComment(innovationDTO);
+        if (innovationDTO.getStatus().toString().equals("APPROVED")){
+
+        }
         return innovationDTO;
     }
 }

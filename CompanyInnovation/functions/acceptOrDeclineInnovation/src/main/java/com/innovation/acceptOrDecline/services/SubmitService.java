@@ -18,13 +18,17 @@ public class SubmitService implements ISubmitService {
     @Override
     public InnovationDTO submitComment(InnovationDTO innovationDTO) {
         Innovation innovation = new Innovation(innovationDTO);
-
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("innovation.lead@outlook.com");
         message.setTo("innovation.employee@outlook.com");
         message.setSubject("Status update from "+ innovation.getFullName());
-        message.setText("Innovation status has changed to: "+ innovation.getStatus()+"\n\n"+ innovation.getComment());
+        if(innovation.getStatus().toString().equals("DECLINED")) {
+            message.setText("Innovation status has changed to: " + innovation.getStatus() + "\n\n" + innovation.getComment());
+        }
+        else
+            message.setText("Innovation status has changed to: "+ innovation.getStatus());
         mailService.sendMessage(message);
+
 
         //dodela poena???
 
