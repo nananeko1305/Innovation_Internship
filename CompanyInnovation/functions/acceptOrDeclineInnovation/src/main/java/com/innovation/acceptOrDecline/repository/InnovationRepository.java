@@ -1,10 +1,17 @@
 package com.innovation.acceptOrDecline.repository;
 
-import com.innovation.acceptOrDecline.entity.InnovationEntity;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.innovation.acceptOrDecline.entity.Innovation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-public interface InnovationRepository {
-    InnovationEntity findById(Integer id);
-    void save(InnovationEntity entity);
-    // Other methods for CRUD operations
+@Repository
+public class InnovationRepository {
+
+    @Autowired
+    private DynamoDBMapper dynamoDBMapper;
+    public void save(Innovation innovation){
+        dynamoDBMapper.save(innovation);
+    };
 }
 

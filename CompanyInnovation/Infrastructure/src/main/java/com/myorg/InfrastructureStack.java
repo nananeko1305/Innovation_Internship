@@ -42,12 +42,12 @@ public class InfrastructureStack extends Stack {
         TableProps.Builder tablePropsBuilder = TableProps.builder()
                 .tableName("innovations")
                 .partitionKey(Attribute.builder()
-                        .name("userId")
+                        .name("id")
                         .type(AttributeType.STRING)
                         .build())
                 .encryption(TableEncryption.DEFAULT)
                 .billingMode(BillingMode.PAY_PER_REQUEST)
-                .removalPolicy(RemovalPolicy.RETAIN);
+                .removalPolicy(RemovalPolicy.DESTROY);
 
         Table table = new Table(this, "InnovationTable", tablePropsBuilder.build());
 
@@ -191,13 +191,14 @@ public class InfrastructureStack extends Stack {
 //                .defaultMethodOptions(MethodOptions.builder().authorizationType(AuthorizationType.COGNITO).authorizer(auth).build())
                 .build();
 
-        gateway.getRoot().addResource("getInnovation").addMethod("GET", new LambdaIntegration(getInnovationFunction), MethodOptions.builder().build());
 
-        gateway.getRoot().addResource("acceptDecline").addMethod("PUT", new LambdaIntegration(acceptDeclineFunction), MethodOptions.builder().build());
-        //gateway.getRoot().addResource("submit").addMethod("GET", new LambdaIntegration(createInnovationFunction));
-
+        //API GATEWAY
+        gateway.getRoot().addResource("innovations").addMethod("GET", new LambdaIntegration(getInnovationFunction), MethodOptions.builder().build());
         gateway.getRoot().addResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().build());
+        gateway.getRoot().addResource("acceptDeclineInnovation").addMethod("PUT", new LambdaIntegration(acceptDeclineFunction), MethodOptions.builder().build());
 
+
+        //gateway.getRoot().addResource("submit").addMethod("GET", new LambdaIntegration(createInnovationFunction));
         //Ses email verify
       //  EmailIdentity identity = EmailIdentity.Builder.create(this, "Identity")
 
