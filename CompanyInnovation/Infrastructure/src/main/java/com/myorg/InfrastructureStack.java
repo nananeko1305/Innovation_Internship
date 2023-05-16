@@ -155,7 +155,6 @@ public class InfrastructureStack extends Stack {
                         .handler("com.innovation.acceptOrDecline.LamdaHandler")
                         .memorySize(512)
                         .timeout(Duration.seconds(30))
-                        .functionName("acceptDecline")
                         .code(Code.fromAsset("../assets/AcceptDeclineLambda.jar"))
                         .build();
 
