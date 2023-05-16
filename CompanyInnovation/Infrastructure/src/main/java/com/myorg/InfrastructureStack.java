@@ -8,6 +8,10 @@ import software.amazon.awscdk.RemovalPolicy;
 import software.amazon.awscdk.services.apigateway.LambdaIntegration;
 import software.amazon.awscdk.services.apigateway.LambdaRestApi;
 import software.amazon.awscdk.services.dynamodb.*;
+import software.amazon.awscdk.RemovalPolicy;
+import software.amazon.awscdk.services.apigateway.LambdaIntegration;
+import software.amazon.awscdk.services.apigateway.LambdaRestApi;
+import software.amazon.awscdk.services.dynamodb.*;
 import software.amazon.awscdk.services.iam.Effect;
 import software.amazon.awscdk.services.iam.PolicyStatement;
 import software.amazon.awscdk.services.lambda.Code;
@@ -117,25 +121,25 @@ public class InfrastructureStack extends Stack {
 //                .build();
 
         //create lambda to get innovations
-        Function getInnovationFunction =
-                Function.Builder.create(this, "hello_world_handler")
-                        .runtime(Runtime.JAVA_11)
-                        .handler("com.innovation.getInnovation.controller.LambdaHandler")
-                        .memorySize(512)
-                        .timeout(Duration.seconds(10))
-                        .functionName("handleRequest")
-                        .code(Code.fromAsset("../assets/GetInnovation.jar"))
-                        .build();
+       Function getInnovationFunction =
+               Function.Builder.create(this, "hello_world_handler")
+                .runtime(Runtime.JAVA_11)
+                .handler("com.innovation.getInnovation.controller.LambdaHandler")
+                .memorySize(512)
+                .timeout(Duration.seconds(10))
+                .functionName("handleRequest")
+                .code(Code.fromAsset("../assets/GetInnovation.jar"))
+                .build();
 
         Function createInnovationFunction =
                 Function.Builder.create(this,"lambdaCreate")
-                        .runtime(Runtime.JAVA_11)
-                        .handler("com.innovation.createInnovation.LamdaHandler")
-                        .memorySize(1024)
-                        .timeout(Duration.seconds(30))
-                        .functionName("lambdaCreate")
-                        .code(Code.fromAsset("../assets/SubmitInnovation.jar"))
-                        .build();
+                .runtime(Runtime.JAVA_11)
+                .handler("com.innovation.createInnovation.LamdaHandler")
+                .memorySize(1024)
+                .timeout(Duration.seconds(30))
+                .functionName("lambdaCreate")
+                .code(Code.fromAsset("../assets/SubmitInnovation.jar"))
+                .build();
 
 
 
@@ -168,15 +172,3 @@ public class InfrastructureStack extends Stack {
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
