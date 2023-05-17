@@ -36,6 +36,8 @@ public class InfrastructureApp {
 
         new LambdaSubmitStack(app, "LambdaSubmitStack", StackProps.builder().build());
 
+        new InfrastructureStack2(app, "InfrastructureStack2", StackProps.builder().build());
+
         app.synth();
 
     }

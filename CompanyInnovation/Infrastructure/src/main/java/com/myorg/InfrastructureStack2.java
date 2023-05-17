@@ -1,54 +1,39 @@
 package com.myorg;
 
 import com.amazonaws.services.simpleemail.model.VerifyEmailIdentityRequest;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import software.amazon.awscdk.*;
+import software.amazon.awscdk.Duration;
+import software.amazon.awscdk.RemovalPolicy;
 import software.amazon.awscdk.Stack;
+import software.amazon.awscdk.StackProps;
 import software.amazon.awscdk.customresources.*;
-import software.amazon.awscdk.services.apigateway.*;
-import software.amazon.awscdk.services.cognito.*;
 import software.amazon.awscdk.services.apigateway.LambdaIntegration;
 import software.amazon.awscdk.services.apigateway.LambdaRestApi;
+import software.amazon.awscdk.services.apigateway.MethodOptions;
+import software.amazon.awscdk.services.cognito.*;
 import software.amazon.awscdk.services.dynamodb.*;
-
-import software.amazon.awscdk.RemovalPolicy;
 import software.amazon.awscdk.services.iam.Effect;
 import software.amazon.awscdk.services.iam.PolicyStatement;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.Runtime;
-import software.amazon.awscdk.services.route53.IPublicHostedZone;
 import software.amazon.awscdk.services.ses.EmailIdentity;
-import software.amazon.awscdk.services.ses.EmailIdentityProps;
 import software.amazon.awscdk.services.ses.Identity;
 import software.amazon.awssdk.services.ses.SesClient;
-import software.amazon.awssdk.services.ses.SesClientBuilder;
-import software.amazon.jsii.JsiiObject;
 import software.constructs.Construct;
-
 
 import java.util.*;
 
-// import software.amazon.awscdk.Duration;
-// import software.amazon.awscdk.services.sqs.Queue;
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.amazonaws.auth.policy.actions.SimpleEmailServiceActions.VerifyEmailIdentity;
-
-public class InfrastructureStack extends Stack {
-    public InfrastructureStack(final Construct scope, final String id) {
+public class InfrastructureStack2 extends Stack {
+    public InfrastructureStack2(final Construct scope, final String id) {
         this(scope, id, null);
     }
 
-    public InfrastructureStack(final Construct scope, final String id, final StackProps props) {
+    public InfrastructureStack2(final Construct scope, final String id, final StackProps props) {
         super(scope, id, props);
 
         //Database
         TableProps.Builder tablePropsBuilder = TableProps.builder()
-                .tableName("innovations")
+                .tableName("innovations1")
                 .partitionKey(Attribute.builder()
                         .name("id")
                         .type(AttributeType.STRING)
@@ -57,7 +42,7 @@ public class InfrastructureStack extends Stack {
                 .billingMode(BillingMode.PAY_PER_REQUEST)
                 .removalPolicy(RemovalPolicy.DESTROY);
 
-        Table table = new Table(this, "InnovationTable", tablePropsBuilder.build());
+        Table table = new Table(this, "InnovationTable1", tablePropsBuilder.build());
 
         UserPool pool = UserPool.Builder.create(this, "Pool")
                 .selfSignUpEnabled(true)
@@ -129,31 +114,31 @@ public class InfrastructureStack extends Stack {
 
         //create lambda to get innovations
         Function getInnovationFunction =
-                Function.Builder.create(this, "GetInnovations")
+                Function.Builder.create(this, "GetInnovations1")
                         .runtime(Runtime.JAVA_11)
                         .handler("com.innovation.getInnovation.controller.LambdaHandler")
                         .memorySize(512)
                         .timeout(Duration.seconds(10))
                         .code(Code.fromAsset("../assets/GetInnovation.jar"))
-                        .functionName("GetInnovations")
+                        .functionName("GetInnovations1")
                         .build();
 
         Function createInnovationFunction =
-                Function.Builder.create(this, "lambdaCreate")
+                Function.Builder.create(this, "lambdaCreate1")
                         .runtime(Runtime.JAVA_11)
                         .handler("com.innovation.createInnovation.LamdaHandler")
                         .memorySize(1024)
                         .timeout(Duration.seconds(30))
-                        .functionName("lambdaCreate")
+                        .functionName("lambdaCreate1")
                         .code(Code.fromAsset("../assets/SubmitInnovation.jar"))
                         .build();
 
         Function acceptDeclineFunction =
-                Function.Builder.create(this, "lambdaAcceptDecline")
+                Function.Builder.create(this, "lambdaAcceptDecline1")
                         .runtime(Runtime.JAVA_11)
                         .handler("com.innovation.acceptOrDecline.LambdaHandler")
                         .memorySize(512)
-                        .functionName("AcceptDeclineLambda")
+                        .functionName("AcceptDeclineLambda1")
                         .timeout(Duration.seconds(30))
                         .code(Code.fromAsset("../assets/AcceptDeclineLambda.jar"))
                         .build();
@@ -173,12 +158,12 @@ public class InfrastructureStack extends Stack {
                 .build());
 
         Function addMembershipEmployee =
-                Function.Builder.create(this, "addMembershipEmployee")
+                Function.Builder.create(this, "addMembershipEmployee1")
                         .runtime(Runtime.JAVA_11)
                         .handler("org.innovation.AddEmployeeMembership")
                         .memorySize(1024)
                         .timeout(Duration.seconds(30))
-                        .functionName("addMembershipEmployee")
+                        .functionName("addMembershipEmployee1")
                         .code(Code.fromAsset("../assets/AddEmployeeMembership.jar"))
                         .build();
 
@@ -219,23 +204,18 @@ public class InfrastructureStack extends Stack {
         }};
 
 
-      //  CustomResourceProps.Builder propsBuilder = CustomResourceProps.builder();
-        //    propsBuilder.properties(paramMap);
-          //  propsBuilder.resourceType("AWS::CloudFormation::CustomResource");
-            //propsBuilder.serviceToken("arn:aws:lambda:eu-north-1:696993701802:function:lambdaCreate");
-            //propsBuilder.removalPolicy(RemovalPolicy.DESTROY);
-
-        //CustomResourceProps propsEmail = propsBuilder.build();
-        //CustomResource verifyEmailIdentity = new CustomResource(this, "VerifyEmailIdentity", propsEmail);
-
-                //.applyRemovalPolicy(RemovalPolicy.DESTROY);
 
         VerifyEmailIdentityRequest request= new VerifyEmailIdentityRequest();
         request.setEmailAddress("compani.innovation.dept@outlook.com");
 
+        final EmailIdentity identityBuilder = EmailIdentity.Builder.create(this, "Identity")
+                .identity(Identity.email("compani.innovation.dept@outlook.com"))
+                .build();
+
+
       // SesClient client= SesClient.builder()
-           //     .region("eu-north-1")
-            //    .build();
+             //   .region("eu-north-1")
+             //   .build();
        // client.verifyEmailIdentity(request);
 
 
