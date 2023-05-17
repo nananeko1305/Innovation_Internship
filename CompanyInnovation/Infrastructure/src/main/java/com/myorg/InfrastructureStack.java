@@ -150,6 +150,8 @@ public class InfrastructureStack extends Stack {
                         .code(Code.fromAsset("../assets/AcceptDeclineLambda.jar"))
                         .build();
 
+        acceptDeclineFunction.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
+
         //permission for lamdaCreate to use SES service
         createInnovationFunction.addToRolePolicy(PolicyStatement.Builder.create()
                 .effect(Effect.ALLOW)
