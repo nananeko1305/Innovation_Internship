@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping()
+@RequestMapping("product")
 public class ProductController {
 
     private final ProductService productService;
@@ -47,7 +47,7 @@ public class ProductController {
     }
 
     @DeleteMapping()
-    public void delete ( @PathVariable  String id){
-        productService.delete(id);
+    public void delete ( @RequestBody  ProductDTO productDTO){
+        productService.delete(productDTO);
     }
 }
