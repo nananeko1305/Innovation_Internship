@@ -167,7 +167,6 @@ public class InfrastructureStack extends Stack {
                 .resources(Collections.singletonList("arn:aws:ses:eu-north-1:696993701802:identity/*"))
                 .build());
 
-
         acceptDeclineFunction.addToRolePolicy(PolicyStatement.Builder.create()
                 .effect(Effect.ALLOW)
                 .actions(Collections.singletonList("ses:SendEmail"))
