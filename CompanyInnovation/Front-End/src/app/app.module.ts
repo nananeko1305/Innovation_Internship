@@ -47,7 +47,7 @@ import { AuthInterceptorService } from './auth-interceptor.service';
     RouterModule,
     AngularMaterialModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

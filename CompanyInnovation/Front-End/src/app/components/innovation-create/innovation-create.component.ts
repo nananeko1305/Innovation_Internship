@@ -25,8 +25,6 @@ export class InnovationCreateComponent implements OnInit{
     description: new FormControl('')
   });
 
-  innv: Innovation[] = [];
-
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[-_a-zA-Z0-9]*')]],
@@ -40,6 +38,8 @@ export class InnovationCreateComponent implements OnInit{
     innovation.title = this.formGroup.get('title')?.value
     innovation.description = this.formGroup.get('description')?.value
     innovation.userId = this.storageService.getSubjectFromToken()
+    console.log(this.storageService.getUsernameFromToken())
+    innovation.username = this.storageService.getUsernameFromToken()
     innovation.status = "PENDING"
 
     this.innovationService.createPost(innovation).subscribe(

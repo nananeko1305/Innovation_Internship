@@ -30,8 +30,6 @@ public class InfrastructureApp {
                 .build());
         new S3Angular(app, "S3Angular", StackProps.builder().build());
 
-       // new InfrastructureStack2(app, "InfrastructureStack2", StackProps.builder().build());
-
         app.synth();
 
     }

@@ -12,10 +12,23 @@ export class InnovationListComponent implements OnInit{
   @Input() innovations: Innovation[] = []
 
   constructor(
+    private innovationService: InnovationService
   ) {}
 
 
   ngOnInit() {
+    this.innovationService.getInnovations()
+      .subscribe(
+        {
+          next: (innovationsResponse: Innovation[]) => {
+            this.innovations = innovationsResponse
+            console.log(this.innovations)
+          },
+          error: (error: Error) => {
+            console.log(error)
+          }
+        }
+      )
   }
 
 }
