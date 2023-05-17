@@ -130,15 +130,15 @@ public class InfrastructureStack extends Stack {
                         .code(Code.fromAsset("../assets/SubmitInnovation.jar"))
                         .build();
 
-        Function manageShopFunction =
-                Function.Builder.create(this, "manageShop")
-                        .runtime(Runtime.JAVA_11)
-                        .handler("com.innovation.manageShop.LambdaHandler")
-                        .memorySize(1024)
-                        .timeout(Duration.seconds(30))
-                        .functionName("lambdaCreate")
-                        .code(Code.fromAsset("../assets/ManageShop.jar"))
-                        .build();
+//        Function manageShopFunction =
+//                Function.Builder.create(this, "manageShop")
+//                        .runtime(Runtime.JAVA_11)
+//                        .handler("com.innovation.manageShop.LambdaHandler")
+//                        .memorySize(1024)
+//                        .timeout(Duration.seconds(30))
+//                        .functionName("manageShop")
+//                        .code(Code.fromAsset("../assets/ManageShop.jar"))
+//                        .build();
 
         Function acceptDeclineFunction =
                 Function.Builder.create(this, "lambdaAcceptDecline")
