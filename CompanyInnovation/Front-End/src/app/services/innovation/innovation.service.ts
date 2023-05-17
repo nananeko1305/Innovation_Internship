@@ -21,7 +21,7 @@ export class InnovationService {
   }
 
   public getInnovations(): Observable<Innovation[]>{
-    return this.httpClient.get<Innovation[]>("http://localhost:8081/innovations")
+    return this.httpClient.get<Innovation[]>("http://localhost:8080/innovations")
   }
 
 }
