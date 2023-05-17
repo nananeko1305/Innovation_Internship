@@ -1,42 +1,24 @@
 package com.myorg;
 
 import com.amazonaws.services.simpleemail.model.VerifyEmailIdentityRequest;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import software.amazon.awscdk.*;
+import software.amazon.awscdk.Duration;
+import software.amazon.awscdk.RemovalPolicy;
 import software.amazon.awscdk.Stack;
+import software.amazon.awscdk.StackProps;
 import software.amazon.awscdk.customresources.*;
-import software.amazon.awscdk.services.apigateway.*;
-import software.amazon.awscdk.services.cognito.*;
 import software.amazon.awscdk.services.apigateway.LambdaIntegration;
 import software.amazon.awscdk.services.apigateway.LambdaRestApi;
+import software.amazon.awscdk.services.apigateway.MethodOptions;
+import software.amazon.awscdk.services.cognito.*;
 import software.amazon.awscdk.services.dynamodb.*;
-
-import software.amazon.awscdk.RemovalPolicy;
 import software.amazon.awscdk.services.iam.Effect;
 import software.amazon.awscdk.services.iam.PolicyStatement;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.Runtime;
-import software.amazon.awscdk.services.route53.IPublicHostedZone;
-import software.amazon.awscdk.services.ses.EmailIdentity;
-import software.amazon.awscdk.services.ses.EmailIdentityProps;
-import software.amazon.awscdk.services.ses.Identity;
-import software.amazon.awssdk.services.ses.SesClient;
-import software.amazon.awssdk.services.ses.SesClientBuilder;
-import software.amazon.jsii.JsiiObject;
 import software.constructs.Construct;
 
-
 import java.util.*;
-
-// import software.amazon.awscdk.Duration;
-// import software.amazon.awscdk.services.sqs.Queue;
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.amazonaws.auth.policy.actions.SimpleEmailServiceActions.VerifyEmailIdentity;
 
 public class InfrastructureStack extends Stack {
     public InfrastructureStack(final Construct scope, final String id) {

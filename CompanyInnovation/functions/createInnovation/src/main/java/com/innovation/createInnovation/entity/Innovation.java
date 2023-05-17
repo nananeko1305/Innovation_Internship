@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@DynamoDBTable(tableName = "innovations1")
+@DynamoDBTable(tableName = "innovations")
 public class Innovation {
 
     @DynamoDBHashKey(attributeName = "id")

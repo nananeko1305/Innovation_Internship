@@ -18,7 +18,6 @@ import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.Runtime;
 import software.amazon.awscdk.services.ses.EmailIdentity;
 import software.amazon.awscdk.services.ses.Identity;
-import software.amazon.awssdk.services.ses.SesClient;
 import software.constructs.Construct;
 
 import java.util.*;
@@ -33,7 +32,7 @@ public class InfrastructureStack2 extends Stack {
 
         //Database
         TableProps.Builder tablePropsBuilder = TableProps.builder()
-                .tableName("innovations")
+                .tableName("innovations1")
                 .partitionKey(Attribute.builder()
                         .name("id")
                         .type(AttributeType.STRING)
