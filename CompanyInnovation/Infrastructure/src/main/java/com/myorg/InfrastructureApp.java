@@ -28,13 +28,8 @@ public class InfrastructureApp {
                         .build())
 
                 .build());
-        new TestUDJStack(app, "TestUDJStack", StackProps.builder().build());
-
-        new TestSTStack(app, "TestSTStack" , StackProps.builder().build());
 
         new S3Angular(app, "S3Angular", StackProps.builder().build());
-
-        new LambdaSubmitStack(app, "LambdaSubmitStack", StackProps.builder().build());
 
         app.synth();
 

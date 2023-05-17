@@ -16,7 +16,9 @@ public class InnovationController {
     @Autowired
     private InnovationService innovationService;
 
+
     @GetMapping()
+    @CrossOrigin("*")
     public ResponseEntity<List<InnovationDTO>> GetInnovation(){
         return new ResponseEntity<>(innovationService.convertToDtoList(innovationService.GetAll()), HttpStatus.OK);
     }

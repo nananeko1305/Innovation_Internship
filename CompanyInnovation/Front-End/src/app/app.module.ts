@@ -19,6 +19,7 @@ import { InnovationViewComponent } from './components/innovation-view/innovation
 import { InnovationListComponent } from './components/innovation-list/innovation-list.component';
 import { InnovationAcceptDeclineComponent } from './components/innovation-accept-decline/innovation-accept-decline.component';
 import { InnovationDeclineCommentComponent } from './components/innovation-decline-comment/innovation-decline-comment.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { InnovationDeclineCommentComponent } from './components/innovation-decli
     RouterModule,
     AngularMaterialModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
