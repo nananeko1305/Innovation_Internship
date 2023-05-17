@@ -23,6 +23,7 @@ export class HomepageComponent implements OnInit{
       {
         next: (innovationsResponse: Innovation[]) => {
             this.innovations = innovationsResponse
+          console.log(this.innovations)
         },
         error: (error: Error) => {
           console.log(error)
