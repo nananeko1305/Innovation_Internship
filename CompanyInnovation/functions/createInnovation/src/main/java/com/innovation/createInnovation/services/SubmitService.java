@@ -28,7 +28,7 @@ public class SubmitService implements ISubmitService {
     @Override
     public InnovationDTO submitInnovation(InnovationDTO innovationDTO) {
         Innovation innovationEntity = mapper.map(innovationDTO, Innovation.class);
-
+        innovationEntity.setId(null);
         innovationRepository.submitInnovation(innovationEntity); //upis u bazu
 
         SimpleMailMessage message = new SimpleMailMessage();
@@ -36,7 +36,7 @@ public class SubmitService implements ISubmitService {
         message.setTo("innovation.lead@outlook.com");
         message.setSubject("New innovation by "+innovationEntity.getFullName());
         message.setText(innovationEntity.getDescription());
-        mailService.sendMessage(message);
+//        mailService.sendMessage(message);
 
 
         return mapper.map(innovationEntity, InnovationDTO.class);    }

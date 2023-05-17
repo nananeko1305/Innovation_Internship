@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {InnovationService} from "../../services/innovation/innovation.service";
 import {Innovation} from "../../model/innovation";
 
 @Component({
@@ -8,32 +9,13 @@ import {Innovation} from "../../model/innovation";
 })
 export class InnovationListComponent implements OnInit{
 
-  innovations: Innovation[] = []
+  @Input() innovations: Innovation[] = []
 
-  constructor() {
-  }
+  constructor(
+  ) {}
+
 
   ngOnInit() {
-
-    let innovation1 = new Innovation();
-    innovation1.id = 1
-    innovation1.title = "test1"
-    innovation1.description = "details1"
-    innovation1.username = "Mika"
-
-    this.innovations.push(innovation1)
-
-    let innovation2 = new Innovation();
-    innovation1.id = 2
-    innovation2.title = "test2"
-    innovation2.description = "details2"
-    innovation2.username = "Zika"
-
-
-    this.innovations.push(innovation2)
-
-
-
   }
 
 }

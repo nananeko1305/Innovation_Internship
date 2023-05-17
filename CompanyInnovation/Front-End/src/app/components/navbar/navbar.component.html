@@ -1,13 +1,13 @@
 <mat-toolbar class="app-navbar" color="primary">
   <div class="right">
     <div fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="flex-end center">
-      <button mat-button routerLink="/innovation-list">
+      <button mat-button routerLink="/innovation-list" *ngIf="isLoggedIn()">
         <span>View Innovations</span>
       </button>
-      <button mat-button routerLink="/innovation-list">
+      <button mat-button routerLink="/innovation-list" *ngIf="isLoggedIn()">
         <span>My Innovations</span>
       </button>
-      <button mat-button routerLink="/innovation-create">
+      <button mat-button routerLink="/innovation-create" *ngIf="isLoggedIn()">
         <span>Create Innovation</span>
       </button>
       <button *ngIf="!isLoggedIn()" mat-button routerLink="/login">

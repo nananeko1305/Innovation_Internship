@@ -1,5 +1,5 @@
 export class Innovation {
-  id: number = 0;
+  id: String = '';
   userId: string = '';
   username: string = '';
   fullName: string = '';

@@ -19,7 +19,7 @@ public class SubmitController {
         this.submitService = submitService;
     }
 
-    @CrossOrigin("*")
+    @CrossOrigin(origins = "*")
     @PostMapping("")
     public ResponseEntity<?> submitInnovation (@RequestBody @Valid InnovationDTO innovationModel, BindingResult result){
         if(result.hasErrors()){
