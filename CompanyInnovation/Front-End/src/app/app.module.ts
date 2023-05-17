@@ -19,7 +19,8 @@ import { InnovationViewComponent } from './components/innovation-view/innovation
 import { InnovationListComponent } from './components/innovation-list/innovation-list.component';
 import { InnovationAcceptDeclineComponent } from './components/innovation-accept-decline/innovation-accept-decline.component';
 import { InnovationDeclineCommentComponent } from './components/innovation-decline-comment/innovation-decline-comment.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptorService } from './auth-interceptor.service';
 
 
 @NgModule({
@@ -48,7 +49,11 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+}],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
