@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@DynamoDBTable(tableName = "innovations")
+@DynamoDBTable(tableName = "innovations1")
 public class Innovation {
 
     @DynamoDBHashKey(attributeName = "id")
