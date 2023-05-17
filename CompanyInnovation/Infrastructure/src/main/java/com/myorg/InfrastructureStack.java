@@ -140,7 +140,7 @@ public class InfrastructureStack extends Stack {
                         .code(Code.fromAsset("../assets/AcceptDeclineLambda.jar"))
                         .build();
 
-        acceptDeclineFunction.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
+
 
         //permission for lamdaCreate to use SES service
         createInnovationFunction.addToRolePolicy(PolicyStatement.Builder.create()
@@ -180,6 +180,12 @@ public class InfrastructureStack extends Stack {
 //                .defaultMethodOptions(MethodOptions.builder().authorizationType(AuthorizationType.COGNITO).authorizer(auth).build())
                 .build();
 
+
+        //Snap start
+        getInnovationFunction.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
+        createInnovationFunction.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
+        acceptDeclineFunction.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
+        addMembershipEmployee.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
 
         //API GATEWAY
         gateway.getRoot().addResource("innovations").addMethod("GET", new LambdaIntegration(getInnovationFunction), MethodOptions.builder().build());
