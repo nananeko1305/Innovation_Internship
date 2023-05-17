@@ -21,4 +21,5 @@ public class InnovationRepository {
         dynamoDBMapper.save(innovationEntity);
     }
 
+
 }

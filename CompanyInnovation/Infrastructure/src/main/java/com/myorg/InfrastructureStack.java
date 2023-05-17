@@ -39,7 +39,18 @@ public class InfrastructureStack extends Stack {
                 .billingMode(BillingMode.PAY_PER_REQUEST)
                 .removalPolicy(RemovalPolicy.DESTROY);
 
+        TableProps.Builder tablePropsBuilder1 = TableProps.builder()
+                .tableName("products")
+                .partitionKey(Attribute.builder()
+                        .name("id")
+                        .type(AttributeType.STRING)
+                        .build())
+                .encryption(TableEncryption.DEFAULT)
+                .billingMode(BillingMode.PAY_PER_REQUEST)
+                .removalPolicy(RemovalPolicy.DESTROY);
+
         Table table = new Table(this, "InnovationTable", tablePropsBuilder.build());
+        Table productTable= new Table(this , "ProductTable" , tablePropsBuilder1.build());
 
         UserPool pool = UserPool.Builder.create(this, "Pool")
                 .selfSignUpEnabled(true)
@@ -130,15 +141,15 @@ public class InfrastructureStack extends Stack {
                         .code(Code.fromAsset("../assets/SubmitInnovation.jar"))
                         .build();
 
-//        Function manageShopFunction =
-//                Function.Builder.create(this, "manageShop")
-//                        .runtime(Runtime.JAVA_11)
-//                        .handler("com.innovation.manageShop.LambdaHandler")
-//                        .memorySize(1024)
-//                        .timeout(Duration.seconds(30))
-//                        .functionName("manageShop")
-//                        .code(Code.fromAsset("../assets/ManageShop.jar"))
-//                        .build();
+        Function manageShopFunction =
+                Function.Builder.create(this, "manageShop")
+                        .runtime(Runtime.JAVA_11)
+                        .handler("com.innovation.manageShop.LambdaHandler")
+                        .memorySize(1024)
+                        .timeout(Duration.seconds(30))
+                        .functionName("manageShop")
+                        .code(Code.fromAsset("../assets/ManageShop.jar"))
+                        .build();
 
         Function acceptDeclineFunction =
                 Function.Builder.create(this, "lambdaAcceptDecline")
@@ -150,14 +161,13 @@ public class InfrastructureStack extends Stack {
                         .code(Code.fromAsset("../assets/AcceptDeclineLambda.jar"))
                         .build();
 
-
-
         //permission for lamdaCreate to use SES service
         createInnovationFunction.addToRolePolicy(PolicyStatement.Builder.create()
                 .effect(Effect.ALLOW)
                 .actions(Collections.singletonList("ses:SendEmail"))
                 .resources(Collections.singletonList("arn:aws:ses:eu-north-1:696993701802:identity/*"))
                 .build());
+
 
         acceptDeclineFunction.addToRolePolicy(PolicyStatement.Builder.create()
                 .effect(Effect.ALLOW)
