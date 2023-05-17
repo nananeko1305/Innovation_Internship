@@ -33,7 +33,7 @@ public class InfrastructureStack2 extends Stack {
 
         //Database
         TableProps.Builder tablePropsBuilder = TableProps.builder()
-                .tableName("innovations1")
+                .tableName("innovations")
                 .partitionKey(Attribute.builder()
                         .name("id")
                         .type(AttributeType.STRING)
