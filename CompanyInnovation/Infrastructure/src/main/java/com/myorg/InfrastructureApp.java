@@ -28,15 +28,9 @@ public class InfrastructureApp {
                         .build())
 
                 .build());
-        new TestUDJStack(app, "TestUDJStack", StackProps.builder().build());
-
-        new TestSTStack(app, "TestSTStack" , StackProps.builder().build());
-
         new S3Angular(app, "S3Angular", StackProps.builder().build());
 
-        new LambdaSubmitStack(app, "LambdaSubmitStack", StackProps.builder().build());
-
-        new InfrastructureStack2(app, "InfrastructureStack2", StackProps.builder().build());
+//        new InfrastructureStack2(app, "InfrastructureStack2", StackProps.builder().build());
 
         app.synth();
 

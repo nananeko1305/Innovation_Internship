@@ -18,7 +18,6 @@ import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.Runtime;
 import software.amazon.awscdk.services.ses.EmailIdentity;
 import software.amazon.awscdk.services.ses.Identity;
-import software.amazon.awssdk.services.ses.SesClient;
 import software.constructs.Construct;
 
 import java.util.*;

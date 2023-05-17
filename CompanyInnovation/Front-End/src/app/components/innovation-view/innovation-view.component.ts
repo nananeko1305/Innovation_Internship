@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Innovation} from "../../model/innovation";
 import {ActivatedRoute, Router} from "@angular/router";
+import {StorageService} from "../../services/storage/storage.service";
 
 @Component({
   selector: 'app-innovation-view',
@@ -12,13 +13,15 @@ export class InnovationViewComponent implements OnInit{
   @Input() innovation: Innovation = new Innovation()
 
   constructor(
-    private router: Router
+    private router: Router,
+    public storageService: StorageService,
   ) {
 
   }
 
 
   ngOnInit() {
+
   }
 
   ShowInnovation(innovation: Innovation): void {
