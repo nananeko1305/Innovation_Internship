@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Innovation} from "../../model/innovation";
 import {Observable} from "rxjs";
+import { AwsClientService } from '../aws-client/aws-client.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,13 @@ import {Observable} from "rxjs";
 export class InnovationService {
 
   constructor(
-    private httpClient : HttpClient
+    private httpClient : HttpClient,
+    private awsClientService : AwsClientService
   ) { }
 
-  public createPost(innovation: Innovation): Observable<Innovation>{
-    return this.httpClient.post<Innovation>("http://localhost:8080/submit", innovation)
+  public createPost(innovation: Innovation): Observable<any>{
+    //return this.httpClient.post<Innovation>("http://localhost:8080/submit", innovation)
+    return this.awsClientService.sendRequest("/submit", "POST", innovation)
   }
 
   public getInnovations(): Observable<Innovation[]>{

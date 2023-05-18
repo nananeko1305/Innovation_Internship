@@ -100,4 +100,22 @@ AWS.config.getCredentials( async (err) => {
 })
 
   }
+
+  getAccessKey(): string {
+    const accessKey = window.sessionStorage.getItem('accessKey')
+    if(accessKey) return accessKey
+    return ""
+  }
+
+  getSecretKey(): string {
+    const secretKey = window.sessionStorage.getItem('secretKey')
+    if(secretKey) return secretKey
+    return ""
+  }
+
+  getSessionToken(): string {
+    const sessionToken = window.sessionStorage.getItem('sessionToken')
+    if(sessionToken) return sessionToken
+    return ""
+  }
 }
