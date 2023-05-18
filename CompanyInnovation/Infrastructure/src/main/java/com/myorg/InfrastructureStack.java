@@ -6,9 +6,7 @@ import software.amazon.awscdk.RemovalPolicy;
 import software.amazon.awscdk.Stack;
 import software.amazon.awscdk.StackProps;
 import software.amazon.awscdk.customresources.*;
-import software.amazon.awscdk.services.apigateway.LambdaIntegration;
-import software.amazon.awscdk.services.apigateway.LambdaRestApi;
-import software.amazon.awscdk.services.apigateway.MethodOptions;
+import software.amazon.awscdk.services.apigateway.*;
 import software.amazon.awscdk.services.cognito.*;
 import software.amazon.awscdk.services.dynamodb.*;
 import software.amazon.awscdk.services.iam.Effect;
@@ -16,6 +14,8 @@ import software.amazon.awscdk.services.iam.PolicyStatement;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.Runtime;
+import software.amazon.awscdk.services.ses.EmailIdentity;
+import software.amazon.awscdk.services.ses.Identity;
 import software.constructs.Construct;
 
 import java.util.*;
@@ -223,6 +223,10 @@ public class InfrastructureStack extends Stack {
         LambdaRestApi gateway = LambdaRestApi.Builder.create(this, "gateway")
                 .handler(getInnovationFunction)
 //                .defaultMethodOptions(MethodOptions.builder().authorizationType(AuthorizationType.COGNITO).authorizer(auth).build())
+                .defaultCorsPreflightOptions(CorsOptions.builder()
+                        .allowOrigins(Cors.ALL_ORIGINS)
+                        .allowMethods(Cors.ALL_METHODS)
+                        .build())
                 .build();
 
 
@@ -234,43 +238,17 @@ public class InfrastructureStack extends Stack {
 
         //API GATEWAY
         gateway.getRoot().addResource("innovations").addMethod("GET", new LambdaIntegration(getInnovationFunction), MethodOptions.builder().build());
-        gateway.getRoot().addResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().build());
+        gateway.getRoot().addResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         gateway.getRoot().addResource("acceptDeclineInnovation").addMethod("PUT", new LambdaIntegration(acceptDeclineFunction), MethodOptions.builder().build());
 
 
         //gateway.getRoot().addResource("submit").addMethod("GET", new LambdaIntegration(createInnovationFunction));
         //Ses email verify
 
+        EmailIdentity identity = EmailIdentity.Builder.create(this, "Identity")
+                .identity(Identity.email("compani.innovation.dept@outlook.com"))
+                .build();
 
-        String emailAddress = "compani.innovation.dept@outlook.com";
-        String region = "eu-north-1";
-
-
-        Map<String, Object> paramMap = new HashMap<String, Object>() {{
-            put("service: ", "SES");
-            put("action: ", "verifyEmailIdentity");
-            put("EmailAddress", emailAddress);
-        }};
-
-
-      //  CustomResourceProps.Builder propsBuilder = CustomResourceProps.builder();
-        //    propsBuilder.properties(paramMap);
-          //  propsBuilder.resourceType("AWS::CloudFormation::CustomResource");
-            //propsBuilder.serviceToken("arn:aws:lambda:eu-north-1:696993701802:function:lambdaCreate");
-            //propsBuilder.removalPolicy(RemovalPolicy.DESTROY);
-
-        //CustomResourceProps propsEmail = propsBuilder.build();
-        //CustomResource verifyEmailIdentity = new CustomResource(this, "VerifyEmailIdentity", propsEmail);
-
-                //.applyRemovalPolicy(RemovalPolicy.DESTROY);
-
-        VerifyEmailIdentityRequest request= new VerifyEmailIdentityRequest();
-        request.setEmailAddress("compani.innovation.dept@outlook.com");
-
-      // SesClient client= SesClient.builder()
-           //     .region("eu-north-1")
-            //    .build();
-       // client.verifyEmailIdentity(request);
 
 
 

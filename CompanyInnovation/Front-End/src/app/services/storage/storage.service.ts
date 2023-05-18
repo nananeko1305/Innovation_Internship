@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import AWS from 'aws-sdk';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,9 @@ export class StorageService {
 
   clearToken() {
     window.sessionStorage.setItem('jwt', "")
+    window.sessionStorage.setItem('accessKey', "")
+    window.sessionStorage.setItem('secretKey', "")
+    window.sessionStorage.setItem('sessionToken', "")
   }
 
   getRoleFromToken(): string {
@@ -70,5 +74,30 @@ export class StorageService {
       return ''
     }
     return sessionStorage.getItem("jwt")
+  }
+
+  storeTempCredentials(passedToken: string): void {
+    if(AWS.config.credentials)
+    (< AWS.CognitoIdentityCredentials > AWS.config.credentials).clearCachedId();
+        AWS.config.region = 'eu-north-1';
+
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: 'eu-north-1:62f51650-c68c-4636-aa3b-580b7c550f66',
+    Logins: { 
+        'cognito-idp.eu-north-1.amazonaws.com/eu-north-1_bQ6gcESHo': passedToken
+    }
+});
+
+AWS.config.getCredentials( async (err) => {
+  if (err) console.log(err.stack); // credentials not loaded
+  else if (!AWS.config.credentials) return
+  else {console.log("Access Key:", AWS.config.credentials.accessKeyId);
+        console.log(AWS.config.credentials)
+        sessionStorage.setItem("accessKey", AWS.config.credentials.accessKeyId);
+        sessionStorage.setItem("secretKey", AWS.config.credentials.secretAccessKey);
+        sessionStorage.setItem("sessionToken", AWS.config.credentials.sessionToken!);
+      }
+})
+
   }
 }
