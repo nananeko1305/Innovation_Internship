@@ -39,7 +39,18 @@ public class InfrastructureStack extends Stack {
                 .billingMode(BillingMode.PAY_PER_REQUEST)
                 .removalPolicy(RemovalPolicy.DESTROY);
 
-        Table table = new Table(this, "InnovationTable", tablePropsBuilder.build());
+        GlobalSecondaryIndexProps.Builder gsiPropsBuilder = GlobalSecondaryIndexProps.builder()
+                .indexName("userIdIndex")
+                .partitionKey(Attribute.builder()
+                        .name("userId")
+                        .type(AttributeType.STRING)
+                        .build())
+                .projectionType(ProjectionType.ALL);
+
+        Table innovationsTable = new Table(this, "InnovationTable", tablePropsBuilder.build());
+        innovationsTable.addGlobalSecondaryIndex(gsiPropsBuilder.build());
+
+
 
 
         TableProps.Builder tablePropsBuilder1 = TableProps.builder()
