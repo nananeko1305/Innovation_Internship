@@ -49,8 +49,20 @@ public class InfrastructureStack extends Stack {
                 .billingMode(BillingMode.PAY_PER_REQUEST)
                 .removalPolicy(RemovalPolicy.DESTROY);
 
+        TableProps.Builder tablePropsBuilder2 = TableProps.builder()
+                .tableName("userTokens")
+                .partitionKey(Attribute.builder()
+                        .name("id")
+                        .type(AttributeType.STRING)
+                        .build())
+                .encryption(TableEncryption.DEFAULT)
+                .billingMode(BillingMode.PAY_PER_REQUEST)
+                .removalPolicy(RemovalPolicy.DESTROY);
+
         Table table = new Table(this, "InnovationTable", tablePropsBuilder.build());
         Table productTable= new Table(this , "ProductTable" , tablePropsBuilder1.build());
+        Table userTokensTable= new Table(this , "UserTokensTable" , tablePropsBuilder2.build());
+
 
         UserPool pool = UserPool.Builder.create(this, "Pool")
                 .selfSignUpEnabled(true)
