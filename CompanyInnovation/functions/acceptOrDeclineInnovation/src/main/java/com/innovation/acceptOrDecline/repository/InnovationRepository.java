@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class InnovationRepository {
 
-    @Autowired
+
     private DynamoDBMapper dynamoDBMapper;
     public void save(Innovation innovation){
         dynamoDBMapper.save(innovation);

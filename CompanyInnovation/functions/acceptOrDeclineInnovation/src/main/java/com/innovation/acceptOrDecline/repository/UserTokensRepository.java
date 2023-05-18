@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserTokensRepository {
-    @Autowired
+
     private DynamoDBMapper dynamoDBMapper;
     public void save(UserToken userToken){
         dynamoDBMapper.save(userToken);

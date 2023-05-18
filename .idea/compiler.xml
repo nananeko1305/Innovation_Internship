@@ -11,6 +11,7 @@
         <module name="getInnovations" />
         <module name="infrastructure" />
         <module name="acceptOrDeclineInnovation" />
+        <module name="addEmployeeMembership" />
       </profile>
     </annotationProcessing>
   </component>
