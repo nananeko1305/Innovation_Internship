@@ -16,6 +16,8 @@ import software.amazon.awscdk.services.iam.PolicyStatement;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.Runtime;
+import software.amazon.awscdk.services.ses.EmailIdentity;
+import software.amazon.awscdk.services.ses.Identity;
 import software.constructs.Construct;
 
 import java.util.*;
@@ -230,36 +232,10 @@ public class InfrastructureStack extends Stack {
         //gateway.getRoot().addResource("submit").addMethod("GET", new LambdaIntegration(createInnovationFunction));
         //Ses email verify
 
+        EmailIdentity identity = EmailIdentity.Builder.create(this, "Identity")
+                .identity(Identity.email("compani.innovation.dept@outlook.com"))
+                .build();
 
-        String emailAddress = "compani.innovation.dept@outlook.com";
-        String region = "eu-north-1";
-
-
-        Map<String, Object> paramMap = new HashMap<String, Object>() {{
-            put("service: ", "SES");
-            put("action: ", "verifyEmailIdentity");
-            put("EmailAddress", emailAddress);
-        }};
-
-
-      //  CustomResourceProps.Builder propsBuilder = CustomResourceProps.builder();
-        //    propsBuilder.properties(paramMap);
-          //  propsBuilder.resourceType("AWS::CloudFormation::CustomResource");
-            //propsBuilder.serviceToken("arn:aws:lambda:eu-north-1:696993701802:function:lambdaCreate");
-            //propsBuilder.removalPolicy(RemovalPolicy.DESTROY);
-
-        //CustomResourceProps propsEmail = propsBuilder.build();
-        //CustomResource verifyEmailIdentity = new CustomResource(this, "VerifyEmailIdentity", propsEmail);
-
-                //.applyRemovalPolicy(RemovalPolicy.DESTROY);
-
-        VerifyEmailIdentityRequest request= new VerifyEmailIdentityRequest();
-        request.setEmailAddress("compani.innovation.dept@outlook.com");
-
-      // SesClient client= SesClient.builder()
-           //     .region("eu-north-1")
-            //    .build();
-       // client.verifyEmailIdentity(request);
 
 
 
