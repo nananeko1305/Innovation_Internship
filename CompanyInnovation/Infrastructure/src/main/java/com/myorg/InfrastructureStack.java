@@ -6,9 +6,7 @@ import software.amazon.awscdk.RemovalPolicy;
 import software.amazon.awscdk.Stack;
 import software.amazon.awscdk.StackProps;
 import software.amazon.awscdk.customresources.*;
-import software.amazon.awscdk.services.apigateway.LambdaIntegration;
-import software.amazon.awscdk.services.apigateway.LambdaRestApi;
-import software.amazon.awscdk.services.apigateway.MethodOptions;
+import software.amazon.awscdk.services.apigateway.*;
 import software.amazon.awscdk.services.cognito.*;
 import software.amazon.awscdk.services.dynamodb.*;
 import software.amazon.awscdk.services.iam.Effect;
@@ -214,6 +212,10 @@ public class InfrastructureStack extends Stack {
         LambdaRestApi gateway = LambdaRestApi.Builder.create(this, "gateway")
                 .handler(getInnovationFunction)
 //                .defaultMethodOptions(MethodOptions.builder().authorizationType(AuthorizationType.COGNITO).authorizer(auth).build())
+                .defaultCorsPreflightOptions(CorsOptions.builder()
+                        .allowOrigins(Cors.ALL_ORIGINS)
+                        .allowMethods(Cors.ALL_METHODS)
+                        .build())
                 .build();
 
 
@@ -225,7 +227,7 @@ public class InfrastructureStack extends Stack {
 
         //API GATEWAY
         gateway.getRoot().addResource("innovations").addMethod("GET", new LambdaIntegration(getInnovationFunction), MethodOptions.builder().build());
-        gateway.getRoot().addResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().build());
+        gateway.getRoot().addResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         gateway.getRoot().addResource("acceptDeclineInnovation").addMethod("PUT", new LambdaIntegration(acceptDeclineFunction), MethodOptions.builder().build());
 
 

@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit{
       console.log(value.signInUserSession.idToken.jwtToken)
       var jwt = value.signInUserSession.idToken.jwtToken
       this.storageService.storeTokenData(jwt);
+      this.storageService.storeTempCredentials(jwt);
       this.router.navigateByUrl("")
 })
 .catch((error:any) => {
