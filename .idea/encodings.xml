@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/CompanyInnovation/Infrastructure/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CompanyInnovation/Infrastructure/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CompanyInnovation/common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CompanyInnovation/functions/acceptOrDeclineInnovation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CompanyInnovation/functions/addEmployeeMembership/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CompanyInnovation/functions/addEmployeeMembership/src/main/resources" charset="UTF-8" />
@@ -10,5 +11,7 @@
     <file url="file://$PROJECT_DIR$/CompanyInnovation/functions/getInnovations/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CompanyInnovation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CompanyInnovation/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CompanyInnovatlon/common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CompanyInnovatlon/src/main/java" charset="UTF-8" />
   </component>
 </project>

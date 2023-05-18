@@ -1,7 +1,5 @@
-package com.innovation.createInnovation.config;
+package config;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClientBuilder;
 import io.awspring.cloud.ses.SimpleEmailServiceMailSender;

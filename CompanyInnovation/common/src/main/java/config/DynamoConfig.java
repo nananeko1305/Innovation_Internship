@@ -1,4 +1,4 @@
-package com.innovation.createInnovation.config;
+package config;
 
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

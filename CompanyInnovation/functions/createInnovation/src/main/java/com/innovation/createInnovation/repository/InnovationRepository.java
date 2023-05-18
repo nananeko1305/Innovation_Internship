@@ -3,7 +3,9 @@ package com.innovation.createInnovation.repository;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.innovation.createInnovation.entity.Innovation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Repository;
+
 
 @Repository
 public class InnovationRepository {
@@ -14,7 +16,8 @@ public class InnovationRepository {
 //    public InnovationRepository(DynamoDBMapper dynamoDBMapper) {
 //        this.dynamoDBMapper = dynamoDBMapper;
 //    }
-    @Autowired
+
+
     private DynamoDBMapper dynamoDBMapper;
 
     public void submitInnovation(Innovation innovationEntity){

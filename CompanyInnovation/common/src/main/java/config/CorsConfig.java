@@ -1,4 +1,4 @@
-package com.innovation.createInnovation.config;
+package config;
 
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
