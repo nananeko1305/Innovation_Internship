@@ -36,7 +36,8 @@ public class SubmitService implements ISubmitService {
         else
             message.setText("Innovation status has changed to: "+ innovation.getStatus());
         mailService.sendMessage(message);
-        userTokenService.addTokens(new UserToken("",innovation.getUserId(),15));
+
+        userTokenService.addTokens(innovation.getUserId());
 
 
 
