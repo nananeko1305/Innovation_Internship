@@ -16,13 +16,12 @@ public class DynamoConfig {
 
     @Value("${amazon.aws.dynamodb.endpoint}")
     private String dynamoDbEndpoint;
-    @Value("${aws_access_key_id}")
+    @Value("${amazon.aws.accesskey}")
     private String awsAccessKey;
-    @Value("${aws_secret_access_key}")
+    @Value("${amazon.aws.secretkey}")
     private String awsSecretKey;
-    @Value("${aws_session_token}")
+    @Value("${amazon.aws.sessiontoken}")
     private String awsSessionToken;
-
     @Bean
     public DynamoDBMapper dynamoDBMapper() {
         return new DynamoDBMapper(amazonDynamoDB());

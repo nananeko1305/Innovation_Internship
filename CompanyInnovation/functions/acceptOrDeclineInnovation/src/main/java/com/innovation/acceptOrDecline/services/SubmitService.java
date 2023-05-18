@@ -13,10 +13,15 @@ import org.springframework.stereotype.Service;
 
 public class SubmitService implements ISubmitService {
 
-    @Autowired
     private MailService mailService;
-    @Autowired
-    private UserTokenService userTokenService;
+    private IUserTokenService userTokenService;
+
+
+    public SubmitService(IUserTokenService userTokenService, MailService mailService) {
+        this.userTokenService = userTokenService;
+        this.mailService= mailService;
+    }
+
 
     @Override
     public InnovationDTO submitComment(InnovationDTO innovationDTO) {

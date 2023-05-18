@@ -2,8 +2,10 @@ package com.innovation.acceptOrDecline.services;
 
 import com.innovation.acceptOrDecline.entity.UserToken;
 import com.innovation.acceptOrDecline.repository.UserTokensRepository;
+import org.springframework.stereotype.Service;
 
-public class UserTokenService {
+@Service
+public class UserTokenService implements IUserTokenService{
 
     private final UserTokensRepository userTokensRepository;
 
@@ -11,7 +13,9 @@ public class UserTokenService {
         this.userTokensRepository = userTokensRepository;
     }
 
-    public void addTokens(UserToken userToken){
-        userTokensRepository.save(userToken);
+
+    @Override
+    public void addTokens(UserToken userToken) {
+            userTokensRepository.save(userToken);
     }
 }
