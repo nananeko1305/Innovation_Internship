@@ -24,7 +24,7 @@ public class InnovationServiceImplementation implements InnovationService {
         if (TokenUtils.getRoleFromToken(claimsSet).equals("Employee")){
             return innovationRepository.GetInnovationsForUser(TokenUtils.getIdFromToken(claimsSet));
 
-        }else if(TokenUtils.getRoleFromToken(claimsSet).equals("Engineer-Lead")) {
+        }else if(TokenUtils.getRoleFromToken(claimsSet).equals("Lead")) {
             return innovationRepository.GetAll();
 
         }
