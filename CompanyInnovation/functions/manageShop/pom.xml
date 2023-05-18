@@ -97,7 +97,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-autoconfigure</artifactId>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.chatwork</groupId>
+            <artifactId>scala-jwk_2.13</artifactId>
+            <version>1.2.24</version>
+        </dependency>
+    </dependencies>
 
 			<build>
 				<plugins>
