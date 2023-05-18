@@ -3,6 +3,7 @@ package com.innovation.acceptOrDecline.services;
 
 import com.innovation.acceptOrDecline.dto.InnovationDTO;
 import com.innovation.acceptOrDecline.entity.Innovation;
+import com.innovation.acceptOrDecline.entity.UserToken;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -12,8 +13,15 @@ import org.springframework.stereotype.Service;
 
 public class SubmitService implements ISubmitService {
 
-    @Autowired
     private MailService mailService;
+    private IUserTokenService userTokenService;
+
+
+    public SubmitService(IUserTokenService userTokenService, MailService mailService) {
+        this.userTokenService = userTokenService;
+        this.mailService= mailService;
+    }
+
 
     @Override
     public InnovationDTO submitComment(InnovationDTO innovationDTO) {
@@ -28,9 +36,10 @@ public class SubmitService implements ISubmitService {
         else
             message.setText("Innovation status has changed to: "+ innovation.getStatus());
         mailService.sendMessage(message);
+        userTokenService.addTokens(new UserToken("",innovation.getUserId(),15));
 
 
-        //dodela poena???
+
 
 
         return innovationDTO;
