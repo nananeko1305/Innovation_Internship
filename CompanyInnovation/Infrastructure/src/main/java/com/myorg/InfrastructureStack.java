@@ -1,6 +1,5 @@
 package com.myorg;
 
-import com.amazonaws.services.dynamodbv2.model.KeyType;
 import com.amazonaws.services.simpleemail.model.VerifyEmailIdentityRequest;
 import software.amazon.awscdk.Duration;
 import software.amazon.awscdk.RemovalPolicy;
@@ -29,9 +28,7 @@ public class InfrastructureStack extends Stack {
     public InfrastructureStack(final Construct scope, final String id, final StackProps props) {
         super(scope, id, props);
 
-//        Database
-
-
+        //Database
         TableProps.Builder tablePropsBuilder = TableProps.builder()
                 .tableName("innovations")
                 .partitionKey(Attribute.builder()
@@ -55,7 +52,19 @@ public class InfrastructureStack extends Stack {
                 .billingMode(BillingMode.PAY_PER_REQUEST)
                 .removalPolicy(RemovalPolicy.DESTROY);
 
+        TableProps.Builder tablePropsBuilder2 = TableProps.builder()
+                .tableName("userTokens")
+                .partitionKey(Attribute.builder()
+                        .name("id")
+                        .type(AttributeType.STRING)
+                        .build())
+                .encryption(TableEncryption.DEFAULT)
+                .billingMode(BillingMode.PAY_PER_REQUEST)
+                .removalPolicy(RemovalPolicy.DESTROY);
+
         Table productTable= new Table(this , "ProductTable" , tablePropsBuilder1.build());
+        Table userTokensTable= new Table(this , "UserTokensTable" , tablePropsBuilder2.build());
+
 
         UserPool pool = UserPool.Builder.create(this, "Pool")
                 .selfSignUpEnabled(true)
