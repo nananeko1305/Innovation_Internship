@@ -85,6 +85,12 @@
             <artifactId>scala-jwk_2.13</artifactId>
             <version>1.2.24</version>
         </dependency>
+        <dependency>
+            <groupId>com.innovation</groupId>
+            <artifactId>getInnovations</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 	<build>

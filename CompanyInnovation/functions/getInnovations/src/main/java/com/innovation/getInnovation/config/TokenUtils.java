@@ -40,6 +40,16 @@ public class TokenUtils {
         return employeeGroup;
     }
 
+    public static String getEmailFromToken(JWTClaimsSet jwtClaimsSet){
+
+        try {
+            System.out.println(jwtClaimsSet.getStringClaim("email"));
+            return jwtClaimsSet.getStringClaim("email");
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static String getIdFromToken(JWTClaimsSet jwtClaimsSet){
         return jwtClaimsSet.getSubject();
     }
