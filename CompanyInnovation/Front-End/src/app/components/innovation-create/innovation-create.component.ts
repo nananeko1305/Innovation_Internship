@@ -2,9 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {InnovationService} from "../../services/innovation/innovation.service";
-import {Innovation} from "../../model/innovation";
 import {StorageService} from "../../services/storage/storage.service";
-import {HttpErrorResponse} from "@angular/common/http";
 import { AwsClientService } from 'src/app/services/aws-client/aws-client.service';
 
 @Component({
@@ -44,14 +42,14 @@ export class InnovationCreateComponent implements OnInit{
     // innovation.username = this.storageService.getUsernameFromToken()
     // innovation.status = "PENDING"
 
-    var additionalParams = {
+    let additionalParams = {
       //If there are query parameters or headers that need to be sent with the request you can add them here
       headers: {
         jwttoken : this.storageService.getToken()
       }
     }
 
-    this.awsClientService.sendRequest("/prod/submit", "POST", 
+    this.awsClientService.sendRequest("/prod/submit", "POST",
     additionalParams,
     {
           "title": this.formGroup.get('title')?.value,

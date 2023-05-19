@@ -1,4 +1,4 @@
-package com.innovation.createInnovation.config;
+package com.innovation.getInnovation.config;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;

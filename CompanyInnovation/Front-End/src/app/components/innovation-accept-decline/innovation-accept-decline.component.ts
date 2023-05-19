@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Innovation} from "../../model/innovation";
-import {ActivatedRoute, Router, RouterModule} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {InnovationService} from "../../services/innovation/innovation.service";
 
 @Component({
@@ -11,7 +11,6 @@ import {InnovationService} from "../../services/innovation/innovation.service";
 export class InnovationAcceptDeclineComponent implements OnInit{
 
   innovation: Innovation = new Innovation()
-  innovation_id = String(this.route.snapshot.paramMap.get("id"))
 
   constructor(
     private route: ActivatedRoute,
@@ -32,7 +31,7 @@ export class InnovationAcceptDeclineComponent implements OnInit{
       {
         next : (innovation) => {
           console.log(innovation)
-          this.router.navigate(['innovation-list'])
+          this.router.navigate(['innovation-list']).then()
     },
         error : (error) => {
           console.log(error)
@@ -44,7 +43,7 @@ export class InnovationAcceptDeclineComponent implements OnInit{
 
   Decline(innovation: Innovation) {
     innovation.status = "DECLINED"
-    this.router.navigate(['innovationComment/', innovation.id], {state: {innovation}});
+    this.router.navigate(['innovationComment/', innovation.id], {state: {innovation}}).then();
   }
 
 

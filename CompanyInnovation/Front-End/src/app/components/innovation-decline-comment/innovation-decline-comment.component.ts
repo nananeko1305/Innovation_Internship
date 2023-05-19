@@ -19,7 +19,6 @@ export class InnovationDeclineCommentComponent implements OnInit{
   ) { }
 
   innovation: Innovation = new Innovation()
-  innovation_id = String(this.route.snapshot.paramMap.get("id"))
 
   formGroup: FormGroup = new FormGroup({
     reasonForDeclining : new FormControl(''),
@@ -45,7 +44,7 @@ export class InnovationDeclineCommentComponent implements OnInit{
       }
     )
     console.log(JSON.stringify(innovation))
-    this.router.navigate(['innovation-list'])
+    this.router.navigate(['innovation-list']).then()
   }
 
 }

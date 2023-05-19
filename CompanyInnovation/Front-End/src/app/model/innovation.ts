@@ -1,6 +1,6 @@
 export class Innovation {
   id: String = '';
-  userId: string = '';
+  // userId: string = '';
   username: string = '';
   fullName: string = '';
   title: string = '';
@@ -8,6 +8,6 @@ export class Innovation {
   comment: string = '';
   status: string = '';
   constructor(){
-    
+
   }
 }

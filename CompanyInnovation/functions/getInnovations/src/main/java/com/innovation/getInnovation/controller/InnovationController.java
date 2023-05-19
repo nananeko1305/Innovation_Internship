@@ -1,9 +1,8 @@
 package com.innovation.getInnovation.controller;
 
-import com.innovation.common.config.TokenUtils;
+import com.innovation.getInnovation.config.TokenUtils;
 import com.innovation.getInnovation.domain.dto.InnovationDTO;
 import com.innovation.getInnovation.service.InnovationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +13,14 @@ import java.util.List;
 @RequestMapping("innovations")
 public class InnovationController {
 
-    @Autowired
-    private InnovationService innovationService;
+    private final InnovationService innovationService;
 
-    @Autowired
-    private TokenUtils tokenUtils;
+    private final TokenUtils tokenUtils;
+
+    public InnovationController(InnovationService innovationService, TokenUtils tokenUtils) {
+        this.innovationService = innovationService;
+        this.tokenUtils = tokenUtils;
+    }
 
     @GetMapping()
     @CrossOrigin("*")

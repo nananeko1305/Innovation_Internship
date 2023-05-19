@@ -1,7 +1,6 @@
 package com.innovation.createInnovation.entity;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
-import com.innovation.createInnovation.DTO.InnovationDTO;
 import lombok.*;
 
 @Getter
@@ -38,16 +37,5 @@ public class Innovation {
     @DynamoDBTypeConvertedEnum
     private Status status;
 
-
-    public Innovation(InnovationDTO innovationDTO){
-        this.id = innovationDTO.getId();
-        this.userId = innovationDTO.getUserId();
-        this.username = innovationDTO.getUsername();
-        this.fullName = innovationDTO.getFullName();
-        this.title = innovationDTO.getTitle();
-        this.description = innovationDTO.getDescription();
-        this.comment = innovationDTO.getComment();
-        this.status = innovationDTO.getStatus();
-    }
 
 }

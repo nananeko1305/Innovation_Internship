@@ -1,12 +1,11 @@
 package com.innovation.getInnovation.repository;
 
-import com.innovation.common.config.DynamoConfig;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.innovation.getInnovation.config.DynamoConfig;
 import com.innovation.getInnovation.domain.model.Innovation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -16,8 +15,11 @@ import java.util.Map;
 @Repository
 public class InnovationRepository{
 
-    @Autowired
-    private DynamoConfig dynamoConfig;
+    private final DynamoConfig dynamoConfig;
+
+    public InnovationRepository(DynamoConfig dynamoConfig) {
+        this.dynamoConfig = dynamoConfig;
+    }
 
     public List<Innovation> GetAll(){
         return dynamoConfig.dynamoDBMapper().scan(Innovation.class, new DynamoDBScanExpression());

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from '../storage/storage.service';
-import { Innovation } from 'src/app/model/innovation';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +9,9 @@ export class AwsClientService {
   constructor(private storageService:StorageService) { }
 
   sendRequest(receivedPath:string, receivedMethod:string, additionalParams:any = {}, receivedBody:any = {}): any {
-    var apigClientFactory = require('aws-api-gateway-client').default;
+    let apigClientFactory = require('aws-api-gateway-client').default;
 
-    var apigClient = apigClientFactory.newClient({
+    let apigClient = apigClientFactory.newClient({
       invokeUrl:'https://5j10nowhj2.execute-api.eu-north-1.amazonaws.com',
       accessKey: this.storageService.getAccessKey(), //'ACCESS_KEY',
       secretKey: this.storageService.getSecretKey(), //'SECRET_KEY',
@@ -21,7 +20,7 @@ export class AwsClientService {
     });
 
     console.log(receivedBody)
-    
-    return apigClient.invokeApi({}, receivedPath, receivedMethod, additionalParams, receivedBody)   
+
+    return apigClient.invokeApi({}, receivedPath, receivedMethod, additionalParams, receivedBody)
   }
 }

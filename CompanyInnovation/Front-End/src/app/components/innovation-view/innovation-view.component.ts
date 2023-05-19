@@ -1,7 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Innovation} from "../../model/innovation";
-import {ActivatedRoute, Router} from "@angular/router";
-import {StorageService} from "../../services/storage/storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-innovation-view',
@@ -14,7 +13,6 @@ export class InnovationViewComponent implements OnInit{
 
   constructor(
     private router: Router,
-    public storageService: StorageService,
   ) {
 
   }
@@ -25,7 +23,7 @@ export class InnovationViewComponent implements OnInit{
   }
 
   ShowInnovation(innovation: Innovation): void {
-    this.router.navigate(['innovationAcceptDecline/', innovation.id], { state: {innovation} });
+    this.router.navigate(['innovationAcceptDecline/', innovation.id], { state: {innovation} }).then();
   }
 
 }
