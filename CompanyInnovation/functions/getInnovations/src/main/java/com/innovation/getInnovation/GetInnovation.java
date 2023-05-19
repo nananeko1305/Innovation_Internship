@@ -15,7 +15,6 @@ public class GetInnovation {
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
-        System.out.println("CORS STARTTED");
         return new CorsConfig();
     }
 

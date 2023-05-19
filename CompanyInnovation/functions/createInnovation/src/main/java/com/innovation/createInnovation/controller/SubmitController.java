@@ -1,7 +1,10 @@
 package com.innovation.createInnovation.controller;
 
 import com.innovation.createInnovation.DTO.InnovationDTO;
+import com.innovation.createInnovation.config.TokenUtils;
 import com.innovation.createInnovation.services.SubmitService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -13,6 +16,9 @@ import javax.validation.Valid;
 @RequestMapping("/submit")
 public class SubmitController {
 
+    @Autowired
+    public TokenUtils tokenUtils;
+
     private final SubmitService submitService;
 
     public SubmitController(SubmitService submitService) {
@@ -21,10 +27,14 @@ public class SubmitController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("")
-    public ResponseEntity<?> submitInnovation (@RequestBody @Valid InnovationDTO innovationModel, BindingResult result){
+    public ResponseEntity<?> submitInnovation (@RequestHeader HttpHeaders headers,@RequestBody @Valid InnovationDTO innovationModel, BindingResult result){
         if(result.hasErrors()){
             return new ResponseEntity<String>(result.getAllErrors().toString(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        headers.forEach((key, values) -> {
+            System.out.println("Header Name: " + key);
+            System.out.println("Header Values: " + values);
+        });
         return new ResponseEntity<InnovationDTO>(submitService.submitInnovation(innovationModel), HttpStatus.OK);
     }
 }

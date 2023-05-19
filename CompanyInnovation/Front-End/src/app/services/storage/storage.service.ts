@@ -83,7 +83,7 @@ export class StorageService {
 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: 'eu-north-1:62f51650-c68c-4636-aa3b-580b7c550f66',
-    Logins: { 
+    Logins: {
         'cognito-idp.eu-north-1.amazonaws.com/eu-north-1_bQ6gcESHo': passedToken
     }
 });
@@ -99,5 +99,23 @@ AWS.config.getCredentials( async (err) => {
       }
 })
 
+  }
+
+  getAccessKey(): string {
+    const accessKey = window.sessionStorage.getItem('accessKey')
+    if(accessKey) return accessKey
+    return ""
+  }
+
+  getSecretKey(): string {
+    const secretKey = window.sessionStorage.getItem('secretKey')
+    if(secretKey) return secretKey
+    return ""
+  }
+
+  getSessionToken(): string {
+    const sessionToken = window.sessionStorage.getItem('sessionToken')
+    if(sessionToken) return sessionToken
+    return ""
   }
 }

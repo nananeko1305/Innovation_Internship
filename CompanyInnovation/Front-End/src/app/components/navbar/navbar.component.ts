@@ -9,7 +9,7 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class NavbarComponent {
 
-  constructor(private router: Router, private storageService : StorageService){
+  constructor(private router: Router, public storageService : StorageService){
 
   }
 
