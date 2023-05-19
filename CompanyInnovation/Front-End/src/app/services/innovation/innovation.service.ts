@@ -15,8 +15,7 @@ export class InnovationService {
   ) { }
 
   public createPost(innovation: Innovation): Observable<any>{
-    //return this.httpClient.post<Innovation>("http://localhost:8080/submit", innovation)
-    return this.awsClientService.sendRequest("/submit", "POST", innovation)
+    return this.httpClient.post<Innovation>("http://localhost:8080/submit", innovation)
   }
 
   public getInnovations(): Observable<Innovation[]>{

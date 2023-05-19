@@ -36,59 +36,26 @@ export class InnovationCreateComponent implements OnInit{
 
   onSubmit() {
 
-    const innovation = new Innovation();
-    innovation.title = this.formGroup.get('title')?.value
-    innovation.description = this.formGroup.get('description')?.value
-    innovation.userId = this.storageService.getSubjectFromToken()
-    console.log(this.storageService.getUsernameFromToken())
-    innovation.username = this.storageService.getUsernameFromToken()
-    innovation.status = "PENDING"
+    // const innovation = new Innovation();
+    // innovation.title = this.formGroup.get('title')?.value
+    // innovation.description = this.formGroup.get('description')?.value
+    // innovation.userId = this.storageService.getSubjectFromToken()
+    // console.log(this.storageService.getUsernameFromToken())
+    // innovation.username = this.storageService.getUsernameFromToken()
+    // innovation.status = "PENDING"
 
-    // this.innovationService.createPost(innovation).subscribe(
-    //   {
-    //     next: (innovation: Innovation) => {
-    //       console.log(JSON.stringify(innovation))
-    //       console.log("Success")
-    //     },
-    //     error: (error: HttpErrorResponse) => {
-    //       console.log(error)
-    //     }
-    //   }
-    // );
-
-    var apigClientFactory = require('aws-api-gateway-client').default;
-
-    var apigClient = apigClientFactory.newClient({
-      invokeUrl:'https://5j10nowhj2.execute-api.eu-north-1.amazonaws.com',
-      accessKey: this.storageService.getAccessKey(), //'ACCESS_KEY',
-      secretKey: this.storageService.getSecretKey(), //'SECRET_KEY',
-      sessionToken: this.storageService.getSessionToken(), // 'SESSION_TOKEN', //OPTIONAL: If you are using temporary credentials you must include the session token
-      region: 'eu-north-1' // OPTIONAL: The region where the API is deployed, by default this parameter is set to us-east-1
-    });
-
-    
-    apigClient.invokeApi({}, '/submit', 'POST', {}, {
-      "title": this.formGroup.get('title')?.value,
-      "username": this.storageService.getUsernameFromToken(),
-      "fullName": "TestFullName",
-      "description": this.formGroup.get('description')?.value,
-      "comment":null,
-      "status":"APPROVED"
-    }).then(function(result: any){
-      //This is where you would put a success callback
+    this.awsClientService.sendRequest("/prod/submit", "POST", {
+          "title": this.formGroup.get('title')?.value,
+          "username": this.storageService.getUsernameFromToken(),
+          "fullName": "TestFullName",
+          "description": this.formGroup.get('description')?.value,
+          "comment":'',
+          "status":"PENDING"
+        }) .then(function(result: any){
       console.log(result)
   }).catch( function(result: any){
-      //This is where you would put an error callback
       console.log(result)
   });
-
-  //   this.awsClientService.sendRequest("/submit", "POST", {}) .then(function(result: any){
-  //     //This is where you would put a success callback
-  //     console.log(result)
-  // }).catch( function(result: any){
-  //     //This is where you would put an error callback
-  //     console.log(result)
-  // });
 
   }
 

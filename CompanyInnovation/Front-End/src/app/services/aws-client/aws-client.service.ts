@@ -9,7 +9,7 @@ export class AwsClientService {
 
   constructor(private storageService:StorageService) { }
 
-  sendRequest(receivedPath:string, receivedMethod:string, receivedBody:any): any {
+  sendRequest(receivedPath:string, receivedMethod:string, receivedBody:any = {}): any {
     var apigClientFactory = require('aws-api-gateway-client').default;
 
     var apigClient = apigClientFactory.newClient({
@@ -22,6 +22,6 @@ export class AwsClientService {
 
     console.log(receivedBody)
     
-    return apigClient.invokeApi({}, receivedPath, receivedMethod, {}, new Innovation())   
+    return apigClient.invokeApi({}, receivedPath, receivedMethod, {}, receivedBody)   
   }
 }

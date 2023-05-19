@@ -7,4 +7,7 @@ export class Innovation {
   description: string = '';
   comment: string = '';
   status: string = '';
+  constructor(){
+    
+  }
 }
