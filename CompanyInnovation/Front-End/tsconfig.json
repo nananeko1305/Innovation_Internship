@@ -17,15 +17,16 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "ES2022",
+    "target": "ES6",
     "module": "ES2022",
     "useDefineForClassFields": false,
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
   },
   "angularCompilerOptions": {
+    "target": "ES6",
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

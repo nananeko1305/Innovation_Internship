@@ -5,6 +5,7 @@ import {InnovationService} from "../../services/innovation/innovation.service";
 import {Innovation} from "../../model/innovation";
 import {StorageService} from "../../services/storage/storage.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import { AwsClientService } from 'src/app/services/aws-client/aws-client.service';
 
 @Component({
   selector: 'app-innovation-create',
@@ -18,6 +19,7 @@ export class InnovationCreateComponent implements OnInit{
     private router: Router,
     private innovationService: InnovationService,
     private storageService: StorageService,
+    private awsClientService: AwsClientService
   ) { }
 
   formGroup: FormGroup = new FormGroup({
@@ -34,25 +36,26 @@ export class InnovationCreateComponent implements OnInit{
 
   onSubmit() {
 
-    let innovation: Innovation = new Innovation();
-    innovation.title = this.formGroup.get('title')?.value
-    innovation.description = this.formGroup.get('description')?.value
-    innovation.userId = this.storageService.getSubjectFromToken()
-    console.log(this.storageService.getUsernameFromToken())
-    innovation.username = this.storageService.getUsernameFromToken()
-    innovation.status = "PENDING"
+    // const innovation = new Innovation();
+    // innovation.title = this.formGroup.get('title')?.value
+    // innovation.description = this.formGroup.get('description')?.value
+    // innovation.userId = this.storageService.getSubjectFromToken()
+    // console.log(this.storageService.getUsernameFromToken())
+    // innovation.username = this.storageService.getUsernameFromToken()
+    // innovation.status = "PENDING"
 
-    this.innovationService.createPost(innovation).subscribe(
-      {
-        next: (innovation: Innovation) => {
-          console.log(JSON.stringify(innovation))
-          console.log("Success")
-        },
-        error: (error: HttpErrorResponse) => {
-          console.log(error)
-        }
-      }
-    );
+    this.awsClientService.sendRequest("/prod/submit", "POST", {
+          "title": this.formGroup.get('title')?.value,
+          "username": this.storageService.getUsernameFromToken(),
+          "fullName": "TestFullName",
+          "description": this.formGroup.get('description')?.value,
+          "comment":'',
+          "status":"PENDING"
+        }) .then(function(result: any){
+      console.log(result)
+  }).catch( function(result: any){
+      console.log(result)
+  });
 
   }
 
