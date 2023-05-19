@@ -1,7 +1,7 @@
 package com.innovation.getInnovation.controller;
 
 import com.innovation.common.config.TokenUtils;
-import com.innovation.getInnovation.domain.dto.InnovationDTO;
+import com.innovation.common.domain.dto.InnovationDTO;
 import com.innovation.getInnovation.service.InnovationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -4,4 +4,4 @@ public enum Status {
     PENDING,
     APPROVED,
     DECLINED
-}
+};

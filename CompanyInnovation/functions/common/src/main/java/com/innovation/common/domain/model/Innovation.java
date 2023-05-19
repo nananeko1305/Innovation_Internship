@@ -41,6 +41,14 @@ public class Innovation {
     private Status status;
 
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public Innovation(InnovationDTO innovationDTO){
         this.id = innovationDTO.getId();
         this.userId = innovationDTO.getUserId();
