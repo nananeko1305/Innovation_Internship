@@ -22,7 +22,8 @@ export class RegistrationComponent implements OnInit{
   formGroup: FormGroup = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
-    email: new FormControl('')
+    email: new FormControl(''),
+    fullName: new FormControl('')
   });
 
   formGroupConfirmation: FormGroup = new FormGroup({
@@ -30,7 +31,7 @@ export class RegistrationComponent implements OnInit{
   });
 
   onSubmit(){
-        this.cognitoService.signUp(this.formGroup.get('username')?.value,this.formGroup.get('password')?.value, this.formGroup.get('email')?.value).then(() => {
+        this.cognitoService.signUp(this.formGroup.get('username')?.value,this.formGroup.get('password')?.value, this.formGroup.get('email')?.value, this.formGroup.get('fullName')?.value).then(() => {
               alert("Success.")
               this.userNotSignedUp = false
         })
@@ -56,6 +57,7 @@ export class RegistrationComponent implements OnInit{
       username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[-_a-zA-Z0-9]*')]],
       password: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[-0-9]*')]],
       email: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[-_a-zA-Z0-9]*')]],
+      fullName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[-_a-zA-Z0-9]*')]],
     });
   }
 }

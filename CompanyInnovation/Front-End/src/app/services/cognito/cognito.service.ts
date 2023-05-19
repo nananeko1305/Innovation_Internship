@@ -14,12 +14,13 @@ export class CognitoService {
    }
 
 
-   public signUp(username: string, password: string, email: string): Promise<any>{
+   public signUp(username: string, password: string, email: string, fullName: string): Promise<any>{
     return Auth.signUp({
         username: username,
         password: password,
         attributes: {
-          email: email
+          email: email,
+          fullName: fullName
         }
     })
    }

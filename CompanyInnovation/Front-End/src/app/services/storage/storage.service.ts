@@ -83,7 +83,7 @@ export class StorageService {
 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: 'eu-north-1:62f51650-c68c-4636-aa3b-580b7c550f66',
-    Logins: { 
+    Logins: {
         'cognito-idp.eu-north-1.amazonaws.com/eu-north-1_bQ6gcESHo': passedToken
     }
 });
