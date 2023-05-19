@@ -223,10 +223,10 @@ public class InfrastructureStack extends Stack {
         LambdaRestApi gateway = LambdaRestApi.Builder.create(this, "gateway")
                 .handler(getInnovationFunction)
 //                .defaultMethodOptions(MethodOptions.builder().authorizationType(AuthorizationType.COGNITO).authorizer(auth).build())
-                .defaultCorsPreflightOptions(CorsOptions.builder()
-                        .allowOrigins(Cors.ALL_ORIGINS)
-                        .allowMethods(Cors.ALL_METHODS)
-                        .build())
+//                .defaultCorsPreflightOptions(CorsOptions.builder()
+//                        .allowOrigins(Cors.ALL_ORIGINS)
+//                        .allowMethods(Cors.ALL_METHODS)
+//                        .build())
                 .build();
 
 
@@ -236,9 +236,40 @@ public class InfrastructureStack extends Stack {
         acceptDeclineFunction.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
         addMembershipEmployee.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
 
+        List<String> CORSoriginsList = new ArrayList<String>();
+        CORSoriginsList.add("*");
+
+        List<String> CORSmethodsList = new ArrayList<String>();
+        CORSmethodsList.add("POST");
+        CORSmethodsList.add("OPTIONS");
+
+        List<String> CORSheadersList = new ArrayList<String>();
+        CORSheadersList.add("Content-Type");
+        CORSheadersList.add("X-Amz-Date");
+        CORSheadersList.add("Authorization");
+        CORSheadersList.add("X-Api-Key");
+        CORSheadersList.add("Authorization");
+        CORSheadersList.add("X-Amz-Security-Token");
+        CORSheadersList.add("jwttoken");
+
         //API GATEWAY
         gateway.getRoot().addResource("innovations").addMethod("GET", new LambdaIntegration(getInnovationFunction), MethodOptions.builder().build());
         gateway.getRoot().addResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+        gateway.getRoot().getResource("submit").addCorsPreflight(CorsOptions.builder()
+                .allowOrigins(CORSoriginsList)
+                .allowMethods(CORSmethodsList)
+                .allowHeaders(CORSheadersList)
+                .build());
+
+
+       /* IResource resource1 = gateway.getRoot().addResource("submit");
+        resource1.addCorsPreflight(CorsOptions.builder()
+                .allowOrigins(CORSoriginsList)
+                .allowMethods(CORSmethodsList)
+                        .allowHeaders()
+                .build());
+        resource1.addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+*/
         gateway.getRoot().addResource("acceptDeclineInnovation").addMethod("PUT", new LambdaIntegration(acceptDeclineFunction), MethodOptions.builder().build());
 
 
