@@ -7,10 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="manageShop" />
         <module name="common" />
         <module name="createInnovation" />
-        <module name="getInnovations" />
         <module name="infrastructure" />
+        <module name="getInnovations" />
         <module name="acceptOrDeclineInnovation" />
         <module name="addEmployeeMembership" />
       </profile>

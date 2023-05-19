@@ -25,9 +25,9 @@ public class AcceptDeclineController {
     @PutMapping()
     public ResponseEntity<InnovationDTO> updateStatus(@RequestBody InnovationDTO innovationDTO) {
         if (innovationDTO.getStatus().equals(Status.DECLINED) || innovationDTO.getStatus().equals(Status.APPROVED)){
-            return new ResponseEntity<>(innovationService.updateStatus(innovationDTO), HttpStatus.OK);
+            return new ResponseEntity<InnovationDTO>(innovationService.updateStatus(innovationDTO), HttpStatus.OK);
         }else {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<InnovationDTO>(new InnovationDTO(), HttpStatus.BAD_REQUEST);
         }
     }
 

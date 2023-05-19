@@ -1,6 +1,6 @@
 package com.innovation.createInnovation;
 
-import com.innovation.createInnovation.config.CorsConfig;
+import com.innovation.common.config.CorsConfig;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

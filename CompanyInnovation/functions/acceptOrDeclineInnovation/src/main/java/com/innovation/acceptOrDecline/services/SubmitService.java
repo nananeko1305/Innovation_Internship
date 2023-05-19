@@ -40,11 +40,6 @@ public class SubmitService implements ISubmitService {
         System.out.println(innovation.toString());
 
         userTokenService.addTokens(innovation.getUserId());
-
-
-
-
-
         return innovationDTO;
     }
 }

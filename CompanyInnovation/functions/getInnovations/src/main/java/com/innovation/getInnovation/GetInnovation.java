@@ -1,6 +1,6 @@
 package com.innovation.getInnovation;
 
-import com.innovation.getInnovation.config.CorsConfig;
+import com.innovation.common.config.CorsConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
