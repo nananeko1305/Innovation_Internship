@@ -44,7 +44,16 @@ export class InnovationCreateComponent implements OnInit{
     // innovation.username = this.storageService.getUsernameFromToken()
     // innovation.status = "PENDING"
 
-    this.awsClientService.sendRequest("/prod/submit", "POST", {
+    var additionalParams = {
+      //If there are query parameters or headers that need to be sent with the request you can add them here
+      headers: {
+        jwttoken : this.storageService.getToken()
+      }
+    }
+
+    this.awsClientService.sendRequest("/prod/submit", "POST", 
+    additionalParams,
+    {
           "title": this.formGroup.get('title')?.value,
           "username": this.storageService.getUsernameFromToken(),
           "fullName": "TestFullName",
