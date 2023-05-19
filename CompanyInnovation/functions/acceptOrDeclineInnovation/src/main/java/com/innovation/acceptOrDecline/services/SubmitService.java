@@ -4,6 +4,8 @@ package com.innovation.acceptOrDecline.services;
 import com.innovation.acceptOrDecline.dto.InnovationDTO;
 import com.innovation.acceptOrDecline.entity.Innovation;
 import com.innovation.acceptOrDecline.entity.UserToken;
+import com.innovation.getInnovation.config.TokenUtils;
+import com.nimbusds.jwt.JWTClaimsSet;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -24,10 +26,11 @@ public class SubmitService implements ISubmitService {
 
 
     @Override
-    public InnovationDTO submitComment(InnovationDTO innovationDTO) {
+    public InnovationDTO submitComment(InnovationDTO innovationDTO, JWTClaimsSet claimsSet) {
         Innovation innovation = new Innovation(innovationDTO);
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("innovation.lead@outlook.com");
+        String email= TokenUtils.getEmailFromToken(claimsSet);
+        message.setFrom(TokenUtils.getEmailFromToken(claimsSet));
         message.setTo("innovation.employee@outlook.com");
         message.setSubject("Status update from "+ innovation.getUsername());
         if(innovation.getStatus().toString().equals("DECLINED")) {

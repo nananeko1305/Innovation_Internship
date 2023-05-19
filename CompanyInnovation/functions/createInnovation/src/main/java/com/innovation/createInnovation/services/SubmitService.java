@@ -3,6 +3,7 @@ package com.innovation.createInnovation.services;
 import com.innovation.createInnovation.DTO.InnovationDTO;
 import com.innovation.createInnovation.entity.Innovation;
 import com.innovation.createInnovation.repository.InnovationRepository;
+import com.nimbusds.jwt.JWTClaimsSet;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -26,7 +27,7 @@ public class SubmitService implements ISubmitService {
 
 
     @Override
-    public InnovationDTO submitInnovation(InnovationDTO innovationDTO) {
+    public InnovationDTO submitInnovation(InnovationDTO innovationDTO, JWTClaimsSet claimsSet) {
         Innovation innovationEntity = mapper.map(innovationDTO, Innovation.class);
         innovationEntity.setId(null);
         innovationRepository.submitInnovation(innovationEntity); //upis u bazu

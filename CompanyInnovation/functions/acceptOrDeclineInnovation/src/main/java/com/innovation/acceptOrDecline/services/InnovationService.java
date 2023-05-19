@@ -4,6 +4,7 @@ import com.amazonaws.services.kms.model.NotFoundException;
 import com.innovation.acceptOrDecline.dto.InnovationDTO;
 import com.innovation.acceptOrDecline.entity.Innovation;
 import com.innovation.acceptOrDecline.repository.InnovationRepository;
+import com.nimbusds.jwt.JWTClaimsSet;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,9 @@ public class InnovationService {
         this.innovationRepository = innovationRepository;
     }
 
-    public InnovationDTO updateStatus(InnovationDTO innovationDTO) {
+    public InnovationDTO updateStatus(InnovationDTO innovationDTO, JWTClaimsSet claimsSet) {
         innovationRepository.save(new Innovation(innovationDTO));
-        submitService.submitComment(innovationDTO);
+        submitService.submitComment(innovationDTO , claimsSet);
         if (innovationDTO.getStatus().toString().equals("APPROVED")){
 
         }
