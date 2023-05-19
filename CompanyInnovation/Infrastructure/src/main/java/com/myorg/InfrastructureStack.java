@@ -242,6 +242,8 @@ public class InfrastructureStack extends Stack {
         List<String> CORSmethodsList = new ArrayList<String>();
         CORSmethodsList.add("POST");
         CORSmethodsList.add("OPTIONS");
+        CORSmethodsList.add("GET");
+        CORSmethodsList.add("PUT");
 
         List<String> CORSheadersList = new ArrayList<String>();
         CORSheadersList.add("Content-Type");
@@ -253,7 +255,12 @@ public class InfrastructureStack extends Stack {
         CORSheadersList.add("jwttoken");
 
         //API GATEWAY
-        gateway.getRoot().addResource("innovations").addMethod("GET", new LambdaIntegration(getInnovationFunction), MethodOptions.builder().build());
+        gateway.getRoot().addResource("innovations").addMethod("GET", new LambdaIntegration(getInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+        gateway.getRoot().getResource("innovations").addCorsPreflight(CorsOptions.builder()
+                .allowOrigins(CORSoriginsList)
+                .allowMethods(CORSmethodsList)
+                .allowHeaders(CORSheadersList)
+                .build());
         gateway.getRoot().addResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         gateway.getRoot().getResource("submit").addCorsPreflight(CorsOptions.builder()
                 .allowOrigins(CORSoriginsList)
@@ -270,8 +277,12 @@ public class InfrastructureStack extends Stack {
                 .build());
         resource1.addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
 */
-        gateway.getRoot().addResource("acceptDeclineInnovation").addMethod("PUT", new LambdaIntegration(acceptDeclineFunction), MethodOptions.builder().build());
-
+        gateway.getRoot().addResource("acceptDeclineInnovation").addMethod("PUT", new LambdaIntegration(acceptDeclineFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+        gateway.getRoot().getResource("acceptDeclineInnovation").addCorsPreflight(CorsOptions.builder()
+                .allowOrigins(CORSoriginsList)
+                .allowMethods(CORSmethodsList)
+                .allowHeaders(CORSheadersList)
+                .build());
 
         //gateway.getRoot().addResource("submit").addMethod("GET", new LambdaIntegration(createInnovationFunction));
         //Ses email verify
