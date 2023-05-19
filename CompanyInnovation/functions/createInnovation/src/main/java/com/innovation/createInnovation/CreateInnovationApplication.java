@@ -1,6 +1,7 @@
 package com.innovation.createInnovation;
 
 import com.innovation.createInnovation.config.CorsConfig;
+import com.innovation.createInnovation.config.DynamoConfig;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,5 +22,6 @@ public class CreateInnovationApplication {
 		public WebMvcConfigurer corsConfigurer() {
 			return new CorsConfig();
 		}
+
 
 }

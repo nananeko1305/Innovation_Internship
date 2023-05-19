@@ -1,7 +1,7 @@
 package com.innovation.getInnovation.service;
 
-import com.innovation.getInnovation.domain.dto.InnovationDTO;
-import com.innovation.getInnovation.domain.model.Innovation;
+import com.innovation.common.domain.dto.InnovationDTO;
+import com.innovation.common.domain.model.Innovation;
 import com.nimbusds.jwt.JWTClaimsSet;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.innovation.getInnovation.repository;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.innovation.common.config.DynamoConfig;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
@@ -17,10 +17,10 @@ import java.util.Map;
 public class InnovationRepository{
 
     @Autowired
-    private DynamoDBMapper dynamoDBMapper;
+    private DynamoConfig dynamoConfig;
 
     public List<Innovation> GetAll(){
-        return dynamoDBMapper.scan(Innovation.class, new DynamoDBScanExpression());
+        return dynamoConfig.dynamoDBMapper().scan(Innovation.class, new DynamoDBScanExpression());
     }
 
     public List<Innovation> GetInnovationsForUser(String userId) {
@@ -38,7 +38,7 @@ public class InnovationRepository{
                 .withConsistentRead(false);
 
 
-        PaginatedQueryList<Innovation> result = dynamoDBMapper.query(Innovation.class, queryExpression);
+        PaginatedQueryList<Innovation> result = dynamoConfig.dynamoDBMapper().query(Innovation.class, queryExpression);
         return result.subList(0, result.size());
     }
 

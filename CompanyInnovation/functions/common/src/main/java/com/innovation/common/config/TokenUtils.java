@@ -1,9 +1,8 @@
-package com.innovation.getInnovation.config;
+package com.innovation.common.config;
 
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.JWTParser;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;

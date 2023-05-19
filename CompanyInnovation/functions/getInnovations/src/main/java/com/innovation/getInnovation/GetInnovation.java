@@ -1,10 +1,11 @@
 package com.innovation.getInnovation;
 
-import com.innovation.getInnovation.config.CorsConfig;
+import com.innovation.common.config.CorsConfig;
+import com.innovation.common.config.DynamoConfig;
+import com.innovation.common.config.TokenUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class GetInnovation {
@@ -14,8 +15,18 @@ public class GetInnovation {
     }
 
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
+    public CorsConfig corsConfig() {
         return new CorsConfig();
+    }
+
+    @Bean
+    public DynamoConfig dynamoConfig(){
+        return new DynamoConfig();
+    }
+
+    @Bean
+    public TokenUtils tokenUtils(){
+        return new TokenUtils();
     }
 
 }
