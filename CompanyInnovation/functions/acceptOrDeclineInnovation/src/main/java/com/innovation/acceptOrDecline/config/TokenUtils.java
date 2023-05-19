@@ -1,9 +1,9 @@
-package com.innovation.getInnovation.config;
+package com.innovation.acceptOrDecline.config;
+
 
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.JWTParser;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -15,7 +15,7 @@ public class TokenUtils {
     public JWTClaimsSet getJWTClaimsSet(String token) {
         try {
             JWT jwt = JWTParser.parse(token);
-             return jwt.getJWTClaimsSet();
+            return jwt.getJWTClaimsSet();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,3 +55,4 @@ public class TokenUtils {
     }
 
 }
+

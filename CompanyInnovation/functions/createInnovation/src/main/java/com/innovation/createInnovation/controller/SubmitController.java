@@ -4,7 +4,6 @@ import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.innovation.createInnovation.DTO.InnovationDTO;
 import com.innovation.createInnovation.config.TokenUtils;
 import com.innovation.createInnovation.services.SubmitService;
-import com.innovation.getInnovation.config.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,6 @@ public class SubmitController {
     private final SubmitService submitService;
 
 
-    private TokenUtils tokenUtils;
 
 
     public SubmitController(SubmitService submitService , TokenUtils tokenUtils ) {
