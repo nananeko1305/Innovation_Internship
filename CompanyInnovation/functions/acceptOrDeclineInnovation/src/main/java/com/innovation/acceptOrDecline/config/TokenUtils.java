@@ -1,4 +1,5 @@
-package com.innovation.common.config;
+package com.innovation.acceptOrDecline.config;
+
 
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTClaimsSet;
@@ -6,7 +7,6 @@ import com.nimbusds.jwt.JWTParser;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
-import java.util.List;
 
 @Service
 public class TokenUtils {
@@ -14,7 +14,7 @@ public class TokenUtils {
     public JWTClaimsSet getJWTClaimsSet(String token) {
         try {
             JWT jwt = JWTParser.parse(token);
-             return jwt.getJWTClaimsSet();
+            return jwt.getJWTClaimsSet();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -22,22 +22,22 @@ public class TokenUtils {
         }
     }
 
-    public String getRoleFromToken(JWTClaimsSet jwtClaimsSet){
-
-        List<String> groups = null;
-        try {
-            groups = jwtClaimsSet.getStringListClaim("cognito:groups");
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-
-        String employeeGroup = null;
-        if (groups != null && !groups.isEmpty()) {
-            employeeGroup = groups.get(0);
-        }
-
-        return employeeGroup;
-    }
+//    public String getRoleFromToken(JWTClaimsSet jwtClaimsSet){
+//
+//        List<String> groups = null;
+//        try {
+//            groups = jwtClaimsSet.getStringListClaim("cognito:groups");
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        String employeeGroup = null;
+//        if (groups != null && !groups.isEmpty()) {
+//            employeeGroup = groups.get(0);
+//        }
+//
+//        return employeeGroup;
+//    }
 
     public String getEmailFromToken(JWTClaimsSet jwtClaimsSet){
 
@@ -49,8 +49,9 @@ public class TokenUtils {
         }
     }
 
-    public String getIdFromToken(JWTClaimsSet jwtClaimsSet){
-        return jwtClaimsSet.getSubject();
-    }
+//    public String getIdFromToken(JWTClaimsSet jwtClaimsSet){
+//        return jwtClaimsSet.getSubject();
+//    }
 
 }
+

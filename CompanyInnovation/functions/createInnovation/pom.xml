@@ -100,7 +100,13 @@
         <dependency>
             <groupId>com.nimbusds</groupId>
             <artifactId>nimbus-jose-jwt</artifactId>
-            <version>9.13</version>
+            <version>9.10.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.innovation</groupId>
+            <artifactId>getInnovations</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

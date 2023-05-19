@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Innovation} from "../../model/innovation";
 import {ActivatedRoute, Router} from "@angular/router";
 import {InnovationService} from "../../services/innovation/innovation.service";
+import { AwsClientService } from 'src/app/services/aws-client/aws-client.service';
 
 @Component({
   selector: 'app-innovation-accept-decline',
@@ -16,6 +17,7 @@ export class InnovationAcceptDeclineComponent implements OnInit{
     private route: ActivatedRoute,
     private router: Router,
     private innovationService: InnovationService,
+    private awsClientService: AwsClientService
   ) {
 
   }
@@ -27,17 +29,35 @@ export class InnovationAcceptDeclineComponent implements OnInit{
 
   Accept(innovation: Innovation) {
     innovation.status = "APPROVED"
-    this.innovationService.approveOrDecline(innovation).subscribe(
-      {
-        next : (innovation) => {
-          console.log(innovation)
-          this.router.navigate(['innovation-list']).then()
-    },
-        error : (error) => {
-          console.log(error)
-        }
-      }
-    )
+
+    // this.innovationService.approveOrDecline(innovation).subscribe(
+    //   {
+    //     next : (innovation) => {
+    //       console.log(innovation)
+    //       this.router.navigate(['innovation-list'])
+    // },
+    //     error : (error) => {
+    //       console.log(error)
+    //     }
+    //   }
+    // )
+
+    this.awsClientService.sendRequest("/prod/acceptDeclineInnovation", "PUT",
+    {
+          "title": innovation.title,
+          "username": innovation.username,
+          "fullName": innovation.fullName,
+          "description": innovation.description,
+          "comment":innovation.comment,
+          "status":"APPROVED",
+          "userId":innovation.userId,
+          "id":innovation.id
+        }) .then((result: any) =>{
+      console.log(result)
+     this.router.navigate(['innovation-list'])
+  }).catch( function(result: any){
+      console.log(result)
+  });
 
   }
 
