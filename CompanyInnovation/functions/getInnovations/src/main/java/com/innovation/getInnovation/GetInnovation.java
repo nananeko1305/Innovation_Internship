@@ -1,6 +1,8 @@
 package com.innovation.getInnovation;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.innovation.common.config.CorsConfig;
+import com.innovation.common.config.DynamoConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -13,9 +15,5 @@ public class GetInnovation {
         SpringApplication.run(GetInnovation.class, args);
     }
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new CorsConfig();
-    }
 
 }

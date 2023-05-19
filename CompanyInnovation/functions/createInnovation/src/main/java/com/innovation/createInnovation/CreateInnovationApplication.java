@@ -14,12 +14,5 @@ public class CreateInnovationApplication {
 		SpringApplication.run(CreateInnovationApplication.class, args);
 	}
 
-		@Bean
-		public ModelMapper modelMapper(){ return new ModelMapper();}
-
-		@Bean
-		public WebMvcConfigurer corsConfigurer() {
-			return new CorsConfig();
-		}
 
 }

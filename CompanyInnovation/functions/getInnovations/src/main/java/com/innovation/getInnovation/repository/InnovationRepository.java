@@ -16,7 +16,6 @@ import java.util.Map;
 @Repository
 public class InnovationRepository{
 
-    @Autowired
     private DynamoDBMapper dynamoDBMapper;
 
     public List<Innovation> GetAll(){

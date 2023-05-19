@@ -1,7 +1,7 @@
 package com.innovation.createInnovation.services;
 
-import com.innovation.createInnovation.DTO.InnovationDTO;
-import com.innovation.createInnovation.entity.Innovation;
+import com.innovation.createInnovation.domain.dto.InnovationDTO;
+import com.innovation.createInnovation.domain.entity.Innovation;
 import com.innovation.createInnovation.repository.InnovationRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 
 public class SubmitService implements ISubmitService {
 
-    private final ModelMapper mapper;
-    private final IMailService mailService;
-
     @Autowired
+    private final ModelMapper mapper;
+
+    private final IMailService mailService;
     private InnovationRepository innovationRepository;
 
     public SubmitService(ModelMapper mapper, IMailService mailService) {

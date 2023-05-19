@@ -1,10 +1,11 @@
 package com.innovation.createInnovation.controller;
 
-import com.innovation.createInnovation.DTO.InnovationDTO;
-import com.innovation.createInnovation.config.TokenUtils;
+import com.innovation.common.config.TokenUtils;
+
+import com.innovation.createInnovation.domain.dto.InnovationDTO;
 import com.innovation.createInnovation.services.SubmitService;
 import org.springframework.http.HttpHeaders;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -16,7 +17,7 @@ import javax.validation.Valid;
 @RequestMapping("/submit")
 public class SubmitController {
 
-    @Autowired
+
     public TokenUtils tokenUtils;
 
     private final SubmitService submitService;
