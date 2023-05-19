@@ -228,7 +228,7 @@ public class InfrastructureStack extends Stack {
 //                        .allowMethods(Cors.ALL_METHODS)
 //                        .build())
                 .build();
-
+//
 
         //Snap start
         getInnovationFunction.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
@@ -239,11 +239,18 @@ public class InfrastructureStack extends Stack {
         List<String> CORSoriginsList = new ArrayList<String>();
         CORSoriginsList.add("*");
 
-        List<String> CORSmethodsList = new ArrayList<String>();
-        CORSmethodsList.add("POST");
-        CORSmethodsList.add("OPTIONS");
-        CORSmethodsList.add("GET");
-        CORSmethodsList.add("PUT");
+        List<String> CORSmethodsListSubmit = new ArrayList<String>();
+        CORSmethodsListSubmit.add("POST");
+        CORSmethodsListSubmit.add("OPTIONS");
+
+
+        List<String> CORSmethodsListGet = new ArrayList<String>();
+        CORSmethodsListGet.add("GET");
+        CORSmethodsListGet.add("OPTIONS");
+
+        List<String> CORSmethodsListGetAccDec = new ArrayList<String>();
+        CORSmethodsListGetAccDec.add("PUT");
+        CORSmethodsListGetAccDec.add("OPTIONS");
 
         List<String> CORSheadersList = new ArrayList<String>();
         CORSheadersList.add("Content-Type");
@@ -258,34 +265,25 @@ public class InfrastructureStack extends Stack {
         gateway.getRoot().addResource("innovations").addMethod("GET", new LambdaIntegration(getInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         gateway.getRoot().getResource("innovations").addCorsPreflight(CorsOptions.builder()
                 .allowOrigins(CORSoriginsList)
-                .allowMethods(CORSmethodsList)
+                .allowMethods(CORSmethodsListGet)
                 .allowHeaders(CORSheadersList)
                 .build());
         gateway.getRoot().addResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         gateway.getRoot().getResource("submit").addCorsPreflight(CorsOptions.builder()
                 .allowOrigins(CORSoriginsList)
-                .allowMethods(CORSmethodsList)
+                .allowMethods(CORSmethodsListSubmit)
                 .allowHeaders(CORSheadersList)
                 .build());
 
 
-       /* IResource resource1 = gateway.getRoot().addResource("submit");
-        resource1.addCorsPreflight(CorsOptions.builder()
-                .allowOrigins(CORSoriginsList)
-                .allowMethods(CORSmethodsList)
-                        .allowHeaders()
-                .build());
-        resource1.addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
-*/
+
         gateway.getRoot().addResource("acceptDeclineInnovation").addMethod("PUT", new LambdaIntegration(acceptDeclineFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         gateway.getRoot().getResource("acceptDeclineInnovation").addCorsPreflight(CorsOptions.builder()
                 .allowOrigins(CORSoriginsList)
-                .allowMethods(CORSmethodsList)
+                .allowMethods(CORSmethodsListGetAccDec)
                 .allowHeaders(CORSheadersList)
                 .build());
 
-        //gateway.getRoot().addResource("submit").addMethod("GET", new LambdaIntegration(createInnovationFunction));
-        //Ses email verify
 
         EmailIdentity identity = EmailIdentity.Builder.create(this, "Identity")
                 .identity(Identity.email("compani.innovation.dept@outlook.com"))

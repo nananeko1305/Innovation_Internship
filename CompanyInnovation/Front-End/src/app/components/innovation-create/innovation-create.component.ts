@@ -52,7 +52,6 @@ export class InnovationCreateComponent implements OnInit{
     }
 
     this.awsClientService.sendRequest("/prod/submit", "POST", 
-    additionalParams,
     {
           "title": this.formGroup.get('title')?.value,
           "username": this.storageService.getUsernameFromToken(),

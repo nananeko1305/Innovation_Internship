@@ -17,13 +17,16 @@ public class InnovationServiceImplementation implements InnovationService {
     @Autowired
     private InnovationRepository innovationRepository;
 
+    @Autowired
+    private TokenUtils tokenUtils;
+
     @Override
     public List<Innovation> GetAll(JWTClaimsSet claimsSet) {
 
-        if (TokenUtils.getRoleFromToken(claimsSet).equals("Employee")){
-            return innovationRepository.GetInnovationsForUser(TokenUtils.getIdFromToken(claimsSet));
+        if (tokenUtils.getRoleFromToken(claimsSet).equals("Employee")){
+            return innovationRepository.GetInnovationsForUser(tokenUtils.getIdFromToken(claimsSet));
 
-        }else if(TokenUtils.getRoleFromToken(claimsSet).equals("Lead")) {
+        }else if(tokenUtils.getRoleFromToken(claimsSet).equals("Lead")) {
             return innovationRepository.GetAll();
 
         }
