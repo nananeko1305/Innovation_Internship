@@ -64,9 +64,9 @@ public class InfrastructureStack extends Stack {
                 .removalPolicy(RemovalPolicy.DESTROY);
 
         TableProps.Builder tablePropsBuilder2 = TableProps.builder()
-                .tableName("userTokens")
+                .tableName("usersTokens")
                 .partitionKey(Attribute.builder()
-                        .name("id")
+                        .name("userId")
                         .type(AttributeType.STRING)
                         .build())
                 .encryption(TableEncryption.DEFAULT)
