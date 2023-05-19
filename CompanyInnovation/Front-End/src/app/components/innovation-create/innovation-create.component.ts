@@ -47,6 +47,7 @@ export class InnovationCreateComponent implements OnInit{
         next: (innovation: Innovation) => {
           console.log(JSON.stringify(innovation))
           console.log("Success")
+          this.router.navigate(['innovation-list'])
         },
         error: (error: HttpErrorResponse) => {
           console.log(error)

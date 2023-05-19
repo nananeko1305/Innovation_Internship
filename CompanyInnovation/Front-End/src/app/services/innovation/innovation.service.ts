@@ -13,7 +13,7 @@ export class InnovationService {
   ) { }
 
   public createPost(innovation: Innovation): Observable<Innovation>{
-    return this.httpClient.post<Innovation>("http://localhost:8080/submit", innovation)
+    return this.httpClient.post<Innovation>("http://localhost:8081/submit", innovation)
   }
 
   public getInnovations(): Observable<Innovation[]>{
@@ -21,7 +21,7 @@ export class InnovationService {
   }
 
   public approveOrDecline(innovation: Innovation): Observable<Innovation>{
-    return this.httpClient.put<Innovation>("http://localhost:8080/acceptDeclineInnovation", innovation)
+    return this.httpClient.put<Innovation>("http://localhost:8082/acceptDeclineInnovation", innovation)
   }
 
 }

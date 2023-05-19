@@ -26,12 +26,10 @@ public class SubmitController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("")
-    public ResponseEntity<?> submitInnovation (@RequestHeader("Authorization") String bearerToken, @RequestBody @Valid InnovationDTO innovationModel, BindingResult result){
+    public ResponseEntity<?> submitInnovation (@RequestBody @Valid InnovationDTO innovationModel, BindingResult result){
         if(result.hasErrors()){
             return new ResponseEntity<String>(result.getAllErrors().toString(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        String userId = TokenUtils.getIdFromToken(tokenUtils.getJWTClaimsSet(bearerToken.replace("Bearer ", "")));
-        innovationModel.setUserId(userId);
         return new ResponseEntity<InnovationDTO>(submitService.submitInnovation(innovationModel), HttpStatus.OK);
     }
 }

@@ -29,13 +29,15 @@ public class SubmitService implements ISubmitService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("innovation.lead@outlook.com");
         message.setTo("innovation.employee@outlook.com");
-        message.setSubject("Status update from "+ innovation.getFullName());
+        message.setSubject("Status update from "+ innovation.getUsername());
         if(innovation.getStatus().toString().equals("DECLINED")) {
             message.setText("Innovation status has changed to: " + innovation.getStatus() + "\n\n" + innovation.getComment());
         }
         else
             message.setText("Innovation status has changed to: "+ innovation.getStatus());
         mailService.sendMessage(message);
+
+        System.out.println(innovation.toString());
 
         userTokenService.addTokens(innovation.getUserId());
 

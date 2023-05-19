@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Innovation} from "../../model/innovation";
+import {InnovationService} from "../../services/innovation/innovation.service";
 
 @Component({
   selector: 'app-innovation-decline-comment',
@@ -10,12 +11,11 @@ import {Innovation} from "../../model/innovation";
 })
 export class InnovationDeclineCommentComponent implements OnInit{
 
-
-
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
+    private innovationService: InnovationService,
   ) { }
 
   innovation: Innovation = new Innovation()
@@ -35,7 +35,16 @@ export class InnovationDeclineCommentComponent implements OnInit{
     console.log(this.innovation)
   }
 
-  onSubmit() {
+  onSubmit(innovation: Innovation) {
+    innovation.comment = this.formGroup.get('reasonForDeclining')?.value
+    this.innovationService.approveOrDecline(innovation).subscribe(
+      {
+        next : (innovation: Innovation) => {
+          console.log(JSON.stringify(innovation))
+        }
+      }
+    )
+    console.log(JSON.stringify(innovation))
     this.router.navigate(['innovation-list'])
   }
 
