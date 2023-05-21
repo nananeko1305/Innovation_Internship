@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import AWS from 'aws-sdk';
 
 @Injectable({
@@ -6,7 +7,7 @@ import AWS from 'aws-sdk';
 })
 export class StorageService {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   storeTokenData(token: string): void {
     sessionStorage.setItem("jwt", token);
@@ -96,6 +97,7 @@ AWS.config.getCredentials( async (err) => {
         sessionStorage.setItem("accessKey", AWS.config.credentials.accessKeyId);
         sessionStorage.setItem("secretKey", AWS.config.credentials.secretAccessKey);
         sessionStorage.setItem("sessionToken", AWS.config.credentials.sessionToken!);
+        this.router.navigateByUrl("")
       }
 })
 
