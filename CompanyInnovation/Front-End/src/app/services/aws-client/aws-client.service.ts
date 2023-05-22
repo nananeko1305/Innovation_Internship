@@ -12,7 +12,7 @@ export class AwsClientService {
     let apigClientFactory = require('aws-api-gateway-client').default;
 
     let apigClient = apigClientFactory.newClient({
-      invokeUrl:'https://5j10nowhj2.execute-api.eu-north-1.amazonaws.com',
+      invokeUrl:'https://7vf89k7mq0.execute-api.eu-north-1.amazonaws.com',
       accessKey: this.storageService.getAccessKey(), //'ACCESS_KEY',
       secretKey: this.storageService.getSecretKey(), //'SECRET_KEY',
       sessionToken: this.storageService.getSessionToken(), // 'SESSION_TOKEN', //OPTIONAL: If you are using temporary credentials you must include the session token
