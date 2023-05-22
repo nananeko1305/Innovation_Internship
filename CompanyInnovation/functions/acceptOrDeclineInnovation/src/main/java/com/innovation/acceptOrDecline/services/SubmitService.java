@@ -19,6 +19,9 @@ public class SubmitService implements ISubmitService {
     @Autowired
     private IUserTokenService userTokenService;
 
+    @Autowired
+    private CognitoUserDataRetriever cognito;
+
 
     public SubmitService(IUserTokenService userTokenService, MailService mailService) {
         this.userTokenService = userTokenService;
@@ -28,11 +31,12 @@ public class SubmitService implements ISubmitService {
 
     @Override
     public InnovationDTO submitComment(InnovationDTO innovationDTO, JWTClaimsSet claimsSet) {
+        String userEmail =cognito.getUser(innovationDTO.getUsername());
         Innovation innovation = new Innovation(innovationDTO);
         SimpleMailMessage message = new SimpleMailMessage();
         String email= tokenUtils.getEmailFromToken(claimsSet);
         message.setFrom(tokenUtils.getEmailFromToken(claimsSet));
-        message.setTo("innovation.employee@outlook.com");
+        message.setTo(userEmail);
         message.setSubject("Status update from "+ innovation.getUsername());
         if(innovation.getStatus().toString().equals("DECLINED")) {
             message.setText("Innovation status has changed to: " + innovation.getStatus() + "\n\n" + innovation.getComment());
