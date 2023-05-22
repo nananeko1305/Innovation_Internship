@@ -24,8 +24,6 @@ export class AwsClientService {
         jwttoken : this.storageService.getToken()
       }
     }
-    console.log(additionalParams.headers.jwttoken)
-    console.log("DATA TO SEND" + JSON.stringify(receivedBody))
 
     return apigClient.invokeApi({}, receivedPath, receivedMethod, additionalParams, receivedBody)
   }

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Innovation} from "../../model/innovation";
 import {Router} from "@angular/router";
+import {StorageService} from "../../services/storage/storage.service";
 
 @Component({
   selector: 'app-innovation-view',
@@ -13,6 +14,7 @@ export class InnovationViewComponent implements OnInit{
 
   constructor(
     private router: Router,
+    public storageService: StorageService,
   ) {
 
   }

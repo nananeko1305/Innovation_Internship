@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {InnovationService} from "../../services/innovation/innovation.service";
 import {StorageService} from "../../services/storage/storage.service";
 import { AwsClientService } from 'src/app/services/aws-client/aws-client.service';
+import {Innovation} from "../../model/innovation";
 
 @Component({
   selector: 'app-innovation-create',
@@ -59,12 +60,13 @@ export class InnovationCreateComponent implements OnInit{
           "comment":'',
           "status":"PENDING",
           "userId": this.storageService.getSubjectFromToken()
-        }) .then(function(result: any){
+        }) .then(function(result: Innovation){
       console.log(result)
+
   }).catch( function(result: any){
       console.log(result)
   });
-
+    this.router.navigate(['innovation-list']).then()
   }
 
 }
