@@ -7,7 +7,7 @@
       <button mat-button routerLink="/innovation-list" *ngIf="isLoggedIn() && storageService.getRoleFromToken()=='Employee'">
         <span>My Innovations</span>
       </button>
-      <button mat-button routerLink="/innovation-create" *ngIf="isLoggedIn()">
+      <button mat-button routerLink="/innovation-create" *ngIf="isLoggedIn() && storageService.getRoleFromToken()=='Employee'">
         <span>Create Innovation</span>
       </button>
       <button *ngIf="!isLoggedIn()" mat-button routerLink="/login">
