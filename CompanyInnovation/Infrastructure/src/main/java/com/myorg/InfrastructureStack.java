@@ -199,6 +199,13 @@ public class InfrastructureStack extends Stack {
                 .resources(Collections.singletonList("arn:aws:ses:eu-north-1:696993701802:identity/*"))
                 .build());
 
+        acceptDeclineFunction.addToRolePolicy(PolicyStatement.Builder.create()
+                .sid("PermisionToGetUser")
+                .effect(Effect.ALLOW)
+                .actions(Collections.singletonList("cognito-idp:AdminGetUser"))
+                .resources(Collections.singletonList("*"))
+                .build());
+
         Function addMembershipEmployee =
                 Function.Builder.create(this, "addMembershipEmployee")
                         .runtime(Runtime.JAVA_11)
