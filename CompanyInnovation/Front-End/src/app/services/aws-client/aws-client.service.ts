@@ -19,6 +19,12 @@ export class AwsClientService {
       region: 'eu-north-1' // OPTIONAL: The region where the API is deployed, by default this parameter is set to us-east-1
     });
 
+
+    additionalParams = {
+      headers: {
+        jwttoken : this.storageService.getToken()
+      }
+    }
     console.log(receivedBody)
 
     return apigClient.invokeApi({}, receivedPath, receivedMethod, additionalParams, receivedBody)
