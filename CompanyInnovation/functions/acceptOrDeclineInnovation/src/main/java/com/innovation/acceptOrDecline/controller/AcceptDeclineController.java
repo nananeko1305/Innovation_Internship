@@ -23,9 +23,9 @@ public class AcceptDeclineController {
 
     @CrossOrigin("*")
     @PutMapping()
-    public ResponseEntity<InnovationDTO> updateStatus(@RequestHeader("jwttoken") String bearerToken, @RequestBody InnovationDTO innovationDTO) {
+    public ResponseEntity<InnovationDTO> updateStatus(@RequestHeader("jwttoken") String jwtToken, @RequestBody InnovationDTO innovationDTO) {
         if (innovationDTO.getStatus().equals(Status.DECLINED) || innovationDTO.getStatus().equals(Status.APPROVED)){
-            return new ResponseEntity<>(innovationService.updateStatus(innovationDTO, tokenUtils.getJWTClaimsSet(bearerToken.replace("Bearer ", ""))), HttpStatus.OK);
+            return new ResponseEntity<>(innovationService.updateStatus(innovationDTO, tokenUtils.getJWTClaimsSet(jwtToken)), HttpStatus.OK);
         }else {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }

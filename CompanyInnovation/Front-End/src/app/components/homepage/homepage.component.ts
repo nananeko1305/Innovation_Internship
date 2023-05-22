@@ -31,7 +31,7 @@ export class HomepageComponent implements OnInit{
     //     }
     //   }
     // )
-    this.awsClientService.sendRequest("/prod/innovations", "GET") .then((result: any) =>{
+    this.awsClientService.sendRequest("/prod/innovations","GET",null) .then((result: any) =>{
       console.log(result)
       this.innovations = result.data
   }).catch( function(result: any){

@@ -24,8 +24,9 @@ public class InnovationController {
 
     @GetMapping()
     @CrossOrigin("*")
-    public ResponseEntity<List<InnovationDTO>> GetInnovation(@RequestHeader("jwttoken") String bearerToken){
-        return new ResponseEntity<>(innovationService.convertToDtoList(innovationService.GetAll(tokenUtils.getJWTClaimsSet(bearerToken.replace("Bearer ", "")))), HttpStatus.OK);
+    public ResponseEntity<List<InnovationDTO>> GetInnovation(@RequestHeader("jwttoken") String jwtToken){
+        System.out.println(jwtToken);
+        return new ResponseEntity<>(innovationService.convertToDtoList(innovationService.GetAll(tokenUtils.getJWTClaimsSet(jwtToken))), HttpStatus.OK);
     }
 
 }

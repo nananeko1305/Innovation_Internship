@@ -8,7 +8,7 @@ export class AwsClientService {
 
   constructor(private storageService:StorageService) { }
 
-  sendRequest(receivedPath:string, receivedMethod:string, additionalParams:any = {}, receivedBody:any = {}): any {
+  sendRequest(receivedPath:string, receivedMethod:string, additionalParams:any, receivedBody:any = {}): any {
     let apigClientFactory = require('aws-api-gateway-client').default;
 
     let apigClient = apigClientFactory.newClient({
@@ -19,13 +19,13 @@ export class AwsClientService {
       region: 'eu-north-1' // OPTIONAL: The region where the API is deployed, by default this parameter is set to us-east-1
     });
 
-
     additionalParams = {
       headers: {
         jwttoken : this.storageService.getToken()
       }
     }
-    console.log(receivedBody)
+    console.log(additionalParams.headers.jwttoken)
+    console.log("DATA TO SEND" + JSON.stringify(receivedBody))
 
     return apigClient.invokeApi({}, receivedPath, receivedMethod, additionalParams, receivedBody)
   }
