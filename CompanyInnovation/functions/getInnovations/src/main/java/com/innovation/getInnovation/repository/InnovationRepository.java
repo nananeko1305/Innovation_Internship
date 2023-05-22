@@ -1,12 +1,11 @@
 package com.innovation.getInnovation.repository;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.innovation.getInnovation.config.DynamoConfig;
 import com.innovation.getInnovation.domain.model.Innovation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -16,11 +15,14 @@ import java.util.Map;
 @Repository
 public class InnovationRepository{
 
-    @Autowired
-    private DynamoDBMapper dynamoDBMapper;
+    private final DynamoConfig dynamoConfig;
+
+    public InnovationRepository(DynamoConfig dynamoConfig) {
+        this.dynamoConfig = dynamoConfig;
+    }
 
     public List<Innovation> GetAll(){
-        return dynamoDBMapper.scan(Innovation.class, new DynamoDBScanExpression());
+        return dynamoConfig.dynamoDBMapper().scan(Innovation.class, new DynamoDBScanExpression());
     }
 
     public List<Innovation> GetInnovationsForUser(String userId) {
@@ -38,7 +40,7 @@ public class InnovationRepository{
                 .withConsistentRead(false);
 
 
-        PaginatedQueryList<Innovation> result = dynamoDBMapper.query(Innovation.class, queryExpression);
+        PaginatedQueryList<Innovation> result = dynamoConfig.dynamoDBMapper().query(Innovation.class, queryExpression);
         return result.subList(0, result.size());
     }
 

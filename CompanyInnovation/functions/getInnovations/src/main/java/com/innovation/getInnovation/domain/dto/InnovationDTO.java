@@ -1,4 +1,5 @@
 package com.innovation.getInnovation.domain.dto;
+
 import com.innovation.getInnovation.domain.model.Innovation;
 import com.innovation.getInnovation.domain.model.Status;
 import lombok.*;

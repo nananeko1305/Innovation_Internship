@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {InnovationService} from "../../services/innovation/innovation.service";
 import {Innovation} from "../../model/innovation";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 import { AwsClientService } from 'src/app/services/aws-client/aws-client.service';
 
 @Component({

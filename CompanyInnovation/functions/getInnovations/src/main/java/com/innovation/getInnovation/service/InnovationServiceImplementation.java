@@ -5,8 +5,6 @@ import com.innovation.getInnovation.domain.dto.InnovationDTO;
 import com.innovation.getInnovation.domain.model.Innovation;
 import com.innovation.getInnovation.repository.InnovationRepository;
 import com.nimbusds.jwt.JWTClaimsSet;
-import org.apache.el.parser.Token;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,11 +13,14 @@ import java.util.List;
 @Service
 public class InnovationServiceImplementation implements InnovationService {
 
-    @Autowired
-    private InnovationRepository innovationRepository;
+    private final InnovationRepository innovationRepository;
 
-    @Autowired
-    private TokenUtils tokenUtils;
+    private final TokenUtils tokenUtils;
+
+    public InnovationServiceImplementation(InnovationRepository innovationRepository, TokenUtils tokenUtils) {
+        this.innovationRepository = innovationRepository;
+        this.tokenUtils = tokenUtils;
+    }
 
     @Override
     public List<Innovation> GetAll(JWTClaimsSet claimsSet) {

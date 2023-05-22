@@ -33,11 +33,12 @@ export class LoginComponent implements OnInit{
   onSubmit() {
     this.cognitoService.signIn(this.formGroup.get('username')?.value,this.formGroup.get('password')?.value).then((value) => {
       console.log(value.signInUserSession.idToken.jwtToken)
-      var jwt = value.signInUserSession.idToken.jwtToken
+      let jwt = value.signInUserSession.idToken.jwtToken
       this.storageService.storeTokenData(jwt);
       this.storageService.storeTempCredentials(jwt);
 })
 .catch((error:any) => {
+  console.log(error)
   alert("Error.")
 })
   }

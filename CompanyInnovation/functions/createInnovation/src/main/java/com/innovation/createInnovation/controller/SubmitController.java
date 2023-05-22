@@ -6,7 +6,6 @@ import com.innovation.createInnovation.config.TokenUtils;
 import com.innovation.createInnovation.services.SubmitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -18,15 +17,11 @@ import javax.validation.Valid;
 @RequestMapping("/submit")
 public class SubmitController {
 
-    @Autowired
-    public TokenUtils tokenUtils;
+    public final TokenUtils tokenUtils;
 
     private final SubmitService submitService;
 
-
-
-
-    public SubmitController(SubmitService submitService , TokenUtils tokenUtils ) {
+    public SubmitController(SubmitService submitService, TokenUtils tokenUtils) {
         this.submitService = submitService;
         this.tokenUtils = tokenUtils;
     }

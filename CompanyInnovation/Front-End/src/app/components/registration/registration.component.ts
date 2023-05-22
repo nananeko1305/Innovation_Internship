@@ -36,6 +36,7 @@ export class RegistrationComponent implements OnInit{
               this.userNotSignedUp = false
         })
         .catch((error:any) => {
+          console.log(error)
           alert("Error.")
         })
   }
@@ -44,9 +45,10 @@ export class RegistrationComponent implements OnInit{
       this.cognitoService.confirmSignUp(this.formGroup.get('username')?.value, this.formGroupConfirmation.get('code')?.value)
       .then(() => {
         alert("Success.")
-        this.router.navigateByUrl('login')
+        this.router.navigateByUrl('login').then()
       })
       .catch((error: any) => {
+        console.log(error)
         alert("Error.")
       })
   }

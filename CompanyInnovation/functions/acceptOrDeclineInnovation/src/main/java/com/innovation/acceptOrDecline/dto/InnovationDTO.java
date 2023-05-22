@@ -1,6 +1,5 @@
 package com.innovation.acceptOrDecline.dto;
 
-import com.innovation.acceptOrDecline.entity.Innovation;
 import com.innovation.acceptOrDecline.entity.Status;
 import lombok.*;
 
@@ -19,18 +18,5 @@ public class InnovationDTO {
     private String description;
     private String comment;
     private Status status;
-
-
-    public InnovationDTO(Innovation innovation){
-        this.id = innovation.getId();
-        this.userId = innovation.getUserId();
-        this.username = innovation.getUsername();
-        this.fullName = innovation.getFullName();
-        this.title = innovation.getTitle();
-        this.description = innovation.getDescription();
-        this.comment = innovation.getComment();
-        this.status = innovation.getStatus();
-    }
-
 
 }

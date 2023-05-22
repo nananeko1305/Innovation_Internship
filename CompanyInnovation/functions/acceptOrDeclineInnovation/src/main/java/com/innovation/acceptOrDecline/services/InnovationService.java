@@ -1,11 +1,9 @@
 package com.innovation.acceptOrDecline.services;
 
-import com.amazonaws.services.kms.model.NotFoundException;
 import com.innovation.acceptOrDecline.dto.InnovationDTO;
 import com.innovation.acceptOrDecline.entity.Innovation;
 import com.innovation.acceptOrDecline.repository.InnovationRepository;
 import com.nimbusds.jwt.JWTClaimsSet;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

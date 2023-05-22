@@ -1,6 +1,5 @@
 package com.myorg;
 
-import com.amazonaws.services.simpleemail.model.VerifyEmailIdentityRequest;
 import software.amazon.awscdk.Duration;
 import software.amazon.awscdk.RemovalPolicy;
 import software.amazon.awscdk.Stack;

@@ -19,7 +19,7 @@ export class NavbarComponent {
 
   logout(){
     this.storageService.clearToken()
-    this.router.navigateByUrl("login")
+    this.router.navigateByUrl("login").then()
   }
 
 }

@@ -55,19 +55,19 @@ export class StorageService {
     return ""
   }
 
-  getSubjectFromToken(): string {
-    const jwtToken = window.sessionStorage.getItem('jwt')
-    if (jwtToken) {
-      const tokenSplit = jwtToken.split('.')
-      const decoded = decodeURIComponent(encodeURIComponent(window.atob(tokenSplit[1])))
-      const obj = JSON.parse(decoded)
-      return obj.sub
-    }
-    return ""
-  }
+  // getSubjectFromToken(): string {
+  //   const jwtToken = window.sessionStorage.getItem('jwt')
+  //   if (jwtToken) {
+  //     const tokenSplit = jwtToken.split('.')
+  //     const decoded = decodeURIComponent(encodeURIComponent(window.atob(tokenSplit[1])))
+  //     const obj = JSON.parse(decoded)
+  //     return obj.sub
+  //   }
+  //   return ""
+  // }
 
   getToken() {
-    var dateFromJwt = this.getExpirationDateFromToken()
+    let dateFromJwt = this.getExpirationDateFromToken()
     if(!dateFromJwt) return ''
     const expDate = new Date(dateFromJwt * 1000)
     if (expDate < new Date()){

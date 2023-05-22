@@ -3,7 +3,6 @@ package com.innovation.getInnovation.config;
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.JWTParser;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -38,16 +37,6 @@ public class TokenUtils {
         }
 
         return employeeGroup;
-    }
-
-    public String getEmailFromToken(JWTClaimsSet jwtClaimsSet){
-
-        try {
-            System.out.println(jwtClaimsSet.getStringClaim("email"));
-            return jwtClaimsSet.getStringClaim("email");
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public String getIdFromToken(JWTClaimsSet jwtClaimsSet){

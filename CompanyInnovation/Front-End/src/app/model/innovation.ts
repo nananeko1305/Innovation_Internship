@@ -8,6 +8,6 @@ export class Innovation {
   comment: string = '';
   status: string = '';
   constructor(){
-    
+
   }
 }

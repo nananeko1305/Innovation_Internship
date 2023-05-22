@@ -4,8 +4,6 @@ import com.innovation.acceptOrDecline.config.TokenUtils;
 import com.innovation.acceptOrDecline.dto.InnovationDTO;
 import com.innovation.acceptOrDecline.entity.Status;
 import com.innovation.acceptOrDecline.services.InnovationService;
-import com.innovation.acceptOrDecline.services.SubmitService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,17 +12,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("acceptDeclineInnovation")
 public class AcceptDeclineController {
 
-    @Autowired
-    private  InnovationService innovationService;
+    private final InnovationService innovationService;
+    private final TokenUtils tokenUtils;
 
-    @Autowired
-    private SubmitService submitService;
-    private TokenUtils tokenUtils;
-
-    public AcceptDeclineController(TokenUtils tokenUtils) {
+    public AcceptDeclineController(InnovationService innovationService, TokenUtils tokenUtils) {
+        this.innovationService = innovationService;
         this.tokenUtils = tokenUtils;
     }
-
 
 
     @CrossOrigin("*")
