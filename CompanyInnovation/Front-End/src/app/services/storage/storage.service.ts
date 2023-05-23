@@ -97,7 +97,7 @@ AWS.config.getCredentials( async (err) => {
         sessionStorage.setItem("accessKey", AWS.config.credentials.accessKeyId);
         sessionStorage.setItem("secretKey", AWS.config.credentials.secretAccessKey);
         sessionStorage.setItem("sessionToken", AWS.config.credentials.sessionToken!);
-        this.router.navigateByUrl("")
+        this.router.navigateByUrl("").then()
       }
 })
 

@@ -24,6 +24,7 @@ public class UserTokenService implements IUserTokenService{
         } else {
 
             user.setTokens(user.getTokens()+15);
+            userTokensRepository.saveUser(user);
         }
     }
 }

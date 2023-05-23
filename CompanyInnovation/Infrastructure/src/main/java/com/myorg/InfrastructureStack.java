@@ -49,9 +49,6 @@ public class InfrastructureStack extends Stack {
         Table innovationsTable = new Table(this, "InnovationTable", tablePropsBuilder.build());
         innovationsTable.addGlobalSecondaryIndex(gsiPropsBuilder.build());
 
-
-
-
         TableProps.Builder tablePropsBuilder1 = TableProps.builder()
                 .tableName("products")
                 .partitionKey(Attribute.builder()
@@ -269,26 +266,32 @@ public class InfrastructureStack extends Stack {
 
         //API GATEWAY
         gateway.getRoot().addResource("innovations").addMethod("GET", new LambdaIntegration(getInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
-        gateway.getRoot().getResource("innovations").addCorsPreflight(CorsOptions.builder()
-                .allowOrigins(CORSoriginsList)
-                .allowMethods(CORSmethodsListGet)
-                .allowHeaders(CORSheadersList)
-                .build());
+        gateway.getRoot().getResource("innovations")
+//                .addCorsPreflight(CorsOptions.builder()
+//                .allowOrigins(CORSoriginsList)
+//                .allowMethods(CORSmethodsListGet)
+//                .allowHeaders(CORSheadersList)
+//                .build())
+        ;
         gateway.getRoot().addResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
-        gateway.getRoot().getResource("submit").addCorsPreflight(CorsOptions.builder()
-                .allowOrigins(CORSoriginsList)
-                .allowMethods(CORSmethodsListSubmit)
-                .allowHeaders(CORSheadersList)
-                .build());
+        gateway.getRoot().getResource("submit")
+//                .addCorsPreflight(CorsOptions.builder()
+//                .allowOrigins(CORSoriginsList)
+//                .allowMethods(CORSmethodsListSubmit)
+//                .allowHeaders(CORSheadersList)
+//                .build())
+        ;
 
 
 
         gateway.getRoot().addResource("acceptDeclineInnovation").addMethod("PUT", new LambdaIntegration(acceptDeclineFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
-        gateway.getRoot().getResource("acceptDeclineInnovation").addCorsPreflight(CorsOptions.builder()
-                .allowOrigins(CORSoriginsList)
-                .allowMethods(CORSmethodsListGetAccDec)
-                .allowHeaders(CORSheadersList)
-                .build());
+        gateway.getRoot().getResource("acceptDeclineInnovation")
+//                .addCorsPreflight(CorsOptions.builder()
+//                .allowOrigins(CORSoriginsList)
+//                .allowMethods(CORSmethodsListGetAccDec)
+//                .allowHeaders(CORSheadersList)
+//                .build())
+        ;
 
 
        EmailIdentity identity = EmailIdentity.Builder.create(this, "Identity")

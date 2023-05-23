@@ -24,39 +24,28 @@ export class InnovationAcceptDeclineComponent implements OnInit{
 
   ngOnInit() {
     this.innovation = history.state.innovation;
-    console.log(this.innovation)
   }
 
   Accept(innovation: Innovation) {
     innovation.status = "APPROVED"
 
-    // this.innovationService.approveOrDecline(innovation).subscribe(
-    //   {
-    //     next : (innovation) => {
-    //       console.log(innovation)
-    //       this.router.navigate(['innovation-list'])
-    // },
-    //     error : (error) => {
-    //       console.log(error)
-    //     }
-    //   }
-    // )
-
-    this.awsClientService.sendRequest("/prod/acceptDeclineInnovation", "PUT",
-    {
+    this.awsClientService.sendRequest("/prod/acceptDeclineInnovation", "PUT", null
+    ,{
+      "id":innovation.id,
           "title": innovation.title,
           "username": innovation.username,
           "fullName": innovation.fullName,
           "description": innovation.description,
-          "comment":innovation.comment,
-          "status":"APPROVED",
+          "comment": "",
+          "status": innovation.status,
           "userId":innovation.userId,
-          "id":innovation.id
-        }) .then((result: any) =>{
+        }).then((result: any) =>{
+
       console.log(result)
-     this.router.navigate(['innovation-list'])
-  }).catch( function(result: any){
-      console.log(result)
+     this.router.navigate(['innovation-list']).then()
+  }).catch( function(result: Error){
+    console.log(result)
+    console.log("Error")
   });
 
   }

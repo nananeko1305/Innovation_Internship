@@ -1,11 +1,8 @@
 package com.innovation.createInnovation.controller;
 
-import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.innovation.createInnovation.DTO.InnovationDTO;
 import com.innovation.createInnovation.config.TokenUtils;
 import com.innovation.createInnovation.services.SubmitService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -28,11 +25,10 @@ public class SubmitController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("")
-    public ResponseEntity<?> submitInnovation (@RequestHeader("jwttoken") String bearerToken,@RequestBody @Valid InnovationDTO innovationModel, BindingResult result){
+    public ResponseEntity<?> submitInnovation (@RequestHeader("jwttoken") String jwtToken,@RequestBody @Valid InnovationDTO innovationModel, BindingResult result){
         if(result.hasErrors()){
             return new ResponseEntity<String>(result.getAllErrors().toString(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        return new ResponseEntity<InnovationDTO>(submitService.submitInnovation(innovationModel, tokenUtils.getJWTClaimsSet(bearerToken.replace("Bearer ", ""))), HttpStatus.OK);
+        return new ResponseEntity<InnovationDTO>(submitService.submitInnovation(innovationModel, tokenUtils.getJWTClaimsSet(jwtToken)), HttpStatus.OK);
     }
 }

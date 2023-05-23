@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-// import { StorageService } from './services/storage/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +18,7 @@ export class AuthInterceptorService {
   //     }
   //     else {
   //       req = req.clone({
-  //         setHeaders: { Authorization: `Bearer ${token}` }
+  //         setHeaders: { jwttoken: `${token}` }
   //       });
   //     }
   //   }

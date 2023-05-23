@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {InnovationService} from "../../services/innovation/innovation.service";
 import {Innovation} from "../../model/innovation";
 import { AwsClientService } from 'src/app/services/aws-client/aws-client.service';
+import {StorageService} from "../../services/storage/storage.service";
 
 @Component({
   selector: 'app-homepage',
@@ -14,7 +15,8 @@ export class HomepageComponent implements OnInit{
 
   constructor(
     private innovationService: InnovationService,
-    private awsClientService: AwsClientService
+    private awsClientService: AwsClientService,
+    public storageService: StorageService,
   ) {
   }
 
@@ -31,8 +33,7 @@ export class HomepageComponent implements OnInit{
     //     }
     //   }
     // )
-    this.awsClientService.sendRequest("/prod/innovations", "GET") .then((result: any) =>{
-      console.log(result)
+    this.awsClientService.sendRequest("/prod/innovations","GET",null) .then((result: any) =>{
       this.innovations = result.data
   }).catch( function(result: any){
       console.log(result)

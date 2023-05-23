@@ -1,12 +1,6 @@
 
 <div class="container-fluid h-100">
-  <h1 class="d-flex justify-content-center"
-      style="
-        font-size: 40px;
-        vertical-align: center;
-        font-style: revert"
-
-  >THIS IS HOMEPAGE</h1>
-
+  <b class="w-100 d-flex justify-content-center mt-5 mb-5" style="font-size: 50px; color: deeppink" *ngIf="storageService.getRoleFromToken()!='Lead'">My innovations</b>
+  <b class="w-100 d-flex justify-content-center mt-5 mb-5" style="font-size: 50px; color: deeppink" *ngIf="storageService.getRoleFromToken()=='Lead'">All innovations</b>
   <app-innovation-list></app-innovation-list>
 </div>
