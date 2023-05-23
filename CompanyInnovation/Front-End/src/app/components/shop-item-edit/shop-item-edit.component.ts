@@ -12,7 +12,7 @@ export class ShopItemEditComponent implements OnInit{
 
   ngOnInit(): void {
     this.product = history.state.product;
-    console.log(JSON.stringify(this.product))
+    console.log(JSON.stringify(this.product)) 
   }
 
 }
