@@ -22,21 +22,29 @@ public class ProductController {
 
     @PostMapping()
     @CrossOrigin("*")
-    public ResponseEntity<?> createProduct(@RequestBody @Valid ProductDTO productDTO , BindingResult result){
+    public ResponseEntity<?> createProduct(@RequestHeader("jwttoken") String token,@RequestBody @Valid ProductDTO productDTO , BindingResult result){
         if(result.hasErrors()){
             return  new ResponseEntity<String>(result.getAllErrors().toString(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
+        System.out.println(token);
+        System.out.println(productDTO);
         return new ResponseEntity<ProductDTO>(productService.create(productDTO), HttpStatus.OK);
 
     }
 
     @GetMapping()
-    public List<ProductDTO> getAllProducts (){
-        return productService.allProducts();
+    @CrossOrigin("*")
+    public ResponseEntity<?> getAllProducts (@RequestHeader("jwttoken") String token, BindingResult result){
+
+        if(result.hasErrors()){
+            return new ResponseEntity<String>(result.getAllErrors().toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        System.out.println(token);
+        return new ResponseEntity<List<ProductDTO>>(productService.allProducts(), HttpStatus.OK);
     }
 
     @PutMapping
+    @CrossOrigin("*")
     public ResponseEntity<?> edit (@RequestBody @Valid ProductDTO productDTO , BindingResult result){
         if(result.hasErrors()){
             return new ResponseEntity<String>(result.getAllErrors().toString(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -47,6 +55,7 @@ public class ProductController {
     }
 
     @DeleteMapping()
+    @CrossOrigin("*")
     public void delete ( @RequestBody  ProductDTO productDTO){
         productService.delete(productDTO);
     }
