@@ -21,7 +21,7 @@ public class InfrastructureApp {
 
                 // Uncomment the next block if you know exactly what Account and Region you
                 // want to deploy the stack to.
-                
+
                 .env(Environment.builder()
                         .account("696993701802")
                         .region("eu-north-1")
@@ -29,6 +29,7 @@ public class InfrastructureApp {
 
                 .build());
         new S3Angular(app, "S3Angular", StackProps.builder().build());
+
 
         app.synth();
 
