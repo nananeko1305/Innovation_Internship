@@ -55,7 +55,7 @@ export class InnovationCreateComponent implements OnInit{
     {
           "title": this.formGroup.get('title')?.value,
           "username": this.storageService.getUsernameFromToken(),
-          "fullName": "TestFullName",
+          "fullName": this.storageService.getFullNameFromToken(),
           "description": this.formGroup.get('description')?.value,
           "comment":'',
           "status":"PENDING",

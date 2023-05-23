@@ -20,7 +20,7 @@ export class CognitoService {
         password: password,
         attributes: {
           email: email,
-          fullName: fullName
+          given_name: fullName
         }
     })
    }
