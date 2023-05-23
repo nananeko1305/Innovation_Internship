@@ -10,6 +10,7 @@ import software.amazon.awscdk.services.cognito.*;
 import software.amazon.awscdk.services.dynamodb.*;
 import software.amazon.awscdk.services.iam.Effect;
 import software.amazon.awscdk.services.iam.PolicyStatement;
+import software.amazon.awscdk.services.lambda.CfnFunction;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.Runtime;
@@ -76,6 +77,7 @@ public class InfrastructureStack extends Stack {
         UserPool pool = UserPool.Builder.create(this, "Pool")
                 .selfSignUpEnabled(true)
                 .userVerification(UserVerificationConfig.builder()
+
                         .emailSubject("Verify your email for our innovation app!")
                         .emailBody("Thanks for signing up to our innovation! Your verification code is {####}")
                         .emailStyle(VerificationEmailStyle.CODE)
@@ -151,6 +153,9 @@ public class InfrastructureStack extends Stack {
                         .code(Code.fromAsset("../assets/GetInnovation.jar"))
                         .functionName("GetInnovations")
                         .build();
+
+                CfnFunction getInnoSnap = (CfnFunction)  getInnovationFunction.getNode().getDefaultChild();
+                getInnoSnap.setSnapStart(CfnFunction.SnapStartProperty.builder().applyOn("PublishedVersions").build());
 
         Function createInnovationFunction =
                 Function.Builder.create(this, "lambdaCreate")
@@ -239,6 +244,19 @@ public class InfrastructureStack extends Stack {
         acceptDeclineFunction.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
         addMembershipEmployee.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
 
+
+        CfnFunction createInnoSnap = (CfnFunction) createInnovationFunction.getNode().getDefaultChild();
+        createInnoSnap.setSnapStart(CfnFunction.SnapStartProperty.builder().applyOn("PublishedVersions").build());
+
+        CfnFunction acceptDeclineInnoSnap = (CfnFunction) acceptDeclineFunction.getNode().getDefaultChild();
+        acceptDeclineInnoSnap.setSnapStart(CfnFunction.SnapStartProperty.builder().applyOn("PublishedVersions").build());
+
+        CfnFunction addMembershipSnap = (CfnFunction) addMembershipEmployee.getNode().getDefaultChild();
+        addMembershipSnap.setSnapStart(CfnFunction.SnapStartProperty.builder().applyOn("PublishedVersions").build());
+
+        //Snap start start end
+
+
         List<String> CORSoriginsList = new ArrayList<String>();
         CORSoriginsList.add("*");
 
@@ -265,7 +283,7 @@ public class InfrastructureStack extends Stack {
         CORSheadersList.add("jwttoken");
 
         //API GATEWAY
-        gateway.getRoot().addResource("innovations").addMethod("GET", new LambdaIntegration(getInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+        gateway.getRoot().addResource("innovations").addMethod("GET", new LambdaIntegration(getInnovationFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         gateway.getRoot().getResource("innovations")
 //                .addCorsPreflight(CorsOptions.builder()
 //                .allowOrigins(CORSoriginsList)
@@ -273,7 +291,7 @@ public class InfrastructureStack extends Stack {
 //                .allowHeaders(CORSheadersList)
 //                .build())
         ;
-        gateway.getRoot().addResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+        gateway.getRoot().addResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         gateway.getRoot().getResource("submit")
 //                .addCorsPreflight(CorsOptions.builder()
 //                .allowOrigins(CORSoriginsList)
@@ -283,8 +301,7 @@ public class InfrastructureStack extends Stack {
         ;
 
 
-
-        gateway.getRoot().addResource("acceptDeclineInnovation").addMethod("PUT", new LambdaIntegration(acceptDeclineFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+        gateway.getRoot().addResource("acceptDeclineInnovation").addMethod("PUT", new LambdaIntegration(acceptDeclineFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         gateway.getRoot().getResource("acceptDeclineInnovation")
 //                .addCorsPreflight(CorsOptions.builder()
 //                .allowOrigins(CORSoriginsList)
@@ -294,9 +311,26 @@ public class InfrastructureStack extends Stack {
         ;
 
 
-        EmailIdentity identity = EmailIdentity.Builder.create(this, "Identity")
-                .identity(Identity.email("compani.innovation.dept@outlook.com"))
+       EmailIdentity identity = EmailIdentity.Builder.create(this, "Identity")
+                .identity(Identity.email("compani.innovation.dept@outlook.com" ))
+               .build();
+
+        EmailIdentity identity1 = EmailIdentity.Builder.create(this, "Identity1")
+                .identity(Identity.email("innovation.employee@outlook.com"))
                 .build();
+        EmailIdentity identity2 = EmailIdentity.Builder.create(this, "Identity2")
+                .identity(Identity.email("inovationEmployee@outlook.com"))
+                .build();
+        EmailIdentity identity3 = EmailIdentity.Builder.create(this, "Identity3")
+                .identity(Identity.email("innovation.lead@outlook.com"))
+                .build();
+
+        EmailIdentity identity4 = EmailIdentity.Builder.create(this, "Identity4")
+                .identity(Identity.email("nananeko1305@hotmail.com"))
+                .build();
+
+
+
 
 
 

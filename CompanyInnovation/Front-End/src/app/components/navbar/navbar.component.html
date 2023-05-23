@@ -2,7 +2,7 @@
   <div class="right">
     <div fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="flex-end center">
       <button mat-button *ngIf="isLoggedIn()" routerLink="shop">
-        <b style="color: white;" >SHOP</b>
+        <b style="color: deeppink;" >SHOP</b>
       </button>
       <button mat-button routerLink="/innovation-list" *ngIf="isLoggedIn() && storageService.getRoleFromToken()=='Lead'">
         <span>View Innovations</span>

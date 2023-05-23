@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import { saveAs } from 'file-saver';
 import {FormControl, FormGroup} from "@angular/forms";
-import {Product} from "../../model/product";
 import {AwsClientService} from "../../services/aws-client/aws-client.service";
 import {Innovation} from "../../model/innovation";
 import {StorageService} from "../../services/storage/storage.service";
