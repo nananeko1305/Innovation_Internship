@@ -10,6 +10,7 @@ import software.amazon.awscdk.services.cognito.*;
 import software.amazon.awscdk.services.dynamodb.*;
 import software.amazon.awscdk.services.iam.Effect;
 import software.amazon.awscdk.services.iam.PolicyStatement;
+import software.amazon.awscdk.services.lambda.CfnFunction;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.Runtime;
@@ -152,6 +153,9 @@ public class InfrastructureStack extends Stack {
                         .functionName("GetInnovations")
                         .build();
 
+                CfnFunction getInnoSnap = (CfnFunction)  getInnovationFunction.getNode().getDefaultChild();
+                getInnoSnap.setSnapStart(CfnFunction.SnapStartProperty.builder().applyOn("PublishedVersions").build());
+
         Function createInnovationFunction =
                 Function.Builder.create(this, "lambdaCreate")
                         .runtime(Runtime.JAVA_11)
@@ -233,11 +237,26 @@ public class InfrastructureStack extends Stack {
                 .build();
 //
 
-        //Snap start
+        //Snap start start
         getInnovationFunction.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
         createInnovationFunction.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
         acceptDeclineFunction.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
         addMembershipEmployee.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
+
+
+
+
+        CfnFunction createInnoSnap = (CfnFunction) createInnovationFunction.getNode().getDefaultChild();
+        createInnoSnap.setSnapStart(CfnFunction.SnapStartProperty.builder().applyOn("PublishedVersions").build());
+
+        CfnFunction acceptDeclineInnoSnap = (CfnFunction) acceptDeclineFunction.getNode().getDefaultChild();
+        acceptDeclineInnoSnap.setSnapStart(CfnFunction.SnapStartProperty.builder().applyOn("PublishedVersions").build());
+
+        CfnFunction addMembershipSnap = (CfnFunction) addMembershipEmployee.getNode().getDefaultChild();
+        addMembershipSnap.setSnapStart(CfnFunction.SnapStartProperty.builder().applyOn("PublishedVersions").build());
+
+        //Snap start start end
+
 
         List<String> CORSoriginsList = new ArrayList<String>();
         CORSoriginsList.add("*");
@@ -263,6 +282,9 @@ public class InfrastructureStack extends Stack {
         CORSheadersList.add("Authorization");
         CORSheadersList.add("X-Amz-Security-Token");
         CORSheadersList.add("jwttoken");
+
+
+
 
         //API GATEWAY
         gateway.getRoot().addResource("innovations").addMethod("GET", new LambdaIntegration(getInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
