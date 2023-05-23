@@ -77,6 +77,7 @@ public class InfrastructureStack extends Stack {
         UserPool pool = UserPool.Builder.create(this, "Pool")
                 .selfSignUpEnabled(true)
                 .userVerification(UserVerificationConfig.builder()
+
                         .emailSubject("Verify your email for our innovation app!")
                         .emailBody("Thanks for signing up to our innovation! Your verification code is {####}")
                         .emailStyle(VerificationEmailStyle.CODE)
@@ -311,8 +312,30 @@ public class InfrastructureStack extends Stack {
 
 
        EmailIdentity identity = EmailIdentity.Builder.create(this, "Identity")
-                .identity(Identity.email("compani.innovation.dept@outlook.com"))
+                .identity(Identity.email("compani.innovation.dept@outlook.com" ))
                .build();
+
+        EmailIdentity identity1 = EmailIdentity.Builder.create(this, "Identity1")
+                .identity(Identity.email("innovation.employee@outlook.com"))
+                .build();
+        EmailIdentity identity2 = EmailIdentity.Builder.create(this, "Identity2")
+                .identity(Identity.email("inovationEmployee@outlook.com"))
+                .build();
+        EmailIdentity identity3 = EmailIdentity.Builder.create(this, "Identity3")
+                .identity(Identity.email("innovation.lead@outlook.com"))
+                .build();
+
+        EmailIdentity identity4 = EmailIdentity.Builder.create(this, "Identity4")
+                .identity(Identity.email("nananeko1305@hotmail.com"))
+                .build();
+
+
+
+
+
+
+
+
 
     }
 }
