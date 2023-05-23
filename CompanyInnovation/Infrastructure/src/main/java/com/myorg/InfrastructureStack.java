@@ -291,9 +291,9 @@ public class InfrastructureStack extends Stack {
                 .build());
 
 
-        EmailIdentity identity = EmailIdentity.Builder.create(this, "Identity")
+       EmailIdentity identity = EmailIdentity.Builder.create(this, "Identity")
                 .identity(Identity.email("compani.innovation.dept@outlook.com"))
-                .build();
+               .build();
 
 
 

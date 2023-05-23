@@ -14,12 +14,12 @@ public class SubmitService implements ISubmitService {
 
     private final ModelMapper mapper;
 
-//    private final IMailService mailService;
+    private final IMailService mailService;
 
     private final InnovationRepository innovationRepository;
 
-    public SubmitService(ModelMapper mapper, /*IMailService mailService,*/ InnovationRepository innovationRepository) {
-//        this.mailService = mailService;
+    public SubmitService(ModelMapper mapper, IMailService mailService, InnovationRepository innovationRepository) {
+        this.mailService = mailService;
         this.mapper = mapper;
         this.innovationRepository = innovationRepository;
     }
@@ -37,7 +37,7 @@ public class SubmitService implements ISubmitService {
         message.setTo("innovation.lead@outlook.com");
         message.setSubject("New innovation by "+innovationEntity.getFullName());
         message.setText(innovationEntity.getDescription());
-//        mailService.sendMessage(message);
+        mailService.sendMessage(message);
 
 
         return mapper.map(innovationEntity, InnovationDTO.class);    }
