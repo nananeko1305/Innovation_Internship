@@ -66,6 +66,17 @@ export class StorageService {
     return ""
   }
 
+  getFullNameFromToken(): string {
+    const jwtToken = window.sessionStorage.getItem('jwt')
+    if (jwtToken) {
+      const tokenSplit = jwtToken.split('.')
+      const decoded = decodeURIComponent(encodeURIComponent(window.atob(tokenSplit[1])))
+      const obj = JSON.parse(decoded)
+      return obj["given_name"]
+    }
+    return ""
+  }
+
   getToken() {
     let dateFromJwt = this.getExpirationDateFromToken()
     if(!dateFromJwt) return ''
@@ -83,9 +94,9 @@ export class StorageService {
         AWS.config.region = 'eu-north-1';
 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'eu-north-1:62f51650-c68c-4636-aa3b-580b7c550f66',
+    IdentityPoolId: 'eu-north-1:3332203e-3e13-4094-8775-71accc645a75',
     Logins: {
-        'cognito-idp.eu-north-1.amazonaws.com/eu-north-1_bQ6gcESHo': passedToken
+        'cognito-idp.eu-north-1.amazonaws.com/eu-north-1_JNIspbxb3': passedToken
     }
 });
 
