@@ -282,7 +282,9 @@ public class InfrastructureStack extends Stack {
         CORSheadersList.add("jwttoken");
 
         //API GATEWAY
-        gateway.getRoot().addResource("innovations").addMethod("GET", new LambdaIntegration(getInnovationFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+        gateway.getRoot().addResource("innovations")
+                        .addMethod("GET", new LambdaIntegration(getInnovationFunction
+                        .getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         gateway.getRoot().getResource("innovations")
 //                .addCorsPreflight(CorsOptions.builder()
 //                .allowOrigins(CORSoriginsList)
