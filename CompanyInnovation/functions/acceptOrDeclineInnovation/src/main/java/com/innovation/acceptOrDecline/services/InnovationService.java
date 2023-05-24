@@ -23,7 +23,6 @@ public class InnovationService {
         innovationRepository.save(new Innovation(innovationDTO));
         submitService.submitComment(innovationDTO , claimsSet);
         if (innovationDTO.getStatus().toString().equals("APPROVED")){
-
         }
         return innovationDTO;
     }
