@@ -13,6 +13,7 @@ import {ProductService} from "../../services/product/product.service";
 export class ShopListComponent implements OnInit{
 
   products: Product[] = []
+  tokens: number = 0
 
   constructor(
     private awsClientService: AwsClientService,
