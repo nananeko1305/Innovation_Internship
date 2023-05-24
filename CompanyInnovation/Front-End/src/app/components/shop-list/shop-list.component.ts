@@ -24,7 +24,7 @@ export class ShopListComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.awsClientService.sendRequest("/product", "GET",null) .then((result: any) =>{
+    this.awsClientService.sendRequest("/prod/product", "GET",null) .then((result: any) =>{
       this.products = result.data
     }).catch( function(result: any){
       console.log(result)

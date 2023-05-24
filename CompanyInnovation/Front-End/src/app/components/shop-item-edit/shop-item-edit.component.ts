@@ -51,7 +51,7 @@ export class ShopItemEditComponent implements OnInit{
     this.product.description = this.formGroup.get('description')?.value;
     this.product.price = this.formGroup.get('price')?.value
 
-    this.awsClientService.sendRequest("/product", "PUT",
+    this.awsClientService.sendRequest("/prod/product", "PUT",
       additionalParams,
       {
         "id": this.product.id,
@@ -78,7 +78,7 @@ export class ShopItemEditComponent implements OnInit{
       }
     }
 
-    this.awsClientService.sendRequest("/product", "DELETE",
+    this.awsClientService.sendRequest("/prod/product", "DELETE",
       additionalParams,
       {
         "id": this.product.id,
