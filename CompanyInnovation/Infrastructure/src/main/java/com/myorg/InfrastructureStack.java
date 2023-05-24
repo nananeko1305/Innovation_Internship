@@ -310,8 +310,13 @@ public class InfrastructureStack extends Stack {
         CfnFunction addMembershipSnap = (CfnFunction) addMembershipEmployee.getNode().getDefaultChild();
         addMembershipSnap.setSnapStart(CfnFunction.SnapStartProperty.builder().applyOn("PublishedVersions").build());
 
-        //Snap start start end
+        CfnFunction tokenSnap = (CfnFunction) tokenShopFunction.getNode().getDefaultChild();
+        tokenSnap.setSnapStart(CfnFunction.SnapStartProperty.builder().applyOn("PublishedVersions").build());
 
+        CfnFunction manageShop = (CfnFunction) manageShopFunction.getNode().getDefaultChild();
+        manageShop.setSnapStart(CfnFunction.SnapStartProperty.builder().applyOn("PublishedVersions").build());
+
+        //Snap start start end
 
         List<String> CORSoriginsList = new ArrayList<String>();
         CORSoriginsList.add("*");
@@ -373,21 +378,22 @@ public class InfrastructureStack extends Stack {
         product.addMethod("POST", new LambdaIntegration(manageShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         product.addMethod("PUT", new LambdaIntegration(manageShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         product.addMethod("DELETE", new LambdaIntegration(manageShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
-        gateway.getRoot().getResource("product");
+        gateway.getRoot().getResource("product")
+            .addCorsPreflight(CorsOptions.builder()
+                .allowOrigins(CORSoriginsList)
+                .allowMethods(CORSmethodsListGetAccDec)
+                .allowHeaders(CORSheadersList)
+                .build());
 
         Resource tokens = gateway.getRoot().addResource("tokens");
         tokens.addMethod("GET", new LambdaIntegration(tokenShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         tokens.addMethod("POST", new LambdaIntegration(tokenShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
-        gateway.getRoot().getResource("tokens");
-
-
-
-
-
-
-
-
-
+        gateway.getRoot().getResource("tokens")
+                .addCorsPreflight(CorsOptions.builder()
+                        .allowOrigins(CORSoriginsList)
+                        .allowMethods(CORSmethodsListGetAccDec)
+                        .allowHeaders(CORSheadersList)
+                        .build());;
 
         EmailIdentity identity = EmailIdentity.Builder.create(this, "Identity")
                 .identity(Identity.email("compani.innovation.dept@outlook.com" ))

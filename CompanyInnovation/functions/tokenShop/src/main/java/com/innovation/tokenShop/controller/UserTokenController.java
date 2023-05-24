@@ -1,8 +1,8 @@
-package com.innovartion.tokenShop.controller;
+package com.innovation.tokenShop.controller;
 
-import com.innovartion.tokenShop.DTO.UserTokenDTO;
-import com.innovartion.tokenShop.config.TokenUtils;
-import com.innovartion.tokenShop.service.UserTokenService;
+import com.innovation.tokenShop.DTO.UserTokenDTO;
+import com.innovation.tokenShop.config.TokenUtils;
+import com.innovation.tokenShop.service.UserTokenService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

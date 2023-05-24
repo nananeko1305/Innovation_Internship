@@ -1,4 +1,4 @@
-package com.innovartion.tokenShop.DTO;
+package com.innovation.tokenShop.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

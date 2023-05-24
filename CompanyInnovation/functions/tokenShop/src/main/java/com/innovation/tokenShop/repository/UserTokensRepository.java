@@ -1,7 +1,7 @@
-package com.innovartion.tokenShop.repository;
+package com.innovation.tokenShop.repository;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.innovartion.tokenShop.entity.UserTokenEntity;
+import com.innovation.tokenShop.entity.UserTokenEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

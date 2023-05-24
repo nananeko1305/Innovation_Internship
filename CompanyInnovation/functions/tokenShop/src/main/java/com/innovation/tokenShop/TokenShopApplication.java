@@ -1,4 +1,4 @@
-package com.innovartion.tokenShop;
+package com.innovation.tokenShop;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;

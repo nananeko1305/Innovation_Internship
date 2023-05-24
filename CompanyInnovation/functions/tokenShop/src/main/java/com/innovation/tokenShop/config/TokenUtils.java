@@ -1,4 +1,4 @@
-package com.innovartion.tokenShop.config;
+package com.innovation.tokenShop.config;
 
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTClaimsSet;

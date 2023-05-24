@@ -1,8 +1,8 @@
-package com.innovartion.tokenShop.service;
+package com.innovation.tokenShop.service;
 
-import com.innovartion.tokenShop.DTO.UserTokenDTO;
-import com.innovartion.tokenShop.entity.UserTokenEntity;
-import com.innovartion.tokenShop.repository.UserTokensRepository;
+import com.innovation.tokenShop.DTO.UserTokenDTO;
+import com.innovation.tokenShop.entity.UserTokenEntity;
+import com.innovation.tokenShop.repository.UserTokensRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

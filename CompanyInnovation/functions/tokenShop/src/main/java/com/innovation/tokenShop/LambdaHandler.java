@@ -1,4 +1,4 @@
-package com.innovartion.tokenShop;
+package com.innovation.tokenShop;
 
 import com.amazonaws.serverless.exceptions.ContainerInitializationException;
 import com.amazonaws.serverless.proxy.model.AwsProxyRequest;

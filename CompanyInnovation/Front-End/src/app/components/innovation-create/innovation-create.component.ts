@@ -33,7 +33,7 @@ export class InnovationCreateComponent implements OnInit{
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     let additionalParams = {
       //If there are query parameters or headers that need to be sent with the request you can add them here
       headers: {
@@ -41,7 +41,7 @@ export class InnovationCreateComponent implements OnInit{
       }
     }
 
-    this.awsClientService.sendRequest("/prod/submit", "POST",
+    await this.awsClientService.sendRequest("/prod/submit", "POST",
     additionalParams,
     {
           "title": this.formGroup.get('title')?.value,
@@ -51,12 +51,8 @@ export class InnovationCreateComponent implements OnInit{
           "comment":'',
           "status":"PENDING",
           "userId": this.storageService.getSubjectFromToken()
-        }) .then(function(result: Innovation){
-      console.log(result)
+        })
 
-  }).catch( function(result: any){
-      console.log(result)
-  });
     this.router.navigate(['innovation-list']).then()
   }
 

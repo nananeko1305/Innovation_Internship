@@ -1,4 +1,4 @@
-package com.innovartion.tokenShop.entity;
+package com.innovation.tokenShop.entity;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;

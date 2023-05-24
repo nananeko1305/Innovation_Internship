@@ -63,7 +63,7 @@ export class ShopItemCreateComponent implements OnInit{
         "title": this.formGroup.get('title')?.value,
         "description": this.formGroup.get('description')?.value,
         "price": this.formGroup.get('price')?.value,
-        "image": "images/" + this.selectedFile?.name
+        "image": "assets/images/" + this.selectedFile?.name
       }) .then(function(result: Innovation){
       console.log(result)
     }).catch( function(result: any){

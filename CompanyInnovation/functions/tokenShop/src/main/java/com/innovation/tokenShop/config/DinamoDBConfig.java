@@ -1,4 +1,4 @@
-package com.innovartion.tokenShop.config;
+package com.innovation.tokenShop.config;
 
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

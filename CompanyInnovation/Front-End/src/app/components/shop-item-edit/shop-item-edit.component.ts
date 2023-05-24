@@ -51,7 +51,12 @@ export class ShopItemEditComponent implements OnInit{
     this.product.description = this.formGroup.get('description')?.value;
     this.product.price = this.formGroup.get('price')?.value
 
-    this.awsClientService.sendRequest("/prod/product", "PUT",
+
+    //dodati console log za pracenje vremena
+
+    console.log("Making request" + " Date and time:" + Date.now())
+
+    await this.awsClientService.sendRequest("/prod/product", "PUT",
       additionalParams,
       {
         "id": this.product.id,
@@ -59,13 +64,11 @@ export class ShopItemEditComponent implements OnInit{
         "description": this.product.description,
         "price": this.product.price,
         "image": this.product.image,
-      }) .then(function(result: Innovation){
-      console.log(result)
-    }).catch( function(result: any){
-      console.log(result)
-    });
+      })
 
-    await this.delay(500);
+    // await this.delay(500);
+
+    console.log("Response!" + " Rezultat:" + Date.now())
 
 
     this.router.navigate(['/shop']).then()

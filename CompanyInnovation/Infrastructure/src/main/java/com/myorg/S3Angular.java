@@ -33,8 +33,10 @@ public class S3Angular extends Stack {
                 .create(this, "S3BucketAngular")
                 .bucketName("s3-bucket-angular")
                 .websiteIndexDocument("index.html")
+                .websiteErrorDocument("index.html")
                 .blockPublicAccess(BlockPublicAccess.BLOCK_ACLS)
                 .accessControl(BucketAccessControl.BUCKET_OWNER_FULL_CONTROL)
+                .publicReadAccess(true)
                 .build();
 
         BucketDeployment.Builder.create(this, "S3BucketDeployment")
