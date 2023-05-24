@@ -228,9 +228,9 @@ public class InfrastructureStack extends Stack {
                 Function.Builder.create(this, "lambdaAcceptDecline")
                         .runtime(Runtime.JAVA_11)
                         .handler("com.innovation.acceptOrDecline.LambdaHandler")
-                        .memorySize(512)
+                        .memorySize(1024)
                         .functionName("AcceptDeclineLambda")
-                        .timeout(Duration.seconds(30))
+                        .timeout(Duration.seconds(50))
                         .code(Code.fromAsset("../assets/AcceptDeclineLambda.jar"))
                         .build();
 
