@@ -19,7 +19,7 @@ export class ShopComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.awsClientService.sendRequest2("/tokens", "GET",null) .then((result: any) =>{
+    this.awsClientService.sendRequest("/tokens", "GET",null) .then((result: any) =>{
       this.userTokens = result.data
     }).catch( function(result: any){
       console.log(result)

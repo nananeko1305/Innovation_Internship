@@ -38,7 +38,7 @@ export class ShopItemComponent implements OnInit{
       }
     }
 
-    this.awsClientService.sendRequest2("/tokens", "POST",additionalParams,
+    this.awsClientService.sendRequest("/tokens", "POST",additionalParams,
       {
         "userId" : this.storageService.getSubjectFromToken(),
         "tokens": product.price
