@@ -57,7 +57,7 @@ export class ShopItemCreateComponent implements OnInit{
       }
     }
 
-    this.awsClientService.sendRequest("/product", "POST",
+    this.awsClientService.sendRequest("/prod/product", "POST",
       additionalParams,
       {
         "title": this.formGroup.get('title')?.value,
