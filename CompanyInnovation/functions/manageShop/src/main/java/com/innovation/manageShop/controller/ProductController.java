@@ -1,6 +1,7 @@
 package com.innovation.manageShop.controller;
 
 import com.innovation.manageShop.DTO.ProductDTO;
+import com.innovation.manageShop.config.TokenUtils;
 import com.innovation.manageShop.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +17,11 @@ public class ProductController {
 
     private final ProductService productService;
 
-    public ProductController(ProductService productService) {
+    private final TokenUtils tokenUtils;
+
+    public ProductController(ProductService productService, TokenUtils tokenUtils) {
         this.productService = productService;
+        this.tokenUtils = tokenUtils;
     }
 
     @PostMapping()
@@ -34,24 +38,20 @@ public class ProductController {
 
     @GetMapping()
     @CrossOrigin("*")
-    public ResponseEntity<?> getAllProducts (@RequestHeader("jwttoken") String token, BindingResult result){
-
-        if(result.hasErrors()){
-            return new ResponseEntity<String>(result.getAllErrors().toString(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        System.out.println(token);
+    public ResponseEntity<?> getAllProducts () {
         return new ResponseEntity<List<ProductDTO>>(productService.allProducts(), HttpStatus.OK);
     }
 
     @PutMapping
     @CrossOrigin("*")
-    public ResponseEntity<?> edit (@RequestBody @Valid ProductDTO productDTO , BindingResult result){
+    public ResponseEntity<?> edit (@RequestHeader("jwttoken") String token, @RequestBody @Valid ProductDTO productDTO , BindingResult result){
         if(result.hasErrors()){
             return new ResponseEntity<String>(result.getAllErrors().toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }else if(tokenUtils.getRoleFromToken(tokenUtils.getJWTClaimsSet(token)).equals("Admin")){
+            return  new ResponseEntity<ProductDTO>(productService.edit(productDTO), HttpStatus.OK);
+        }else {
+            return new ResponseEntity<String>(result.getAllErrors().toString(), HttpStatus.FORBIDDEN);
         }
-
-        return  new ResponseEntity<ProductDTO>(productService.edit(productDTO), HttpStatus.OK);
-
     }
 
     @DeleteMapping()

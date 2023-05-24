@@ -3,6 +3,7 @@ import {Product} from "../../model/product";
 import {Innovation} from "../../model/innovation";
 import {AwsClientService} from "../../services/aws-client/aws-client.service";
 import {StorageService} from "../../services/storage/storage.service";
+import {ProductService} from "../../services/product/product.service";
 
 @Component({
   selector: 'app-shop-list',
@@ -11,26 +12,19 @@ import {StorageService} from "../../services/storage/storage.service";
 })
 export class ShopListComponent implements OnInit{
 
+  products: Product[] = []
+
   constructor(
     private awsClientService: AwsClientService,
     private storageService: StorageService,
+    private productService: ProductService,
   ) {
   }
 
-  products: Product[] = []
   ngOnInit(): void {
-    let additionalParams = {
-      //If there are query parameters or headers that need to be sent with the request you can add them here
-      headers: {
-        jwttoken : this.storageService.getToken(),
-      }
-    }
-    this.awsClientService.sendRequest("/prod/product", "GET",
-      additionalParams,
-      {
-      }) .then(function(result: Product[]){
-      console.log(JSON.stringify(result))
 
+    this.awsClientService.sendRequest("/product", "GET",null) .then((result: any) =>{
+      this.products = result.data
     }).catch( function(result: any){
       console.log(result)
     });

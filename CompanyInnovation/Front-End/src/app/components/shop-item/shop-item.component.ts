@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Product} from "../../model/product";
 import {StorageService} from "../../services/storage/storage.service";
 import {Router} from "@angular/router";
@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class ShopItemComponent implements OnInit{
 
-  product: Product = new Product();
+  @Input() product: Product = new Product();
 
   constructor(
     public storageService: StorageService,
@@ -19,11 +19,6 @@ export class ShopItemComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.product.id = "test"
-    this.product.price = 15;
-    this.product.title = "Test title"
-    this.product.description = "Test description"
-    this.product.image = "assets/images/CUP.jpeg"
   }
 
   openEditView(product: Product) {

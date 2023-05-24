@@ -14,28 +14,33 @@
       </div>
       <div class="col-md-6 d-flex justify-content-center align-items-center">
         <div class="d-inline d-flex justify-content-center align-items-center">
-          <form>
+          <form [formGroup]="formGroup">
             <div class="row">
               <h1 class="d-flex justify-content-center">Title:</h1>
-              <input class="form-control" value="{{product.title}}" style="text-align: center">
+              <input class="form-control" style="text-align: center" formControlName="title">
             </div>
             <div class="row mt-2">
               <h1 class="d-flex justify-content-center">Description:</h1>
-              <input class="form-control" value="{{product.description}}" style="text-align: center">
+              <input class="form-control" style="text-align: center" formControlName="description">
             </div>
             <div class="row mt-2">
               <h1 class="d-flex justify-content-center">Price:</h1>
-              <input class="form-control" value="{{product.price}}" style="text-align: center">
+              <input class="form-control" style="text-align: center" formControlName="price">
             </div>
             <div class="row mt-4 d-flex justify-content-center align-items-center">
-              <div class="col-md-6 d-flex justify-content-center align-items-center">
+              <div class="col-md-4 d-flex justify-content-center align-items-center">
                 <div class="d-inline">
-                  <button class="btn btn-primary">Edit product</button>
+                  <button class="btn btn-success" (click)="editProduct()">Confirm</button>
                 </div>
               </div>
-              <div class="col-md-6 d-flex justify-content-center align-items-center">
+              <div class="col-md-4 d-flex justify-content-center align-items-center">
                 <div class="d-inline">
-                  <button class="btn btn-danger">Delete product</button>
+                  <button class="btn btn-primary" routerLink="/shop">Cancel</button>
+                </div>
+              </div>
+              <div class="col-md-4 d-flex justify-content-center align-items-center">
+                <div class="d-inline">
+                  <button class="btn btn-danger" (click)="deleteProduct()">Delete</button>
                 </div>
               </div>
             </div>

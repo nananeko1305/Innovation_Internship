@@ -4,6 +4,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {AwsClientService} from "../../services/aws-client/aws-client.service";
 import {Innovation} from "../../model/innovation";
 import {StorageService} from "../../services/storage/storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-shop-item-create',
@@ -15,7 +16,8 @@ export class ShopItemCreateComponent implements OnInit{
   constructor(
     private http: HttpClient,
     private awsClientService: AwsClientService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private router: Router,
   ) {
   }
 
@@ -47,7 +49,7 @@ export class ShopItemCreateComponent implements OnInit{
     }
   }
 
-  addItem() {
+  async addItem() {
     let additionalParams = {
       //If there are query parameters or headers that need to be sent with the request you can add them here
       headers: {
@@ -55,7 +57,7 @@ export class ShopItemCreateComponent implements OnInit{
       }
     }
 
-    this.awsClientService.sendRequest("/prod/product", "POST",
+    this.awsClientService.sendRequest("/product", "POST",
       additionalParams,
       {
         "title": this.formGroup.get('title')?.value,
@@ -68,8 +70,13 @@ export class ShopItemCreateComponent implements OnInit{
       console.log(result)
     });
 
+    await this.delay(500);
+
+    this.router.navigate(['/shop']).then()
   }
 
-
+  delay(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
 }
