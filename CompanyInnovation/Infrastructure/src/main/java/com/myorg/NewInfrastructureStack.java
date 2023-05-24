@@ -331,7 +331,7 @@ public class NewInfrastructureStack extends Stack {
 //                .build())
         ;
 
-
+        gateway.getRoot().getResource("submit").addMethod("POST", new LambdaIntegration(createInnovationFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
 
         gateway.getRoot().addResource("acceptDeclineInnovation").addMethod("PUT", new LambdaIntegration(acceptDeclineFunction), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         gateway.getRoot().getResource("acceptDeclineInnovation")
