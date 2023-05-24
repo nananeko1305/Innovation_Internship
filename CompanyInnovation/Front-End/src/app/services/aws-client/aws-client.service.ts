@@ -13,6 +13,7 @@ export class AwsClientService {
 
     let apigClient = apigClientFactory.newClient({
       invokeUrl:'https://7vf89k7mq0.execute-api.eu-north-1.amazonaws.com',
+      // invokeUrl:'http://localhost:8080',
       accessKey: this.storageService.getAccessKey(), //'ACCESS_KEY',
       secretKey: this.storageService.getSecretKey(), //'SECRET_KEY',
       sessionToken: this.storageService.getSessionToken(), // 'SESSION_TOKEN', //OPTIONAL: If you are using temporary credentials you must include the session token
@@ -23,6 +24,7 @@ export class AwsClientService {
       headers: {
         jwttoken : this.storageService.getToken()
       }
+
     }
 
     return apigClient.invokeApi({}, receivedPath, receivedMethod, additionalParams, receivedBody)

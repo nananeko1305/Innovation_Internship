@@ -11,6 +11,9 @@ import {
 import {
   InnovationDeclineCommentComponent
 } from "./components/innovation-decline-comment/innovation-decline-comment.component";
+import {ShopComponent} from "./components/shop/shop.component";
+import {ShopItemCreateComponent} from "./components/shop-item-create/shop-item-create.component";
+import {ShopItemEditComponent} from "./components/shop-item-edit/shop-item-edit.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/homepage', pathMatch: 'full' },
@@ -20,7 +23,10 @@ const routes: Routes = [
   { path : 'innovation-create', component : InnovationCreateComponent },
   { path : 'innovation-list', component : InnovationListComponent },
   { path : 'innovationAcceptDecline/:id', component : InnovationAcceptDeclineComponent },
-  { path : 'innovationComment/:id', component : InnovationDeclineCommentComponent }
+  { path : 'innovationComment/:id', component : InnovationDeclineCommentComponent },
+  { path : 'shop', component : ShopComponent },
+  { path : 'shop/create-product', component : ShopItemCreateComponent },
+  { path : 'shop/edit-product/:id', component : ShopItemEditComponent },
 
 ];
 
