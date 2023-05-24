@@ -234,6 +234,16 @@ public class InfrastructureStack extends Stack {
                         .code(Code.fromAsset("../assets/AcceptDeclineLambda.jar"))
                         .build();
 
+        Function tokenShopFunction =
+                Function.Builder.create(this, "tokenShop")
+                        .runtime(Runtime.JAVA_11)
+                        .handler("com.innovation.tokenShop.LambdaHandler")
+                        .memorySize(1024)
+                        .functionName("TokenShopLambda")
+                        .timeout(Duration.seconds(50))
+                        .code(Code.fromAsset("../assets/TokenShop.jar"))
+                        .build();
+
         //permission for lamdaCreate to use SES service
         createInnovationFunction.addToRolePolicy(PolicyStatement.Builder.create()
                 .effect(Effect.ALLOW)
@@ -366,8 +376,8 @@ public class InfrastructureStack extends Stack {
         gateway.getRoot().getResource("product");
 
         Resource tokens = gateway.getRoot().addResource("tokens");
-        tokens.addMethod("GET", new LambdaIntegration(manageShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
-        tokens.addMethod("POST", new LambdaIntegration(manageShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+        tokens.addMethod("GET", new LambdaIntegration(tokenShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+        tokens.addMethod("POST", new LambdaIntegration(tokenShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         gateway.getRoot().getResource("tokens");
 
 
