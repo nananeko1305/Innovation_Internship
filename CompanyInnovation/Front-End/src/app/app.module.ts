@@ -21,6 +21,11 @@ import { InnovationAcceptDeclineComponent } from './components/innovation-accept
 import { InnovationDeclineCommentComponent } from './components/innovation-decline-comment/innovation-decline-comment.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from './auth-interceptor.service';
+import { ShopComponent } from './components/shop/shop.component';
+import { ShopListComponent } from './components/shop-list/shop-list.component';
+import { ShopItemComponent } from './components/shop-item/shop-item.component';
+import { ShopItemCreateComponent } from './components/shop-item-create/shop-item-create.component';
+import { ShopItemEditComponent } from './components/shop-item-edit/shop-item-edit.component';
 
 
 @NgModule({
@@ -36,6 +41,11 @@ import { AuthInterceptorService } from './auth-interceptor.service';
     InnovationListComponent,
     InnovationAcceptDeclineComponent,
     InnovationDeclineCommentComponent,
+    ShopComponent,
+    ShopListComponent,
+    ShopItemComponent,
+    ShopItemCreateComponent,
+    ShopItemEditComponent,
   ],
   imports: [
     BrowserModule,

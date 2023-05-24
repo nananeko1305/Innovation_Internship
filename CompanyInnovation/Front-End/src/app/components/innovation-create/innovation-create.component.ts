@@ -34,15 +34,6 @@ export class InnovationCreateComponent implements OnInit{
   }
 
   onSubmit() {
-
-    // const innovation = new Innovation();
-    // innovation.title = this.formGroup.get('title')?.value
-    // innovation.description = this.formGroup.get('description')?.value
-    // innovation.userId = this.storageService.getSubjectFromToken()
-    // console.log(this.storageService.getUsernameFromToken())
-    // innovation.username = this.storageService.getUsernameFromToken()
-    // innovation.status = "PENDING"
-
     let additionalParams = {
       //If there are query parameters or headers that need to be sent with the request you can add them here
       headers: {
