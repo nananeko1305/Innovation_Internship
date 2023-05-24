@@ -312,13 +312,17 @@ public class InfrastructureStack extends Stack {
 
 
 
-        Resource produst = gateway.getRoot().addResource("product");
-        produst.addMethod("GET", new LambdaIntegration(manageShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
-        produst.addMethod("POST", new LambdaIntegration(manageShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
-        produst.addMethod("PUT", new LambdaIntegration(manageShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
-        produst.addMethod("DELETE", new LambdaIntegration(manageShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+        Resource product = gateway.getRoot().addResource("product");
+        product.addMethod("GET", new LambdaIntegration(manageShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+        product.addMethod("POST", new LambdaIntegration(manageShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+        product.addMethod("PUT", new LambdaIntegration(manageShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+        product.addMethod("DELETE", new LambdaIntegration(manageShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
         gateway.getRoot().getResource("product");
 
+        Resource tokens = gateway.getRoot().addResource("tokens");
+        tokens.addMethod("GET", new LambdaIntegration(manageShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+        tokens.addMethod("POST", new LambdaIntegration(manageShopFunction.getCurrentVersion()), MethodOptions.builder().authorizationType(AuthorizationType.IAM).build());
+        gateway.getRoot().getResource("tokens");
 
 
 
@@ -328,7 +332,8 @@ public class InfrastructureStack extends Stack {
 
 
 
-       EmailIdentity identity = EmailIdentity.Builder.create(this, "Identity")
+
+        EmailIdentity identity = EmailIdentity.Builder.create(this, "Identity")
                 .identity(Identity.email("compani.innovation.dept@outlook.com" ))
                .build();
 
