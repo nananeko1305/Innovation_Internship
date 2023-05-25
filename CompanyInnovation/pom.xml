@@ -16,7 +16,7 @@
         <module>functions/getInnovations</module>
         <module>functions/addEmployeeMembership</module>
         <module>functions/manageShop</module>
-        <module>functions/common</module>
+        <module>functions/tokenShop</module>
     </modules>
 
     <properties>
