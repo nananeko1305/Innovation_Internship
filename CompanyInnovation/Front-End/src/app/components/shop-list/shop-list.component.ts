@@ -1,9 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Product} from "../../model/product";
-import {Innovation} from "../../model/innovation";
 import {AwsClientService} from "../../services/aws-client/aws-client.service";
-import {StorageService} from "../../services/storage/storage.service";
-import {ProductService} from "../../services/product/product.service";
 
 @Component({
   selector: 'app-shop-list',
@@ -14,11 +11,10 @@ export class ShopListComponent implements OnInit{
 
   products: Product[] = []
   tokens: number = 0
+  @Output() buyItemEvent: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
     private awsClientService: AwsClientService,
-    private storageService: StorageService,
-    private productService: ProductService,
   ) {
   }
 
@@ -29,6 +25,10 @@ export class ShopListComponent implements OnInit{
     }).catch( function(result: any){
       console.log(result)
     });
+  }
+
+  onBuyItemEvent(price: number): void {
+    this.buyItemEvent.emit(price);
   }
 
 }

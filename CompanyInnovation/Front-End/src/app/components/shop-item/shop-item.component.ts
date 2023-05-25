@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from "../../model/product";
 import {StorageService} from "../../services/storage/storage.service";
 import {Router} from "@angular/router";
@@ -13,6 +13,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class ShopItemComponent implements OnInit{
 
   @Input() product: Product = new Product();
+  @Output() buyItemEvent: EventEmitter<number> = new EventEmitter<number>();
+
 
   constructor(
     public storageService: StorageService,
@@ -29,7 +31,7 @@ export class ShopItemComponent implements OnInit{
     this.router.navigate(['shop/edit-product', product.id], {state: {product}}).then();
   }
 
-  buyItem(product: Product) {
+  async buyItem(product: Product) {
 
     let additionalParams = {
       headers: {
@@ -37,7 +39,7 @@ export class ShopItemComponent implements OnInit{
       }
     }
 
-    this.awsClientService.sendRequest("/prod/tokens", "POST",additionalParams,
+    await this.awsClientService.sendRequest("/prod/tokens", "POST",additionalParams,
       {
         "userId" : this.storageService.getSubjectFromToken(),
         "tokens": product.price
@@ -46,11 +48,14 @@ export class ShopItemComponent implements OnInit{
         console.log(result.status)
         if (result.status == 201) {
           this.openSnackBar("Not enough tokens", "OK")
+        }else {
+          this.buyItemEvent.emit(product.price)
         }
       console.log(result)
     }).catch( function(result: any){
       console.log(result)
     });
+
 
   }
 
@@ -60,5 +65,8 @@ export class ShopItemComponent implements OnInit{
       verticalPosition: "top",
     });
   }
+
+
+
 
 }

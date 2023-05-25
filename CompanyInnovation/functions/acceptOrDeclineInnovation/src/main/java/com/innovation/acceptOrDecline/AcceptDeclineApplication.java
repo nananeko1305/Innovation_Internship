@@ -10,4 +10,5 @@ public class AcceptDeclineApplication {
 		SpringApplication.run(AcceptDeclineApplication.class, args);
 	}
 
+
 }

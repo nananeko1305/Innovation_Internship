@@ -76,7 +76,7 @@ export class ShopItemEditComponent implements OnInit{
       }
     }
 
-    this.awsClientService.sendRequest("/prod/product", "DELETE",
+    await this.awsClientService.sendRequest("/prod/product", "DELETE",
       additionalParams,
       {
         "id": this.product.id,
@@ -90,13 +90,7 @@ export class ShopItemEditComponent implements OnInit{
       console.log(result)
     });
 
-    await this.delay(500);
-
     this.router.navigate(['/shop']).then()
-  }
-
-  delay(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
 }

@@ -48,7 +48,11 @@ export class InnovationCreateComponent implements OnInit{
           "comment":'',
           "status":"PENDING",
           "userId": this.storageService.getSubjectFromToken()
-        })
+        }).then(function(result: Innovation){
+          console.log(result)
+        }).catch( function(result: any){
+          console.log(result)
+        });
 
     this.router.navigate(['innovation-list']).then()
   }

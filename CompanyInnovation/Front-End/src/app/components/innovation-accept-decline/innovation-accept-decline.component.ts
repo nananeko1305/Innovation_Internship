@@ -24,10 +24,10 @@ export class InnovationAcceptDeclineComponent implements OnInit{
     this.innovation = history.state.innovation;
   }
 
-  Accept(innovation: Innovation) {
+  async Accept(innovation: Innovation) {
     innovation.status = "APPROVED"
 
-    this.awsClientService.sendRequest("/prod/acceptDeclineInnovation", "PUT", null
+    await this.awsClientService.sendRequest("/prod/acceptDeclineInnovation", "PUT", null
     ,{
       "id":innovation.id,
           "title": innovation.title,
@@ -40,11 +40,12 @@ export class InnovationAcceptDeclineComponent implements OnInit{
         }).then((result: any) =>{
 
       console.log(result)
-     this.router.navigate(['innovation-list']).then()
   }).catch( function(result: Error){
     console.log(result)
     console.log("Error")
   });
+
+    this.router.navigate(['innovation-list']).then()
 
   }
 
