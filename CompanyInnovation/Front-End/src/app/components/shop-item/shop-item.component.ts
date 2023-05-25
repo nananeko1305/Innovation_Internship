@@ -32,7 +32,6 @@ export class ShopItemComponent implements OnInit{
   buyItem(product: Product) {
 
     let additionalParams = {
-      //If there are query parameters or headers that need to be sent with the request you can add them here
       headers: {
         jwttoken : this.storageService.getToken()
       }

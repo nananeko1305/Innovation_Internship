@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Innovation} from "../../model/innovation";
 import {ActivatedRoute, Router} from "@angular/router";
-import {InnovationService} from "../../services/innovation/innovation.service";
 import { AwsClientService } from 'src/app/services/aws-client/aws-client.service';
 
 @Component({
@@ -16,7 +15,6 @@ export class InnovationAcceptDeclineComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private innovationService: InnovationService,
     private awsClientService: AwsClientService
   ) {
 

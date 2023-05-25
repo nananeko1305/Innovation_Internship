@@ -13,11 +13,10 @@ export class AwsClientService {
 
     let apigClient = apigClientFactory.newClient({
       invokeUrl:'https://7vf89k7mq0.execute-api.eu-north-1.amazonaws.com',
-      // invokeUrl:'http://localhost:8080',
-      accessKey: this.storageService.getAccessKey(), //'ACCESS_KEY',
-      secretKey: this.storageService.getSecretKey(), //'SECRET_KEY',
-      sessionToken: this.storageService.getSessionToken(), // 'SESSION_TOKEN', //OPTIONAL: If you are using temporary credentials you must include the session token
-      region: 'eu-north-1' // OPTIONAL: The region where the API is deployed, by default this parameter is set to us-east-1
+      accessKey: this.storageService.getAccessKey(), 
+      secretKey: this.storageService.getSecretKey(), 
+      sessionToken: this.storageService.getSessionToken(), 
+      region: 'eu-north-1' 
     });
 
     additionalParams = {

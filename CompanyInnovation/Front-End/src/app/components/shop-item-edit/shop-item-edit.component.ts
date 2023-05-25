@@ -51,9 +51,6 @@ export class ShopItemEditComponent implements OnInit{
     this.product.description = this.formGroup.get('description')?.value;
     this.product.price = this.formGroup.get('price')?.value
 
-
-    //dodati console log za pracenje vremena
-
     console.log("Making request" + " Date and time:" + Date.now())
 
     await this.awsClientService.sendRequest("/prod/product", "PUT",
@@ -65,8 +62,6 @@ export class ShopItemEditComponent implements OnInit{
         "price": this.product.price,
         "image": this.product.image,
       })
-
-    // await this.delay(500);
 
     console.log("Response!" + " Rezultat:" + Date.now())
 
