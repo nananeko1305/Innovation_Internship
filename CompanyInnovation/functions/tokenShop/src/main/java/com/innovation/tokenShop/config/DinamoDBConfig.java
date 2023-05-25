@@ -30,7 +30,6 @@ public class DinamoDBConfig {
 
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
-//        System.out.println(dynamoDbEndpoint + " " + awsSecretKey + " " + awsAccessKey + " " + awsSessionToken);
         return AmazonDynamoDBClientBuilder
                 .standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(dynamoDbEndpoint , "eu-north-1"))
@@ -42,7 +41,4 @@ public class DinamoDBConfig {
         BasicSessionCredentials awsCreds = new BasicSessionCredentials(awsAccessKey, awsSecretKey, awsSessionToken);
         return new AWSStaticCredentialsProvider(awsCreds);
     }
-
-
-
 }

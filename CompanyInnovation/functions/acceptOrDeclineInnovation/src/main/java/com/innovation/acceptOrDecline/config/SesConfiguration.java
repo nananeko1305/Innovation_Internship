@@ -11,12 +11,12 @@ import org.springframework.mail.MailSender;
 public class SesConfiguration {
 
     @Bean
-    public MailSender mailSender (AmazonSimpleEmailService amazonSimpleEmailService){
+    public MailSender mailSender(AmazonSimpleEmailService amazonSimpleEmailService) {
         return new SimpleEmailServiceMailSender(amazonSimpleEmailService);
     }
 
     @Bean
-    public  AmazonSimpleEmailService amazonSimpleEmailService(){
+    public AmazonSimpleEmailService amazonSimpleEmailService() {
 
         return AmazonSimpleEmailServiceClientBuilder
                 .standard()

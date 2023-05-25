@@ -12,17 +12,14 @@ public class InnovationService {
 
     @Autowired
     private SubmitService submitService;
-
     private final InnovationRepository innovationRepository;
-
     public InnovationService(InnovationRepository innovationRepository) {
         this.innovationRepository = innovationRepository;
     }
-
     public InnovationDTO updateStatus(InnovationDTO innovationDTO, JWTClaimsSet claimsSet) {
         innovationRepository.save(new Innovation(innovationDTO));
-        submitService.submitComment(innovationDTO , claimsSet);
-        if (innovationDTO.getStatus().toString().equals("APPROVED")){
+        submitService.submitComment(innovationDTO, claimsSet);
+        if (innovationDTO.getStatus().toString().equals("APPROVED")) {
         }
         return innovationDTO;
     }

@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class UserTokenDTO {
     private String userId;
     private int tokens;
-
 }

@@ -17,7 +17,6 @@ public class UserTokenService {
         this.mapper = mapper;
     }
 
-
     public UserTokenDTO getUserTokens(String userId){
         return mapper.map(userTokensRepository.findUser(userId), UserTokenDTO.class);
 

@@ -1,6 +1,9 @@
 package com.innovation.acceptOrDecline.entity;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConvertedEnum;
 import com.innovation.acceptOrDecline.dto.InnovationDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,8 +42,7 @@ public class Innovation {
     @DynamoDBTypeConvertedEnum
     private Status status;
 
-
-    public Innovation(InnovationDTO innovationDTO){
+    public Innovation(InnovationDTO innovationDTO) {
         this.id = innovationDTO.getId();
         this.userId = innovationDTO.getUserId();
         this.username = innovationDTO.getUsername();
@@ -50,5 +52,4 @@ public class Innovation {
         this.comment = innovationDTO.getComment();
         this.status = innovationDTO.getStatus();
     }
-
 }

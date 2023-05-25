@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class UserTokenService {
 
     private final UserTokensRepository userTokensRepository;
-    private  final ModelMapper mapper;
+    private final ModelMapper mapper;
 
     public UserTokenService(UserTokensRepository userTokensRepository, ModelMapper mapper) {
         this.userTokensRepository = userTokensRepository;
@@ -18,13 +18,13 @@ public class UserTokenService {
     }
 
 
-    public UserTokenDTO getUserTokens(String userId){
+    public UserTokenDTO getUserTokens(String userId) {
         return mapper.map(userTokensRepository.findUser(userId), UserTokenDTO.class);
 
     }
 
-    public UserTokenDTO updateTokens (UserTokenDTO userTokenDTO, int tokensValue){
-        UserTokenEntity userTokenEntity= userTokensRepository.findUser(userTokenDTO.getUserId());
+    public UserTokenDTO updateTokens(UserTokenDTO userTokenDTO, int tokensValue) {
+        UserTokenEntity userTokenEntity = userTokensRepository.findUser(userTokenDTO.getUserId());
         userTokenEntity.setTokens(userTokenEntity.getTokens() - tokensValue);
         userTokensRepository.saveUser(userTokenEntity);
         return mapper.map(userTokenEntity, UserTokenDTO.class);

@@ -16,13 +16,13 @@ public class UserTokenController {
 
     @GetMapping("{id}")
     @CrossOrigin("*")
-    public UserTokenDTO getUsersTokens(@PathVariable("id") String userId){
-        return  userTokenService.getUserTokens(userId);
+    public UserTokenDTO getUsersTokens(@PathVariable("id") String userId) {
+        return userTokenService.getUserTokens(userId);
     }
 
     @CrossOrigin("*")
     @PostMapping()
-    public UserTokenDTO updateTokens(@RequestBody UserTokenDTO userTokenDTO , int tokensValue){
-        return userTokenService.updateTokens(userTokenDTO,tokensValue);
+    public UserTokenDTO updateTokens(@RequestBody UserTokenDTO userTokenDTO, int tokensValue) {
+        return userTokenService.updateTokens(userTokenDTO, tokensValue);
     }
 }

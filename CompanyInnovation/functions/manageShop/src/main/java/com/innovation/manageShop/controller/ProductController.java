@@ -26,9 +26,9 @@ public class ProductController {
 
     @PostMapping()
     @CrossOrigin("*")
-    public ResponseEntity<?> createProduct(@RequestHeader("jwttoken") String token,@RequestBody @Valid ProductDTO productDTO , BindingResult result){
-        if(result.hasErrors()){
-            return  new ResponseEntity<String>(result.getAllErrors().toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<?> createProduct(@RequestHeader("jwttoken") String token, @RequestBody @Valid ProductDTO productDTO, BindingResult result) {
+        if (result.hasErrors()) {
+            return new ResponseEntity<String>(result.getAllErrors().toString(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
         System.out.println(token);
         System.out.println(productDTO);
@@ -38,25 +38,25 @@ public class ProductController {
 
     @GetMapping()
     @CrossOrigin("*")
-    public ResponseEntity<?> getAllProducts () {
+    public ResponseEntity<?> getAllProducts() {
         return new ResponseEntity<List<ProductDTO>>(productService.allProducts(), HttpStatus.OK);
     }
 
     @PutMapping
     @CrossOrigin("*")
-    public ResponseEntity<?> edit (@RequestHeader("jwttoken") String token, @RequestBody @Valid ProductDTO productDTO , BindingResult result){
-        if(result.hasErrors()){
+    public ResponseEntity<?> edit(@RequestHeader("jwttoken") String token, @RequestBody @Valid ProductDTO productDTO, BindingResult result) {
+        if (result.hasErrors()) {
             return new ResponseEntity<String>(result.getAllErrors().toString(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }else if(tokenUtils.getRoleFromToken(tokenUtils.getJWTClaimsSet(token)).equals("Admin")){
-            return  new ResponseEntity<ProductDTO>(productService.edit(productDTO), HttpStatus.OK);
-        }else {
+        } else if (tokenUtils.getRoleFromToken(tokenUtils.getJWTClaimsSet(token)).equals("Admin")) {
+            return new ResponseEntity<ProductDTO>(productService.edit(productDTO), HttpStatus.OK);
+        } else {
             return new ResponseEntity<String>(result.getAllErrors().toString(), HttpStatus.FORBIDDEN);
         }
     }
 
     @DeleteMapping()
     @CrossOrigin("*")
-    public void delete ( @RequestBody  ProductDTO productDTO){
+    public void delete(@RequestBody ProductDTO productDTO) {
         productService.delete(productDTO);
     }
 }

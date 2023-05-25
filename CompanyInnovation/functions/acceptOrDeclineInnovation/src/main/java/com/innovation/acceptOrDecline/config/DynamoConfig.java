@@ -33,16 +33,13 @@ public class DynamoConfig {
         System.out.println(dynamoDbEndpoint + " " + awsSecretKey + " " + awsAccessKey + " " + awsSessionToken);
         return AmazonDynamoDBClientBuilder
                 .standard()
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(dynamoDbEndpoint , "eu-north-1"))
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(dynamoDbEndpoint, "eu-north-1"))
                 .withCredentials(awsCredentialsProvider())
                 .build();
     }
 
-    private AWSCredentialsProvider awsCredentialsProvider(){
+    private AWSCredentialsProvider awsCredentialsProvider() {
         BasicSessionCredentials awsCreds = new BasicSessionCredentials(awsAccessKey, awsSecretKey, awsSessionToken);
         return new AWSStaticCredentialsProvider(awsCreds);
     }
-
-
-
 }

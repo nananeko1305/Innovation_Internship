@@ -17,31 +17,31 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public ProductService(ModelMapper mapper , ProductRepository productRepository) {
+    public ProductService(ModelMapper mapper, ProductRepository productRepository) {
 
         this.mapper = mapper;
-        this.productRepository= productRepository;
+        this.productRepository = productRepository;
     }
 
-    public ProductDTO create (ProductDTO productDTO){
+    public ProductDTO create(ProductDTO productDTO) {
 
-        ProductEntity productEntity= mapper.map(productDTO, ProductEntity.class);
+        ProductEntity productEntity = mapper.map(productDTO, ProductEntity.class);
         productRepository.save(productEntity);
         return mapper.map(productEntity, ProductDTO.class);
     }
 
-    public List<ProductDTO> allProducts (){
-        List<ProductEntity> allProductEntities= productRepository.allProducts();
+    public List<ProductDTO> allProducts() {
+        List<ProductEntity> allProductEntities = productRepository.allProducts();
         return mapper.map(allProductEntities, new ArrayList<ProductDTO>().getClass());
     }
 
-    public ProductDTO edit (ProductDTO productDTO){
-        ProductEntity productEntity= mapper.map(productDTO, ProductEntity.class);
+    public ProductDTO edit(ProductDTO productDTO) {
+        ProductEntity productEntity = mapper.map(productDTO, ProductEntity.class);
         productRepository.save(productEntity);
-        return  mapper.map(productEntity, ProductDTO.class);
+        return mapper.map(productEntity, ProductDTO.class);
     }
 
-    public void delete (ProductDTO productDTO){
+    public void delete(ProductDTO productDTO) {
         productRepository.delete(mapper.map(productDTO, ProductEntity.class));
     }
 

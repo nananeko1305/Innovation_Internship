@@ -5,20 +5,17 @@ import com.innovation.acceptOrDecline.entity.UserToken;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserTokensRepository{
+public class UserTokensRepository {
     private final DynamoDBMapper dynamoDBMapper;
-
     public UserTokensRepository(DynamoDBMapper dynamoDBMapper) {
         this.dynamoDBMapper = dynamoDBMapper;
     }
-
-    public void saveUser (UserToken userToken){dynamoDBMapper.save(userToken);}
-    public UserToken findUser (String userId){
+    public void saveUser(UserToken userToken) {
+        dynamoDBMapper.save(userToken);
+    }
+    public UserToken findUser(String userId) {
         return dynamoDBMapper.load(UserToken.class, userId);
     }
-
-
-
 
 
 }

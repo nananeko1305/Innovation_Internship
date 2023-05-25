@@ -6,14 +6,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MailService implements IMailService {
-
     private MailSender mailSender;
 
     public MailService(MailSender mailSender) {
         this.mailSender = mailSender;
     }
-
-    public void sendMessage (SimpleMailMessage simpleMailMessage){
+    public void sendMessage(SimpleMailMessage simpleMailMessage) {
         mailSender.send(simpleMailMessage);
     }
 }

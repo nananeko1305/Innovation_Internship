@@ -6,14 +6,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class InnovationRepository {
-
     private final DynamoDBMapper dynamoDBMapper;
-
     public InnovationRepository(DynamoDBMapper dynamoDBMapper) {
         this.dynamoDBMapper = dynamoDBMapper;
     }
-
-    public void save(Innovation innovation){
+    public void save(Innovation innovation) {
         dynamoDBMapper.save(innovation);
     }
 }
