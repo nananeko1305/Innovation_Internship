@@ -1,10 +1,10 @@
 package com.innovation.acceptOrDecline.services;
 
+import com.innovation.acceptOrDecline.config.CognitoUserDataRetriever;
 import com.innovation.acceptOrDecline.config.TokenUtils;
 import com.innovation.acceptOrDecline.dto.InnovationDTO;
 import com.innovation.acceptOrDecline.entity.Innovation;
 import com.nimbusds.jwt.JWTClaimsSet;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
@@ -12,20 +12,18 @@ import org.springframework.stereotype.Service;
 
 public class SubmitService implements ISubmitService {
 
-    @Autowired
-    private TokenUtils tokenUtils;
-    @Autowired
-    private MailService mailService;
-    @Autowired
-    private IUserTokenService userTokenService;
+    private final TokenUtils tokenUtils;
+    private final MailService mailService;
+    private final IUserTokenService userTokenService;
 
-    @Autowired
-    private CognitoUserDataRetriever cognito;
+    private final CognitoUserDataRetriever cognito;
 
 
-    public SubmitService(IUserTokenService userTokenService, MailService mailService) {
+    public SubmitService(IUserTokenService userTokenService, MailService mailService, CognitoUserDataRetriever cognito, TokenUtils tokenUtils) {
         this.userTokenService = userTokenService;
         this.mailService= mailService;
+        this.cognito = cognito;
+        this.tokenUtils = tokenUtils;
     }
 
 
