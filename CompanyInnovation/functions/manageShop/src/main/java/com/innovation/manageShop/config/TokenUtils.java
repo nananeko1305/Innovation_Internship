@@ -39,8 +39,4 @@ public class TokenUtils {
         return employeeGroup;
     }
 
-    public String getIdFromToken(JWTClaimsSet jwtClaimsSet){
-        return jwtClaimsSet.getSubject();
-    }
-
 }

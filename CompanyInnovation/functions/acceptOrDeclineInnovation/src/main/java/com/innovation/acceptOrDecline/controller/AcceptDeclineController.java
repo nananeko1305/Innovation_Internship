@@ -19,8 +19,6 @@ public class AcceptDeclineController {
         this.innovationService = innovationService;
         this.tokenUtils = tokenUtils;
     }
-
-
     @CrossOrigin("*")
     @PutMapping()
     public ResponseEntity<InnovationDTO> updateStatus(@RequestHeader("jwttoken") String jwtToken, @RequestBody InnovationDTO innovationDTO) {

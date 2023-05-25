@@ -25,10 +25,6 @@ public class CognitoUserDataRetriever {
     Regions region = Regions.EU_NORTH_1;
     @Value("${pool.id}")
     private String userPoolId = "eu-north-1_JNIspbxb3";
-
-//    BasicAWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
-
-
     BasicSessionCredentials basicSessionCredentials = new BasicSessionCredentials(awsAccessKey, awsSecretKey, awsSessionToken);
 
     AWSCognitoIdentityProvider cognitoClient = AWSCognitoIdentityProviderClientBuilder.standard()

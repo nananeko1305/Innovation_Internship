@@ -4,7 +4,6 @@ import com.innovation.manageShop.DTO.ProductDTO;
 import com.innovation.manageShop.entity.ProductEntity;
 import com.innovation.manageShop.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,8 +13,7 @@ import java.util.List;
 public class ProductService {
 
     private ModelMapper mapper;
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     public ProductService(ModelMapper mapper , ProductRepository productRepository) {
 

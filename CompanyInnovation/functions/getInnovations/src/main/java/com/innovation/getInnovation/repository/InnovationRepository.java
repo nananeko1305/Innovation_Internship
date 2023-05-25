@@ -32,13 +32,11 @@ public class InnovationRepository{
 
         Innovation innovation = new Innovation();
         innovation.setUserId(userId);
-        System.out.println(innovation.getUserId());
         DynamoDBQueryExpression<Innovation> queryExpression = new DynamoDBQueryExpression<Innovation>()
                 .withIndexName("userIdIndex")
                 .withKeyConditionExpression("userId = :userId")
                 .withExpressionAttributeValues(expressionAttributeValues)
                 .withConsistentRead(false);
-
 
         PaginatedQueryList<Innovation> result = dynamoConfig.dynamoDBMapper().query(Innovation.class, queryExpression);
         return result.subList(0, result.size());

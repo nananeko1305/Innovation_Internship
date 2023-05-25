@@ -73,7 +73,6 @@ public class InfrastructureStack extends Stack {
         Table productTable= new Table(this , "ProductTable" , tablePropsBuilder1.build());
         Table userTokensTable= new Table(this , "UserTokensTable" , tablePropsBuilder2.build());
 
-//
         UserPool pool = UserPool.Builder.create(this, "Pool")
                 .selfSignUpEnabled(true)
                 .userVerification(UserVerificationConfig.builder()
@@ -186,10 +185,6 @@ public class InfrastructureStack extends Stack {
 
         attach2.getNode().addDependency(cfnUserPoolUserAdmin);
 
-//        CognitoUserPoolsAuthorizer auth = CognitoUserPoolsAuthorizer.Builder.create(this, "innovationAuthorizer")
-//                .cognitoUserPools(poolsList)
-//                .build();
-
         //create lambda to get innovations
         Function getInnovationFunction =
                 Function.Builder.create(this, "GetInnovations")
@@ -286,13 +281,7 @@ public class InfrastructureStack extends Stack {
 
         LambdaRestApi gateway = LambdaRestApi.Builder.create(this, "gateway")
                 .handler(getInnovationFunction)
-//                .defaultMethodOptions(MethodOptions.builder().authorizationType(AuthorizationType.COGNITO).authorizer(auth).build())
-//                .defaultCorsPreflightOptions(CorsOptions.builder()
-//                        .allowOrigins(Cors.ALL_ORIGINS)
-//                        .allowMethods(Cors.ALL_METHODS)
-//                        .build())
                 .build();
-//
 
         //Snap start
         getInnovationFunction.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
