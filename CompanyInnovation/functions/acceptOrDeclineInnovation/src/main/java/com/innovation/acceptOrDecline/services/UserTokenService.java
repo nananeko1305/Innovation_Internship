@@ -16,13 +16,10 @@ public class UserTokenService implements IUserTokenService{
 
     @Override
     public void addTokens(String userId) {
-
         UserToken user = userTokensRepository.findUser(userId);
         if (user == null) {
-
             userTokensRepository.saveUser(new UserToken(userId, 15));
         } else {
-
             user.setTokens(user.getTokens()+15);
             userTokensRepository.saveUser(user);
         }

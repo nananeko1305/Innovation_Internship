@@ -19,18 +19,6 @@ export class InnovationListComponent implements OnInit{
 
 
   ngOnInit() {
-    // this.innovationService.getInnovations()
-    //   .subscribe(
-    //     {
-    //       next: (innovationsResponse: Innovation[]) => {
-    //         this.innovations = innovationsResponse
-    //         console.log(this.innovations)
-    //       },
-    //       error: (error: Error) => {
-    //         console.log(error)
-    //       }
-    //     }
-    //   )
     this.awsClientService.sendRequest("/prod/innovations", "GET",null) .then((result: any) =>{
       console.log(result)
       this.innovations = result.data

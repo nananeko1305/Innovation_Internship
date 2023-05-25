@@ -36,9 +36,9 @@ export class InnovationDeclineCommentComponent implements OnInit{
     console.log(this.innovation)
   }
 
-  onSubmit(innovation: Innovation) {
+  async onSubmit(innovation: Innovation) {
     innovation.comment = this.formGroup.get('reasonForDeclining')?.value
-    this.awsClientService.sendRequest("/prod/acceptDeclineInnovation", "PUT",null,
+    await this.awsClientService.sendRequest("/prod/acceptDeclineInnovation", "PUT",null,
     {
           "title": innovation.title,
           "username": innovation.username,
@@ -50,11 +50,9 @@ export class InnovationDeclineCommentComponent implements OnInit{
           "id":innovation.id
         }) .then((result: any) =>{
           console.log(result)
-      this.router.navigate(['innovation-list']).then()
-  }).catch( function(result: any){
-      console.log(result)
-  });
-
+        }).catch( function(result: any){
+            console.log(result)
+        });
+    this.router.navigate(['innovation-list']).then()
   }
-
 }
