@@ -51,9 +51,6 @@ export class ShopItemEditComponent implements OnInit{
     this.product.description = this.formGroup.get('description')?.value;
     this.product.price = this.formGroup.get('price')?.value
 
-
-    //dodati console log za pracenje vremena
-
     console.log("Making request" + " Date and time:" + Date.now())
 
     await this.awsClientService.sendRequest("/prod/product", "PUT",
@@ -65,8 +62,6 @@ export class ShopItemEditComponent implements OnInit{
         "price": this.product.price,
         "image": this.product.image,
       })
-
-    // await this.delay(500);
 
     console.log("Response!" + " Rezultat:" + Date.now())
 
@@ -81,7 +76,7 @@ export class ShopItemEditComponent implements OnInit{
       }
     }
 
-    this.awsClientService.sendRequest("/prod/product", "DELETE",
+    await this.awsClientService.sendRequest("/prod/product", "DELETE",
       additionalParams,
       {
         "id": this.product.id,
@@ -95,13 +90,7 @@ export class ShopItemEditComponent implements OnInit{
       console.log(result)
     });
 
-    await this.delay(500);
-
     this.router.navigate(['/shop']).then()
-  }
-
-  delay(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
 }

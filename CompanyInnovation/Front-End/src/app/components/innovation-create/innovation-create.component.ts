@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {InnovationService} from "../../services/innovation/innovation.service";
 import {StorageService} from "../../services/storage/storage.service";
 import { AwsClientService } from 'src/app/services/aws-client/aws-client.service';
 import {Innovation} from "../../model/innovation";
@@ -16,7 +15,6 @@ export class InnovationCreateComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private innovationService: InnovationService,
     private storageService: StorageService,
     private awsClientService: AwsClientService
   ) { }
@@ -35,7 +33,6 @@ export class InnovationCreateComponent implements OnInit{
 
   async onSubmit() {
     let additionalParams = {
-      //If there are query parameters or headers that need to be sent with the request you can add them here
       headers: {
         jwttoken : this.storageService.getToken()
       }
@@ -51,7 +48,11 @@ export class InnovationCreateComponent implements OnInit{
           "comment":'',
           "status":"PENDING",
           "userId": this.storageService.getSubjectFromToken()
-        })
+        }).then(function(result: Innovation){
+          console.log(result)
+        }).catch( function(result: any){
+          console.log(result)
+        });
 
     this.router.navigate(['innovation-list']).then()
   }

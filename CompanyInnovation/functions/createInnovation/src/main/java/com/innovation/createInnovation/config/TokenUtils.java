@@ -21,26 +21,4 @@ public class TokenUtils {
             return null;
         }
     }
-
-    public static String getRoleFromToken(JWTClaimsSet jwtClaimsSet){
-
-        List<String> groups = null;
-        try {
-            groups = jwtClaimsSet.getStringListClaim("cognito:groups");
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-
-        String employeeGroup = null;
-        if (groups != null && !groups.isEmpty()) {
-            employeeGroup = groups.get(0);
-        }
-
-        return employeeGroup;
-    }
-
-    public static String getIdFromToken(JWTClaimsSet jwtClaimsSet){
-        return jwtClaimsSet.getSubject();
-    }
-
 }

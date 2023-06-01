@@ -12,11 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 
 public class SubmitService implements ISubmitService {
-
     private final ModelMapper mapper;
-
     private final IMailService mailService;
-
     private final InnovationRepository innovationRepository;
 
     public SubmitService(ModelMapper mapper, IMailService mailService, InnovationRepository innovationRepository) {
@@ -24,22 +21,17 @@ public class SubmitService implements ISubmitService {
         this.mapper = mapper;
         this.innovationRepository = innovationRepository;
     }
-
-
-
     @Override
     public InnovationDTO submitInnovation(InnovationDTO innovationDTO, JWTClaimsSet claimsSet) {
         Innovation innovationEntity = mapper.map(innovationDTO, Innovation.class);
         innovationEntity.setId(null);
-        innovationRepository.submitInnovation(innovationEntity); //upis u bazu
-
+        innovationRepository.submitInnovation(innovationEntity);
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("compani.innovation.dept@outlook.com");
         message.setTo("innovation.lead@outlook.com");
         message.setSubject("New innovation by "+innovationEntity.getFullName());
         message.setText(innovationEntity.getDescription());
         mailService.sendMessage(message);
-
 
         return mapper.map(innovationEntity, InnovationDTO.class);    }
 

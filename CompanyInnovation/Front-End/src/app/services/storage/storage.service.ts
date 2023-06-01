@@ -11,7 +11,6 @@ export class StorageService {
 
   storeTokenData(token: string): void {
     sessionStorage.setItem("jwt", token);
- //   sessionStorage.setItem("refreshToken", refreshToken);
   }
 
   clearToken() {
@@ -101,14 +100,12 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 });
 
 AWS.config.getCredentials( async (err) => {
-  if (err) console.log(err.stack); // credentials not loaded
+  if (err) console.log(err.stack); 
   else if (!AWS.config.credentials) return
-  else {console.log("Access Key:", AWS.config.credentials.accessKeyId);
-        console.log(AWS.config.credentials)
+  else {
         sessionStorage.setItem("accessKey", AWS.config.credentials.accessKeyId);
         sessionStorage.setItem("secretKey", AWS.config.credentials.secretAccessKey);
         sessionStorage.setItem("sessionToken", AWS.config.credentials.sessionToken!);
-        this.router.navigateByUrl("").then()
       }
 })
 

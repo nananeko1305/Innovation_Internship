@@ -73,7 +73,6 @@ public class InfrastructureStack extends Stack {
         Table productTable= new Table(this , "ProductTable" , tablePropsBuilder1.build());
         Table userTokensTable= new Table(this , "UserTokensTable" , tablePropsBuilder2.build());
 
-//
         UserPool pool = UserPool.Builder.create(this, "Pool")
                 .selfSignUpEnabled(true)
                 .userVerification(UserVerificationConfig.builder()
@@ -186,17 +185,13 @@ public class InfrastructureStack extends Stack {
 
         attach2.getNode().addDependency(cfnUserPoolUserAdmin);
 
-//        CognitoUserPoolsAuthorizer auth = CognitoUserPoolsAuthorizer.Builder.create(this, "innovationAuthorizer")
-//                .cognitoUserPools(poolsList)
-//                .build();
-
         //create lambda to get innovations
         Function getInnovationFunction =
                 Function.Builder.create(this, "GetInnovations")
                         .runtime(Runtime.JAVA_11)
                         .handler("com.innovation.getInnovation.controller.LambdaHandler")
-                        .memorySize(512)
-                        .timeout(Duration.seconds(10))
+                        .memorySize(2048)
+                        .timeout(Duration.seconds(30))
                         .code(Code.fromAsset("../assets/GetInnovation.jar"))
                         .functionName("GetInnovations")
                         .build();
@@ -208,7 +203,7 @@ public class InfrastructureStack extends Stack {
                 Function.Builder.create(this, "lambdaCreate")
                         .runtime(Runtime.JAVA_11)
                         .handler("com.innovation.createInnovation.LamdaHandler")
-                        .memorySize(1024)
+                        .memorySize(2048)
                         .timeout(Duration.seconds(30))
                         .functionName("lambdaCreate")
                         .code(Code.fromAsset("../assets/SubmitInnovation.jar"))
@@ -218,7 +213,7 @@ public class InfrastructureStack extends Stack {
                 Function.Builder.create(this, "manageShop")
                         .runtime(Runtime.JAVA_11)
                         .handler("com.innovation.manageShop.LambdaHandler")
-                        .memorySize(1024)
+                        .memorySize(2048)
                         .timeout(Duration.seconds(30))
                         .functionName("manageShop")
                         .code(Code.fromAsset("../assets/ManageShop.jar"))
@@ -228,7 +223,7 @@ public class InfrastructureStack extends Stack {
                 Function.Builder.create(this, "lambdaAcceptDecline")
                         .runtime(Runtime.JAVA_11)
                         .handler("com.innovation.acceptOrDecline.LambdaHandler")
-                        .memorySize(1024)
+                        .memorySize(2048)
                         .functionName("AcceptDeclineLambda")
                         .timeout(Duration.seconds(50))
                         .code(Code.fromAsset("../assets/AcceptDeclineLambda.jar"))
@@ -238,7 +233,7 @@ public class InfrastructureStack extends Stack {
                 Function.Builder.create(this, "tokenShop")
                         .runtime(Runtime.JAVA_11)
                         .handler("com.innovation.tokenShop.LambdaHandler")
-                        .memorySize(1024)
+                        .memorySize(2048)
                         .functionName("TokenShopLambda")
                         .timeout(Duration.seconds(50))
                         .code(Code.fromAsset("../assets/TokenShop.jar"))
@@ -286,13 +281,7 @@ public class InfrastructureStack extends Stack {
 
         LambdaRestApi gateway = LambdaRestApi.Builder.create(this, "gateway")
                 .handler(getInnovationFunction)
-//                .defaultMethodOptions(MethodOptions.builder().authorizationType(AuthorizationType.COGNITO).authorizer(auth).build())
-//                .defaultCorsPreflightOptions(CorsOptions.builder()
-//                        .allowOrigins(Cors.ALL_ORIGINS)
-//                        .allowMethods(Cors.ALL_METHODS)
-//                        .build())
                 .build();
-//
 
         //Snap start
         getInnovationFunction.addEnvironment("AWS_LAMBDA_ENABLE_SNAP_START", "1");
@@ -333,6 +322,13 @@ public class InfrastructureStack extends Stack {
         List<String> CORSmethodsListGetAccDec = new ArrayList<String>();
         CORSmethodsListGetAccDec.add("PUT");
         CORSmethodsListGetAccDec.add("OPTIONS");
+
+        List<String> CORSmethodsListManageShop = new ArrayList<>();
+        CORSmethodsListManageShop.add("GET");
+        CORSmethodsListManageShop.add("POST");
+        CORSmethodsListManageShop.add("PUT");
+        CORSmethodsListManageShop.add("DELETE");
+
 
         List<String> CORSheadersList = new ArrayList<String>();
         CORSheadersList.add("Content-Type");
@@ -381,7 +377,7 @@ public class InfrastructureStack extends Stack {
         gateway.getRoot().getResource("product")
             .addCorsPreflight(CorsOptions.builder()
                 .allowOrigins(CORSoriginsList)
-                .allowMethods(CORSmethodsListGetAccDec)
+                .allowMethods(CORSmethodsListManageShop)
                 .allowHeaders(CORSheadersList)
                 .build());
 

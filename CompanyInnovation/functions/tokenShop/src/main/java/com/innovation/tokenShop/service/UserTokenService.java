@@ -16,13 +16,10 @@ public class UserTokenService {
         this.userTokensRepository = userTokensRepository;
         this.mapper = mapper;
     }
-
-
     public UserTokenDTO getUserTokens(String userId){
         return mapper.map(userTokensRepository.findUser(userId), UserTokenDTO.class);
 
     }
-
     public UserTokenDTO updateTokens (UserTokenDTO userTokenDTO){
         UserTokenEntity userTokenEntity= userTokensRepository.findUser(userTokenDTO.getUserId());
         userTokenEntity.setTokens(userTokenEntity.getTokens() - userTokenDTO.getTokens());

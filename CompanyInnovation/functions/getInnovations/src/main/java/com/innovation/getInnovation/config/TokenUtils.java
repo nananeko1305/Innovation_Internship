@@ -21,7 +21,6 @@ public class TokenUtils {
             return null;
         }
     }
-
     public String getRoleFromToken(JWTClaimsSet jwtClaimsSet){
 
         List<String> groups = null;

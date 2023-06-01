@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Innovation} from "../../model/innovation";
-import {InnovationService} from "../../services/innovation/innovation.service";
 import { AwsClientService } from 'src/app/services/aws-client/aws-client.service';
 
 @Component({
@@ -16,7 +15,6 @@ export class InnovationDeclineCommentComponent implements OnInit{
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private innovationService: InnovationService,
     private awsClientService: AwsClientService
   ) { }
 
@@ -31,14 +29,13 @@ export class InnovationDeclineCommentComponent implements OnInit{
       reasonForDeclining: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[-_a-zA-Z]*')]],
     });
 
-    //get an innovation from state
     this.innovation = history.state.innovation;
     console.log(this.innovation)
   }
 
-  onSubmit(innovation: Innovation) {
+  async onSubmit(innovation: Innovation) {
     innovation.comment = this.formGroup.get('reasonForDeclining')?.value
-    this.awsClientService.sendRequest("/prod/acceptDeclineInnovation", "PUT",null,
+    await this.awsClientService.sendRequest("/prod/acceptDeclineInnovation", "PUT",null,
     {
           "title": innovation.title,
           "username": innovation.username,
@@ -50,11 +47,9 @@ export class InnovationDeclineCommentComponent implements OnInit{
           "id":innovation.id
         }) .then((result: any) =>{
           console.log(result)
-      this.router.navigate(['innovation-list']).then()
-  }).catch( function(result: any){
-      console.log(result)
-  });
-
+        }).catch( function(result: any){
+            console.log(result)
+        });
+    this.router.navigate(['innovation-list']).then()
   }
-
 }

@@ -9,9 +9,7 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class NavbarComponent {
 
-  constructor(private router: Router, public storageService : StorageService){
-
-  }
+  constructor(private router: Router, public storageService : StorageService,){}
 
   isLoggedIn() {
     return this.storageService.getToken() !== ""
@@ -20,6 +18,7 @@ export class NavbarComponent {
   logout(){
     this.storageService.clearToken()
     this.router.navigateByUrl("login").then()
+    localStorage.clear();
   }
 
 }

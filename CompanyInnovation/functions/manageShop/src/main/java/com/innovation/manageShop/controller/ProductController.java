@@ -30,8 +30,6 @@ public class ProductController {
         if(result.hasErrors()){
             return  new ResponseEntity<String>(result.getAllErrors().toString(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        System.out.println(token);
-        System.out.println(productDTO);
         return new ResponseEntity<ProductDTO>(productService.create(productDTO), HttpStatus.OK);
 
     }

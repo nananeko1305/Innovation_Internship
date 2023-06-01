@@ -23,7 +23,6 @@ public class UserTokenController {
     @GetMapping()
     @CrossOrigin("*")
     public UserTokenDTO getUsersTokens(@RequestHeader("jwttoken") String token){
-        System.out.println(tokenUtils.getJWTClaimsSet(token).getSubject());
         return  userTokenService.getUserTokens(tokenUtils.getJWTClaimsSet(token).getSubject());
     }
 

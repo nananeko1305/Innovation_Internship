@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Innovation} from "../../model/innovation";
 import {ActivatedRoute, Router} from "@angular/router";
-import {InnovationService} from "../../services/innovation/innovation.service";
 import { AwsClientService } from 'src/app/services/aws-client/aws-client.service';
 
 @Component({
@@ -16,7 +15,6 @@ export class InnovationAcceptDeclineComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private innovationService: InnovationService,
     private awsClientService: AwsClientService
   ) {
 
@@ -26,10 +24,10 @@ export class InnovationAcceptDeclineComponent implements OnInit{
     this.innovation = history.state.innovation;
   }
 
-  Accept(innovation: Innovation) {
+  async Accept(innovation: Innovation) {
     innovation.status = "APPROVED"
 
-    this.awsClientService.sendRequest("/prod/acceptDeclineInnovation", "PUT", null
+    await this.awsClientService.sendRequest("/prod/acceptDeclineInnovation", "PUT", null
     ,{
       "id":innovation.id,
           "title": innovation.title,
@@ -42,11 +40,12 @@ export class InnovationAcceptDeclineComponent implements OnInit{
         }).then((result: any) =>{
 
       console.log(result)
-     this.router.navigate(['innovation-list']).then()
   }).catch( function(result: Error){
     console.log(result)
     console.log("Error")
   });
+
+    this.router.navigate(['innovation-list']).then()
 
   }
 

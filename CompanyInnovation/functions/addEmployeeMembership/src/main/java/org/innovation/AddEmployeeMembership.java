@@ -4,7 +4,6 @@ import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProviderClientBuilder;
 import com.amazonaws.services.cognitoidp.model.AdminAddUserToGroupRequest;
 import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -18,16 +17,12 @@ public class AddEmployeeMembership implements RequestHandler<Map<String,Object>,
     @Override
     public Map<String,Object> handleRequest(Map<String,Object> event, Context context)
     {
-        LambdaLogger logger = context.getLogger();
-        logger.log("EVENT TYPE: " + event.getClass());
         String lambdaInputJsonStr = gson.toJson(event);
         JsonObject jsonObject = JsonParser.parseString(lambdaInputJsonStr).getAsJsonObject();
         String userPoolId = String.valueOf(jsonObject.getAsJsonPrimitive("userPoolId"));
         String username = String.valueOf(jsonObject.getAsJsonPrimitive("userName"));
         String userPoolIdCorrected = userPoolId.substring(1, userPoolId.length() - 1);
         String usernameCorrected = username.substring(1, username.length() - 1);
-        logger.log(lambdaInputJsonStr);
-        logger.log(userPoolId.substring(1));
         AWSCognitoIdentityProvider identityProviderClient = AWSCognitoIdentityProviderClientBuilder.defaultClient();
         AdminAddUserToGroupRequest adminAddUserToGroupRequest = new AdminAddUserToGroupRequest();
         adminAddUserToGroupRequest.setGroupName("Employee");

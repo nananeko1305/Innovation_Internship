@@ -12,6 +12,10 @@ export class ShopComponent implements OnInit{
 
   userTokens: UserTokens = new UserTokens()
 
+  onBuyItemEvent(price: number): void {
+    this.userTokens.tokens = this.userTokens.tokens - price;
+  }
+
   constructor(
     public storageService: StorageService,
     private awsClientService: AwsClientService,
@@ -19,11 +23,20 @@ export class ShopComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.awsClientService.sendRequest("/prod/tokens", "GET",null) .then((result: any) =>{
-      this.userTokens = result.data
-    }).catch( function(result: any){
-      console.log(result)
-    });
-  }
 
+    let additionalParams = {
+      //If there are query parameters or headers that need to be sent with the request you can add them here
+      headers: {
+        jwttoken : this.storageService.getToken()
+      }
+    }
+
+    if(this.storageService.getRoleFromToken()=='Employee'){
+      this.awsClientService.sendRequest("/prod/tokens", "GET",additionalParams, null) .then((result: any) =>{
+        this.userTokens = result.data
+      }).catch( function(result: any){
+        console.log(result)
+      });
+    }
+  }
 }

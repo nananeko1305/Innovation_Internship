@@ -4,9 +4,8 @@
   </div>
 
   <div class="row d-flex justify-content-center" >
-    <div class="row mt-3 d-flex justify-content-center" style="width: 60%;">
+    <div class="row mt-3 d-flex justify-content-center" style="width: 60%;" *ngIf="storageService.getRoleFromToken()!='Admin'">
       <b class="d-flex justify-content-end" style="font-size: 20px">Tokens: {{this.userTokens.tokens}}pts</b>
-
     </div>
     <button class="btn btn-primary d-flex justify-content-center"
     style=
@@ -14,7 +13,7 @@
     routerLink="create-product"
     *ngIf="storageService.getRoleFromToken()=='Admin'"
     >Add product</button>
-    <app-shop-list></app-shop-list>
+    <app-shop-list (buyItemEvent)="onBuyItemEvent($event)"></app-shop-list>
   </div>
 </div>
 
